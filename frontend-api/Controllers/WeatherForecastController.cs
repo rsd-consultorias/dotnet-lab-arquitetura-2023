@@ -1,3 +1,4 @@
+using FrontEndAPI.Core.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace frontend_api.Controllers;
@@ -12,10 +13,12 @@ public class WeatherForecastController : ControllerBase
     };
 
     private readonly ILogger<WeatherForecastController> _logger;
+    private readonly IOutraConsultaApplication _consultaApplication;
 
-    public WeatherForecastController(ILogger<WeatherForecastController> logger)
+    public WeatherForecastController(ILogger<WeatherForecastController> logger, IOutraConsultaApplication consultaApplication)
     {
         _logger = logger;
+        _consultaApplication = consultaApplication;
     }
 
     [HttpGet(Name = "GetWeatherForecast")]
@@ -25,7 +28,8 @@ public class WeatherForecastController : ControllerBase
         {
             Date = DateTime.Now.AddDays(index),
             TemperatureC = Random.Shared.Next(-20, 55),
-            Summary = Summaries[Random.Shared.Next(Summaries.Length)]
+            Summary = Summaries[Random.Shared.Next(Summaries.Length)],
+            Ok = this._consultaApplication.Test()
         })
         .ToArray();
     }
