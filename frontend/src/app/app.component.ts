@@ -10,7 +10,7 @@ export class AppComponent {
   title = 'Lab Arquitetura 2023';
   menus?: Array<any> = [];
 
-  constructor() {
+  constructor(private alertService: AlertService) {
     this.menus?.push({
       id: 0,
       display: 'Primeiro Menu',
@@ -27,7 +27,7 @@ export class AppComponent {
         }
       ]
     });
-    for (let i = 1; i < 10; i++) {
+    for (let i = 1; i < 3; i++) {
       let item = {
         id: i,
         display: `Menu de Teste ${i}`,
@@ -36,15 +36,23 @@ export class AppComponent {
 
       item.subMenus = [];
 
-      for (let i = 0; i < 20; i++) {
+      for (let i = 0; i < 3; i++) {
         let subItem = {
           display: `Submenu ${i}`,
-          target: `/dashboard`
+          target: [`/dashboard`, `${i}`]
         };
         item.subMenus.push(subItem);
       }
 
       this.menus!.push(item);
     }
+
+    this.iniciarWatcher();
+  }
+
+  iniciarWatcher() {
+    setInterval(async() => {
+      this.alertService.show("Nenhuma mensagem encontrada.", {classname: 'bg-primary text-white'});
+    }, 15000);
   }
 }
