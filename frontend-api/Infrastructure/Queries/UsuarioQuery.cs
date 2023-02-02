@@ -1,13 +1,12 @@
 using FrontEndAPI.Core.Interfaces;
 
-namespace FrontEndAPI.Infrastructure.Queries
+namespace FrontEndAPI.Infrastructure.Queries;
+
+public sealed class UsuarioQuery : IUsuarioQuery
 {
-    public sealed class UsuarioQuery : IUsuarioQuery
+    public bool existeUsuarioProCPF(string? cPF)
     {
-        public bool existeUsuarioProCPF(string? cPF)
-        {
-            // Buscar no AD
-            return true;
-        }
+        // Buscar no AD
+        return true;
     }
 }
