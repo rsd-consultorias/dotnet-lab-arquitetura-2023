@@ -1,3 +1,5 @@
+using FrontEndAPI.Core.Models;
+
 namespace frontend_api;
 
 public class WeatherForecast
@@ -10,5 +12,5 @@ public class WeatherForecast
 
     public string? Summary { get; set; }
 
-    public string Ok { get; set; }
+    public Entidade? Ok { get; set; }
 }

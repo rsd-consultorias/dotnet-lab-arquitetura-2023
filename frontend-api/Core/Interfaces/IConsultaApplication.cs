@@ -1,8 +1,10 @@
+using FrontEndAPI.Core.Models;
+
 namespace FrontEndAPI.Core.Interfaces
 {
 
     public interface IConsultaApplication
     {
-        String Test();
+        Entidade Test(Int32 id);
     }
 }

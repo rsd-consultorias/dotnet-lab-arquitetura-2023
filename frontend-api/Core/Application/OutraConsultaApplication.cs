@@ -1,4 +1,5 @@
 using FrontEndAPI.Core.Interfaces;
+using FrontEndAPI.Core.Models;
 
 namespace FrontEndAPI.Core.Application
 {
@@ -12,8 +13,8 @@ namespace FrontEndAPI.Core.Application
             System.Console.WriteLine("OutraConsultaAplicacao.... ctor");
         }
 
-        public string Test() {
-            return _consultaApplication.Test();
+        public Entidade Test(Int32 id) {
+            return _consultaApplication.Test(id);
         }
     }
 }

@@ -11,7 +11,23 @@ export class AppComponent {
   menus?: Array<any> = [];
 
   constructor() {
-    for (let i = 0; i < 10; i++) {
+    this.menus?.push({
+      id: 0,
+      display: 'Primeiro Menu',
+      subMenus: [
+        {
+          id: 0,
+          display: 'Home',
+          target: '/home'
+        },
+        {
+          id: 1,
+          display: 'Dashboard',
+          target: '/dashboard'
+        }
+      ]
+    });
+    for (let i = 1; i < 10; i++) {
       let item = {
         id: i,
         display: `Menu de Teste ${i}`,
