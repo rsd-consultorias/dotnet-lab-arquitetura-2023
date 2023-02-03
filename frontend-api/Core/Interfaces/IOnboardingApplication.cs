@@ -3,8 +3,7 @@ using FrontEndAPI.Core.Types;
 
 namespace FrontEndAPI.Core.Interfaces;
 
-public interface IConsultaApplication
+public interface IOnboardingApplication
 {
-    Entidade Test(Int32 id);
     OnboardFuncionarioResult OnboardFuncionario(Funcionario funcionario);
 }

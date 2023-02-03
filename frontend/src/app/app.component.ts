@@ -1,58 +1,41 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { OAuthService } from 'angular-oauth2-oidc';
+// import { OAuthService } from 'angular-oauth2-oidc';
 import { AlertService } from './services/alert.service';
+import { MenuService } from './services/menu.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.sass']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'Lab Arquitetura 2023';
   menus?: Array<any> = [];
 
-  constructor(private alertService: AlertService) {
-    this.menus?.push({
-      id: 0,
-      display: 'Primeiro Menu',
-      subMenus: [
-        {
-          id: 0,
-          display: 'Home',
-          target: '/home'
-        },
-        {
-          id: 1,
-          display: 'Dashboard',
-          target: '/dashboard'
-        }
-      ]
-    });
-    for (let i = 1; i < 3; i++) {
-      let item = {
-        id: i,
-        display: `Menu de Teste ${i}`,
-        subMenus: [{}]
-      };
+  constructor(
+    private alertService: AlertService,
+    private menuService: MenuService,
+    private oauthService: OAuthService) {
+  }
 
-      item.subMenus = [];
+  ngOnInit() {
+    this.oauthService.setupAutomaticSilentRefresh();
+    let claims = this.oauthService.getIdentityClaims();
+    this.menuService.listarMenu({}).subscribe(data => this.menus = data);
+  }
 
-      for (let i = 0; i < 3; i++) {
-        let subItem = {
-          display: `Submenu ${i}`,
-          target: [`/dashboard`, `${i}`]
-        };
-        item.subMenus.push(subItem);
-      }
-
-      this.menus!.push(item);
-    }
-
+  async handleCredentialResponse(response: any) {
+    // Here will be your response from Google.
+    // alert(JSON.stringify(response));
+    localStorage.setItem('id_token', JSON.stringify(response.credential));
+    this.menuService.listarMenu(response).subscribe(data => this.menus = data);
     this.iniciarWatcher();
   }
 
   iniciarWatcher() {
-    setInterval(async() => {
-      this.alertService.show("Nenhuma mensagem encontrada.", {classname: 'bg-primary text-white'});
+    setInterval(async () => {
+      this.alertService.show("Nenhuma mensagem encontrada.", { classname: 'bg-primary text-white' });
     }, 15000);
   }
 }

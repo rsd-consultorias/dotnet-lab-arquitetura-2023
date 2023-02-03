@@ -7,6 +7,11 @@ public class Funcionario
     public string? Nome { get; private set; }
     public string? EMail { get; private set; }
 
+    public Funcionario()
+    {
+
+    }
+
     public Funcionario(string cpf, string nome, string email)
     {
         CPF = cpf;
