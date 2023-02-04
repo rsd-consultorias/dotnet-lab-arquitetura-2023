@@ -7,7 +7,7 @@ import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
   selector: 'app-menu-lateral-item',
   templateUrl: './menu-lateral-item.component.html',
   imports: [NgbCollapseModule, NgForOf, RouterModule],
-  styleUrls: ['./menu-lateral-item.component.sass'],
+  styleUrls: ['./menu-lateral-item.component.scss'],
   standalone: true
 })
 export class MenuLateralItemComponent {

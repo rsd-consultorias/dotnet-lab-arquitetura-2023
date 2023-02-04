@@ -19,3 +19,12 @@ message HelloRequest {
 message HelloReply {
   string message = 1;
 }
+
+// Log de manipulacao de dados
+package log_auditoria;
+
+// Log de erros
+package log_erro;
+
+// Log de navegaçao
+package log_navegacao;

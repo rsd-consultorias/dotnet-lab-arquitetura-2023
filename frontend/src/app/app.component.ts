@@ -1,41 +1,46 @@
 import { Component, OnInit } from '@angular/core';
-import { OAuthService } from 'angular-oauth2-oidc';
-// import { OAuthService } from 'angular-oauth2-oidc';
+import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { KeycloakService } from 'keycloak-angular';
 import { AlertService } from './services/alert.service';
 import { MenuService } from './services/menu.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.sass']
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
   title = 'Lab Arquitetura 2023';
   menus?: Array<any> = [];
+  loggedUser?: string;
 
   constructor(
     private alertService: AlertService,
     private menuService: MenuService,
-    private oauthService: OAuthService) {
+    private modalService: NgbModal,
+    protected readonly keycloak: KeycloakService) {
   }
 
-  ngOnInit() {
-    this.oauthService.setupAutomaticSilentRefresh();
-    let claims = this.oauthService.getIdentityClaims();
-    this.menuService.listarMenu({}).subscribe(data => this.menus = data);
-  }
+  async ngOnInit() {
+    // this.modalService.open(document.getElementById('splashModal')!, { windowClass: 'vh-100' });
+    // setTimeout(() => {
+    //   this.modalService.dismissAll();
+    // }, 1700);
 
-  async handleCredentialResponse(response: any) {
-    // Here will be your response from Google.
-    // alert(JSON.stringify(response));
-    localStorage.setItem('id_token', JSON.stringify(response.credential));
-    this.menuService.listarMenu(response).subscribe(data => this.menus = data);
+    let token = await this.keycloak.getToken();
+    let userInfo = await this.keycloak.loadUserProfile();
+    this.loggedUser = `${userInfo.firstName!} ${userInfo.lastName!}`;
+    this.menuService.listarMenu(token).subscribe(data => this.menus = data);
+
     this.iniciarWatcher();
   }
 
   iniciarWatcher() {
     setInterval(async () => {
-      this.alertService.show("Nenhuma mensagem encontrada.", { classname: 'bg-primary text-white' });
+      this.alertService.show("Nenhuma mensagem encontrada.", { classname: 'bg-secondary text-white' });
+      setTimeout(() => {
+        this.alertService.show("Nenhuma mensagem encontrada...", { classname: 'bg-secondary text-white' });
+      }, 7500);
     }, 15000);
   }
 }

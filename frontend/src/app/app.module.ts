@@ -1,6 +1,5 @@
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import { APP_INITIALIZER, CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -11,16 +10,28 @@ import { MenuLateralItemComponent } from './shared/menu-lateral-item/menu-latera
 import { BreadCrumbComponent } from './shared/bread-crumb/bread-crumb.component';
 import { ToastsContainer } from './shared/toasts-container.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-
-// import { OAuthModule } from 'angular-oauth2-oidc';
-// import { AuthConfigModule } from './auth.config.module';
+import { LoginCallbackComponent } from './login-callback/login-callback.component';
+import { initializeKeycloak } from './services/keycloak.factory';
+import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
+import { BrowserModule } from '@angular/platform-browser';
+import { CadastrosComponent } from './cadastros/cadastros.component';
+import { ProcessosComponent } from './processos/processos.component';
+import { RelatoriosComponent } from './relatorios/relatorios.component';
+import { ConfiguracoesComponent } from './configuracoes/configuracoes.component';
+import { IntegracoesComponent } from './integracoes/integracoes.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     BreadCrumbComponent,
-    DashboardComponent
+    DashboardComponent,
+    LoginCallbackComponent,
+    CadastrosComponent,
+    ProcessosComponent,
+    RelatoriosComponent,
+    ConfiguracoesComponent,
+    IntegracoesComponent
   ],
   imports: [
     BrowserModule,
@@ -30,11 +41,15 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     NgbTooltipModule,
     ToastsContainer,
     HttpClientModule,
-    NgbModule,
-    // AuthConfigModule,
-    // OAuthModule
+    KeycloakAngularModule,
+    NgbModule
   ],
-  providers: [MenuLateralComponent, MenuLateralItemComponent],
+  providers: [MenuLateralComponent, MenuLateralItemComponent, {
+    provide: APP_INITIALIZER,
+    useFactory: initializeKeycloak,
+    multi: true,
+    deps: [KeycloakService]
+  }],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

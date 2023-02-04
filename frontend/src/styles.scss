@@ -1,0 +1,14 @@
+@import 'custom.scss';
+/* Importing Bootstrap SCSS file. */
+@import 'bootstrap/scss/bootstrap';
+
+body {
+    font-weight: lighter;
+}
+
+a {
+    text-decoration: none;
+    &hover {
+        color: gainsboro;
+    }
+}

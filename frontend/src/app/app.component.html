@@ -1,18 +1,26 @@
 <div class="container-fluid rsd-container vh-100">
-  <div class="row rsd-container-header" style="height: 64px;">
+  <div class="row bg-primary text-white" style="height: 64px;">
     <div class="col-2 m-auto">
       <h5>{{title}}</h5>
     </div>
-    <div class="col-10"></div>
+    <div class="col"></div>
+    <div class="col-3 pe-3 m-auto text-end">
+      <a class="link text-white" href="http://localhost:8080/realms/master/account" target="_blank">{{loggedUser}}</a>
+    </div>
   </div>
   <div class="row" style="height: calc(100% - 64px);">
     <div class="h-100 col-2 overflow-auto overflow-x-hidden rsd-menu"><app-menu-lateral
         [menus]="menus"></app-menu-lateral>
     </div>
-    <div class="col-10 text-body">
+    <div class="col-10 text-body h-100 col-2 overflow-auto overflow-x-hidden">
       <div class="container p-0">
-        <div class="row p-1">
-          <small>Home > Teste de Teste > Editar</small>
+        <div class="row pt-2 ps-2">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Library</li>
+            </ol>
+          </nav>
         </div>
         <div class="row p-1">
           <router-outlet></router-outlet>
@@ -22,3 +30,13 @@
   </div>
 </div>
 <app-toasts aria-live="polite" aria-atomic="true"></app-toasts>
+<ng-template #content let-modal>
+  <!-- <div class="modal modal-fullscreen-sm-down fade-out" id="splashModal" style="background-color: white;">
+    <div class="modal-dialog modal-dialog-centered border-0">
+      <div class="modal-content border-0 text-center" style="background-color: rgba(0,0,0,0);">
+        <h1 class="fade-in"><img height="300px" src="../assets/images/logo.png" /><br />RSD <span
+            style="padding-left: 8px; border-left: dashed 1px black;">Finanças</span></h1>
+      </div>
+    </div>
+  </div> -->
+</ng-template>
