@@ -30,3 +30,4 @@ dotnet test && dotnet run
 - [gRPC](https://grpc.io/)
 - [Documentação do Keycloak](https://www.keycloak.org/docs)
 - [Testes unitários NUnit](https://www.devmedia.com.br/teste-unitario-com-nunit/41236)
+- [Microsserviços](https://learn.microsoft.com/fr-fr/azure/architecture/guide/architecture-styles/microservices)
