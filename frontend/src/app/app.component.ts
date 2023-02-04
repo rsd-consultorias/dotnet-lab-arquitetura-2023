@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { KeycloakService } from 'keycloak-angular';
+import { KeycloakProfile } from 'keycloak-js';
 import { AlertService } from './services/alert.service';
 import { MenuService } from './services/menu.service';
 
@@ -12,7 +13,8 @@ import { MenuService } from './services/menu.service';
 export class AppComponent implements OnInit {
   title = 'Lab Arquitetura 2023';
   menus?: Array<any> = [];
-  loggedUser?: string;
+  loggedUser?: any = {};
+  notifications?: any = {};
 
   constructor(
     private alertService: AlertService,
@@ -28,19 +30,15 @@ export class AppComponent implements OnInit {
     // }, 1700);
 
     let token = await this.keycloak.getToken();
-    let userInfo = await this.keycloak.loadUserProfile();
-    this.loggedUser = `${userInfo.firstName!} ${userInfo.lastName!}`;
+    let userInfo: KeycloakProfile = await this.keycloak.loadUserProfile();
+    // @ts-ignore
+    this.loggedUser.name = `${userInfo.firstName!} ${userInfo.lastName!} [${userInfo.attributes.chapa!}]`;
+    // @ts-ignore
+    this.loggedUser.company = userInfo.attributes.empresa;
+    // @ts-ignore
+    this.loggedUser.businessUnit = userInfo.attributes.area;
+    // @ts-ignore
+    this.loggedUser.costCenter = userInfo.attributes.centro_custos;
     this.menuService.listarMenu(token).subscribe(data => this.menus = data);
-
-    this.iniciarWatcher();
-  }
-
-  iniciarWatcher() {
-    setInterval(async () => {
-      this.alertService.show("Nenhuma mensagem encontrada.", { classname: 'bg-secondary text-white' });
-      setTimeout(() => {
-        this.alertService.show("Nenhuma mensagem encontrada...", { classname: 'bg-secondary text-white' });
-      }, 7500);
-    }, 15000);
   }
 }

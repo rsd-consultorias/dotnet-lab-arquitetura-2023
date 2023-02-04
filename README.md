@@ -13,7 +13,7 @@
 ## Executar os projetos
 ```bash
 # Keycloak - Na pasta bin do keycloac
-sh ./kc.sh -start-dev
+sh ./kc.sh start-dev --features=declarative-user-profile
 
 # Frontend Angular - Na pasta do angular
 ng serve

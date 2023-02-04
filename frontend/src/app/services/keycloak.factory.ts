@@ -12,7 +12,7 @@ export function initializeKeycloak(
             },
             initOptions: {
                 flow: 'implicit',
-                scope: 'profile',
+                scope: 'profile email',
                 pkceMethod: 'S256',
                 // must match to the configured value in keycloak
                 redirectUri: 'http://localhost:4200/',

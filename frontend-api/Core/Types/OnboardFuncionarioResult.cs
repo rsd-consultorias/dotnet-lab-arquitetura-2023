@@ -8,4 +8,5 @@ public sealed class OnboardFuncionarioResult
     public bool MaquinaPronta { get; set; }
     public bool UsuarioRedeCriado { get; set; }
     public bool ParametroFolhaHabilitado { get; set; }
+    public bool FuncionarioSalvo { get; set; }
 }

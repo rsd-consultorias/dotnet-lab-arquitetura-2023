@@ -9,15 +9,6 @@ public sealed class FuncionarioQuery : IFuncionarioQuery
     public FuncionarioQuery(LabArquiteturaDbContext context)
     {
         _context = context;
-
-        var lista = new List<Funcionario>();
-        lista.Add(new Funcionario("123456456", "DB Funcionario de Testes", "fute@teste.com"));
-        lista.Add(new Funcionario("123456456", "Funcionario de Testes", "fute@teste.com"));
-        lista.Add(new Funcionario("123456456", "Funcionario de Testes", "fute@teste.com"));
-        lista.Add(new Funcionario("123456456", "Funcionario de Testes", "fute@teste.com"));
-
-        lista.ForEach(func => _context.Funcionarios.Add(func));
-        _context.SaveChanges();
     }
 
     public IEnumerable<Funcionario> ListarTodos()

@@ -1,9 +1,9 @@
 <div class="row rsd-menu-item" (click)="menu.toggle()" [attr.aria-expanded]="!isCollapsed"
     aria-controls="collapseExample">
-    {{display}}
+    <span class="ps-2">{{display}}</span>
 </div>
 <div class="bg-white" #menu="ngbCollapse" [(ngbCollapse)]="isCollapsed">
     <div class="row rsd-sub-menu" *ngFor="let menu of menus" [routerLink]="menu.target">
-        {{menu.display}}
+        <span class="ps-3">{{menu.display}}</span>
     </div>
 </div>

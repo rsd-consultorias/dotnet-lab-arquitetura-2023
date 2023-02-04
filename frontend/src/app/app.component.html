@@ -3,9 +3,21 @@
     <div class="col-2 m-auto">
       <h5>{{title}}</h5>
     </div>
-    <div class="col"></div>
+    <div class="col m-auto ps-0">
+      <small>
+        <strong>Empresa:</strong> {{loggedUser.company}}<br />
+        <strong>Área:</strong> {{loggedUser.businessUnit}} | <strong>Centro de Custos:</strong>
+        {{loggedUser.costCenter}}
+      </small>
+    </div>
     <div class="col-3 pe-3 m-auto text-end">
-      <a class="link text-white" href="http://localhost:8080/realms/master/account" target="_blank">{{loggedUser}}</a>
+      <a class="link text-white me-2"
+        href="http://localhost:8080/realms/master/account?referrer_uri=http://localhost:4200"
+        target="_blank">{{loggedUser.name}}</a>
+      <span>
+        <span class="badge text-bg-warning p-2 rounded-pill me-1">{{notifications!.warning > 60 ? '99+' :
+          notifications!.warning}}</span>
+      </span>
     </div>
   </div>
   <div class="row" style="height: calc(100% - 64px);">
@@ -14,9 +26,9 @@
     </div>
     <div class="col-10 text-body h-100 col-2 overflow-auto overflow-x-hidden">
       <div class="container p-0">
-        <div class="row pt-2 ps-2">
-          <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
+        <div class="row pt-2 m-auto">
+          <nav class="p-0" aria-label="breadcrumb">
+            <ol class="breadcrumb m-auto">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
               <li class="breadcrumb-item active" aria-current="page">Library</li>
             </ol>
@@ -29,7 +41,9 @@
     </div>
   </div>
 </div>
-<app-toasts aria-live="polite" aria-atomic="true"></app-toasts>
+<div class="toast-container position-static">
+  <app-toasts aria-live="polite" aria-atomic="true"></app-toasts>
+</div>
 <ng-template #content let-modal>
   <!-- <div class="modal modal-fullscreen-sm-down fade-out" id="splashModal" style="background-color: white;">
     <div class="modal-dialog modal-dialog-centered border-0">

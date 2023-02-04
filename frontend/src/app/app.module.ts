@@ -1,5 +1,5 @@
 import { APP_INITIALIZER, CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -9,29 +9,25 @@ import { MenuLateralComponent } from './shared/menu-lateral/menu-lateral.compone
 import { MenuLateralItemComponent } from './shared/menu-lateral-item/menu-lateral-item.component';
 import { BreadCrumbComponent } from './shared/bread-crumb/bread-crumb.component';
 import { ToastsContainer } from './shared/toasts-container.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginCallbackComponent } from './login-callback/login-callback.component';
 import { initializeKeycloak } from './services/keycloak.factory';
 import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
 import { BrowserModule } from '@angular/platform-browser';
-import { CadastrosComponent } from './cadastros/cadastros.component';
-import { ProcessosComponent } from './processos/processos.component';
-import { RelatoriosComponent } from './relatorios/relatorios.component';
-import { ConfiguracoesComponent } from './configuracoes/configuracoes.component';
-import { IntegracoesComponent } from './integracoes/integracoes.component';
+import { NgChartsModule } from 'ng2-charts';
+import { FuncionariosComponent } from './cadastros/funcionarios/funcionarios.component';
+import { FuncionariosAdmitirComponent } from './cadastros/funcionarios/funcionarios-admitir/funcionarios-admitir.component';
+import { FuncionariosListarComponent } from './cadastros/funcionarios/funcionarios-listar/funcionarios-listar.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     BreadCrumbComponent,
-    DashboardComponent,
     LoginCallbackComponent,
-    CadastrosComponent,
-    ProcessosComponent,
-    RelatoriosComponent,
-    ConfiguracoesComponent,
-    IntegracoesComponent
+    FuncionariosComponent,
+    FuncionariosAdmitirComponent,
+    FuncionariosListarComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +38,10 @@ import { IntegracoesComponent } from './integracoes/integracoes.component';
     ToastsContainer,
     HttpClientModule,
     KeycloakAngularModule,
-    NgbModule
+    NgChartsModule,
+    NgbModule,
+    NgChartsModule,
+    FormsModule
   ],
   providers: [MenuLateralComponent, MenuLateralItemComponent, {
     provide: APP_INITIALIZER,

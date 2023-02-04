@@ -4,16 +4,9 @@ using FrontEndAPI.Core.Interfaces;
 using FrontEndAPI.Infrastructure.Queries;
 using FrontEndAPI.Infrastructure.Repositories.Contexts;
 using FrontEndAPI.Infrastructure.Services;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.IdentityModel.Tokens;
-using Microsoft.AspNetCore.Authentication.OpenIdConnect;
-using Microsoft.IdentityModel.Protocols.OpenIdConnect;
-using System.Security.Claims;
 using Keycloak.AuthServices.Authentication;
+using FrontEndAPI.Infrastructure.Commands;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,7 +16,7 @@ builder.Services.AddControllers();
 builder.Services.AddDbContext<LabArquiteturaDbContext>(options =>
 {
     options.UseInMemoryDatabase("LabArquitetura");
-});
+}, ServiceLifetime.Singleton);
 
 builder.Services.AddCors(options =>
 {
@@ -63,7 +56,8 @@ builder.Services.AddScoped<IEMailService, EMailService>();
 builder.Services.AddScoped<IFolhaService, FolhaService>();
 builder.Services.AddScoped<IMaquinaQuery, MaquinaQuery>();
 builder.Services.AddScoped<IUsuarioQuery, UsuarioQuery>();
-builder.Services.AddScoped<IFuncionarioQuery, FuncionarioQuery>();
+builder.Services.AddSingleton<IFuncionarioCommand, FuncionarioCommand>();
+builder.Services.AddSingleton<IFuncionarioQuery, FuncionarioQuery>();
 
 var app = builder.Build();
 

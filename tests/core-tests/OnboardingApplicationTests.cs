@@ -1,3 +1,5 @@
+using FrontEndAPI.Infrastructure.Commands;
+
 namespace core_tests;
 
 [TestFixture]
@@ -6,6 +8,7 @@ public class Tests
     private ParametroFolhaDomainService? _parametroFolhaDomainService;
     private IMaquinaQuery? _maquinaQuery;
     private IUsuarioQuery? _usuarioQuery;
+    private IFuncionarioCommand _funcionarioCommand;
     private IFolhaService? _folhaService;
     private IEMailService? _emailService;
     private OnboardingApplication? _onboardingApplication;
@@ -16,12 +19,14 @@ public class Tests
         _parametroFolhaDomainService = new ParametroFolhaDomainService();
         _maquinaQuery = new MaquinaQuery();
         _usuarioQuery = new UsuarioQuery();
+        _funcionarioCommand = new FuncionarioCommand();
         _folhaService = new FolhaService();
         _emailService = new EMailService();
 
         _onboardingApplication = new OnboardingApplication(
             _maquinaQuery!,
             _usuarioQuery!,
+            _funcionarioCommand!,
             _folhaService!,
             _emailService!);
     }

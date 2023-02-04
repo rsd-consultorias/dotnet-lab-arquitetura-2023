@@ -1,0 +1,31 @@
+<div class="col">
+    <div class="row rsd-container-header bg-primary" style="height: 48px;">
+        <div class="col-2 m-auto"><span>Admitir Funcionário</span></div>
+        <div class="col m-auto text-end">
+            <button class="btn btn-primary" [routerLink]="['/cadastros/funcionarios']">Voltar</button>
+            <button class="btn btn-primary" (click)="salvar()">Salvar</button>
+        </div>
+    </div>
+    <div class="row p-2 bg-white">
+        <div class="col-6">
+            <label class="form-label">Nome</label>
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Nome" [(ngModel)]="funcionario.Nome">
+            </div>
+        </div>
+        <div class="col-6">
+            <label class="form-label">CPF</label>
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="CPF" maxlength="11" [(ngModel)]="funcionario.CPF">
+            </div>
+        </div>
+    </div>
+    <div class="row p-2 bg-white">
+        <div class="col-6">
+            <label class="form-label">E-Mail</label>
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="E-Mail" [(ngModel)]="funcionario.EMail">
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,11 +1,14 @@
 using FrontEndAPI.Core.Interfaces;
 using FrontEndAPI.Core.Models;
 using FrontEndAPI.Core.Types;
+using FrontEndAPI.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FrontEndAPI.Controllers
 {
     [ApiController]
+    [Authorize]
     [Route("api/v1/[controller]")]
     public class OnboardController : Controller
     {
@@ -33,6 +36,17 @@ namespace FrontEndAPI.Controllers
         public IEnumerable<Funcionario>? GetAllActive()
         {
             return _funcionarioQuery.ListarTodos();
+        }
+
+        [HttpPost]
+        public IActionResult Salvar([FromBody] FuncionarioRequest funcionario)
+        {
+            Console.WriteLine("==================");
+            Console.WriteLine(funcionario.Nome);
+            Console.WriteLine(funcionario.CPF);
+            Console.WriteLine(funcionario.EMail);
+            Console.WriteLine("==================");
+            return Ok(this._consultaApplication.OnboardFuncionario(funcionario.ToModel()));
         }
 
         /// <summary>

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertService } from '../services/alert.service';
-import { ServicoQualquerService } from '../services/servico-qualquer.service';
 
 @Component({
   selector: 'app-home',

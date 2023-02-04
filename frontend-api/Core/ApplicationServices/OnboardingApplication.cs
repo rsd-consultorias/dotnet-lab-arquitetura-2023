@@ -9,6 +9,7 @@ public sealed class OnboardingApplication : IOnboardingApplication
 {
     private readonly IMaquinaQuery _maquinaQuery;
     private readonly IUsuarioQuery _usuarioQuery;
+    private readonly IFuncionarioCommand _funcionarioCommand;
     private readonly IFolhaService _folhaService;
     private readonly IEMailService _emailService;
     private readonly ParametroFolhaDomainService _parametroFolhaDomainService;
@@ -16,6 +17,7 @@ public sealed class OnboardingApplication : IOnboardingApplication
     public OnboardingApplication(
         IMaquinaQuery maquinaQuery,
         IUsuarioQuery usuarioQuery,
+        IFuncionarioCommand funcionarioCommand,
         IFolhaService folhaService,
         IEMailService emailService)
     {
@@ -23,6 +25,7 @@ public sealed class OnboardingApplication : IOnboardingApplication
         _usuarioQuery = usuarioQuery;
         _folhaService = folhaService;
         _emailService = emailService;
+        _funcionarioCommand = funcionarioCommand;
 
         _parametroFolhaDomainService = new ParametroFolhaDomainService();
     }
@@ -51,13 +54,21 @@ public sealed class OnboardingApplication : IOnboardingApplication
             _emailService.EnviarBoasVindas(funcionario);
         }
 
+        var funcionarioSalvo = false;
+        if (maquinaOk & usuarioRedeOk & parametroFolhaHabilitado)
+        {
+
+            funcionarioSalvo = _funcionarioCommand.Salvar(funcionario);
+        }
+
         // Retornar resumo do onboarding
         return new OnboardFuncionarioResult
         {
             Funcionario = funcionario,
             MaquinaPronta = maquinaOk,
             UsuarioRedeCriado = usuarioRedeOk,
-            ParametroFolhaHabilitado = parametroFolhaHabilitado
+            ParametroFolhaHabilitado = parametroFolhaHabilitado,
+            FuncionarioSalvo = funcionarioSalvo
         };
     }
 }
