@@ -22,7 +22,11 @@ export class FuncionariosAdmitirComponent {
         if (data?.funcionarioSalvo!) {
           this.alertService.show('Funcionário salvo.', { classname: 'text-bg-success' });
         } else {
-          this.alertService.show(JSON.stringify(data), { classname: 'text-bg-danger' });
+          let msg = `Máquina pronta: ${data.maquinaPronta ? 'OK' : 'NOG'}\n
+          Usuário de Rede: ${data.usuarioRede ? 'OK' : 'NOK'}\n
+          Parâmetro da Folha: ${data.parametroFolha ? 'OK' : 'NOK'}
+          `;
+          this.alertService.show(msg, { classname: 'text-bg-danger' });
         }
       });
   }
