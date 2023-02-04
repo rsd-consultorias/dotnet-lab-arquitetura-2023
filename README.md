@@ -1,10 +1,19 @@
 ![alt text](./doc/label.png)
 # [dotnet] Lab Arquitetura 2023
 
+## Projetos
+### [Frontend (Angular)](./frontend/)
+
+### [Frontend (dotnet web API)](./frontend-api/)
+
+### [Frontend (NUnit)](./tests/core-tests/)
+
+<br />
+
 ## Executar os projetos
 ```bash
 # Keycloak - Na pasta bin do keycloac
-./kc.sh -start-dev
+sh ./kc.sh -start-dev
 
 # Frontend Angular - Na pasta do angular
 ng serve
