@@ -18,6 +18,7 @@ import { FuncionariosComponent } from './cadastros/funcionarios/funcionarios.com
 import { FuncionariosAdmitirComponent } from './cadastros/funcionarios/funcionarios-admitir/funcionarios-admitir.component';
 import { FuncionariosListarComponent } from './cadastros/funcionarios/funcionarios-listar/funcionarios-listar.component';
 import { FormsModule } from '@angular/forms';
+import { LogoffComponent } from './logoff/logoff.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { FormsModule } from '@angular/forms';
     LoginCallbackComponent,
     FuncionariosComponent,
     FuncionariosAdmitirComponent,
-    FuncionariosListarComponent
+    FuncionariosListarComponent,
+    LogoffComponent
   ],
   imports: [
     BrowserModule,

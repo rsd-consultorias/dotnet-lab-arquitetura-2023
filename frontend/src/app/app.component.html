@@ -35,9 +35,10 @@
         </span>
       </button>
       <a class="btn btn-sm btn-primary me-2 position-relative"
-        href="http://localhost:8080/realms/master/account?referrer_uri=http://localhost:4200"
+        href="http://localhost:8080/realms/master/account?referrer_uri=http://localhost:4200#/personal-info"
         target="_blank">{{loggedUser.name}}
       </a>
+      <button class="btn btn-sm btn-primary" (click)="logoff()">Sair</button>
     </div>
   </div>
   <div class="row" style="height: calc(100% - 64px);">

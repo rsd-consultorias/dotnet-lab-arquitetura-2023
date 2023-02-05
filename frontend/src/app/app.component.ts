@@ -33,12 +33,10 @@ export class AppComponent implements OnInit {
 
     setInterval(async () => {
       if (!this.keycloak.isLoggedIn()) {
-        console.log('login');
         await this.keycloak.login({
           redirectUri: window.location.origin + this.router.routerState.snapshot.url,
         });
       } else {
-        console.log('updateToken');
         await this.keycloak.updateToken().catch(err => {
           this.keycloak.login({
             redirectUri: window.location.origin + this.router.routerState.snapshot.url,
@@ -62,5 +60,9 @@ export class AppComponent implements OnInit {
     this.loggedUser.costCenter = userInfo.attributes.centro_custos;
     this.menuService.listarMenu(token).subscribe(data => this.menus = data);
 
+  }
+
+  async logoff() {
+    await this.keycloak.logout('http://localhost:8080/realms/master/account/');
   }
 }
