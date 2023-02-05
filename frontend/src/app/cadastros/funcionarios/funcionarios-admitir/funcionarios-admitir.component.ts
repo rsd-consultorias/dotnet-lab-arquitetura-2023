@@ -11,6 +11,7 @@ export class FuncionariosAdmitirComponent {
 
   funcionario: any = {};
   isWaiting = false;
+  validateForm: boolean = false;
 
   constructor(private onboardService: OnboardingService,
     private alertService: AlertService) {
@@ -19,6 +20,7 @@ export class FuncionariosAdmitirComponent {
 
   salvar() {
     if (!this.funcionario.nome || !this.funcionario.cpf || !this.funcionario.eMail) {
+      this.validate();
       this.alertService.show('Todos os dados devem ser preenchidos', { classname: 'text-bg-warning' });
       return;
     }
@@ -43,26 +45,9 @@ export class FuncionariosAdmitirComponent {
         },
         complete: () => { this.isWaiting = false; }
       });
+  }
 
-
-
-
-    // .subscribe(response => {
-    //   let data = response.body!;
-    //   if (data?.funcionarioSalvo!) {
-    //     this.alertService.show('Funcionário salvo.', { classname: 'text-bg-success' });
-    //   } else {
-    //     let msg = `Máquina pronta: ${data.maquinaPronta ? 'OK' : 'NOG'}\n
-    //     Usuário de Rede: ${data.usuarioRede ? 'OK' : 'NOK'}\n
-    //     Parâmetro da Folha: ${data.parametroFolha ? 'OK' : 'NOK'}
-    //     `;
-    //     this.isWaiting = false;
-    //     this.alertService.show(msg, { classname: 'text-bg-warning' });
-
-    //   }
-    // }, error => {
-    //   this.alertService.show(`Ocorreu um erro. \n${error.message}`, { classname: 'text-bg-danger' });
-    //   this.isWaiting = false;
-    // });
+  validate() {
+    this.validateForm = true;
   }
 }

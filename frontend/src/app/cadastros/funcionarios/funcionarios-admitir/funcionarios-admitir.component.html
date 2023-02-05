@@ -9,13 +9,13 @@
         <div class="col-6">
             <label class="form-label">Nome</label>
             <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="Nome" [(ngModel)]="funcionario.nome">
+                <input type="text" [class]="validateForm && !funcionario.nome ? 'form-control border-danger' : 'form-control'" placeholder="Nome" [(ngModel)]="funcionario.nome" required>
             </div>
         </div>
         <div class="col-6">
             <label class="form-label">CPF</label>
             <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="CPF" maxlength="11" [(ngModel)]="funcionario.cpf">
+                <input type="text" [class]="validateForm && !funcionario.cpf ? 'form-control border-danger' : 'form-control'" placeholder="CPF" maxlength="11" [(ngModel)]="funcionario.cpf">
             </div>
         </div>
     </div>
@@ -23,7 +23,7 @@
         <div class="col-6">
             <label class="form-label">E-Mail</label>
             <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="E-Mail" [(ngModel)]="funcionario.eMail">
+                <input type="text" [class]="validateForm && !funcionario.eMail ? 'form-control border-danger' : 'form-control'" placeholder="E-Mail" [(ngModel)]="funcionario.eMail">
             </div>
         </div>
     </div>
