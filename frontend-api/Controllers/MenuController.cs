@@ -22,10 +22,6 @@ public class MenuController : Controller
     [HttpGet()]
     public IEnumerable<MenuViewModel>? Get()
     {
-        foreach (var item in this.User.Claims)
-        {
-            _logger.LogDebug($"{item.Type}: {item.Value}");
-        }
         var menus = new List<MenuViewModel>();
         var i = 0;
 
