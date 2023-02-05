@@ -65,7 +65,7 @@ namespace FrontEndAPI.Controllers
                             Message = msgQueue,
                             Read = false
                         });
-                        _dbContext.SaveChanges();
+                        _dbContext.SaveChangesAsync();
                     }
                 });
 

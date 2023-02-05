@@ -1,5 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
+import { KeycloakService } from 'keycloak-angular';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -7,7 +9,9 @@ import { Observable } from 'rxjs';
 })
 export class OnboardingService {
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient,
+    protected readonly keycloak: KeycloakService,
+    protected readonly router: Router) { }
 
   listarTodos(): Observable<Array<any>> {
     return this.httpClient.get<Array<any>>('https://localhost:7090/api/v1/onboard/todos', {

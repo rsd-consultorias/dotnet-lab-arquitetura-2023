@@ -7,7 +7,7 @@ import { AuthGuardService } from './guards/auth-guard.service';
 import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
-  {path: 'cadastros', children: [
+  {path: 'cadastros', canActivate: [AuthGuardService], children: [
     { path: 'funcionarios', component: FuncionariosComponent, canActivate: [AuthGuardService], children: [
       { path: 'admitir', component: FuncionariosAdmitirComponent, canActivate: [AuthGuardService] },
       { path: '**', component: FuncionariosListarComponent, canActivate: [AuthGuardService] }

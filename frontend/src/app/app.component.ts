@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { KeycloakService } from 'keycloak-angular';
 import { KeycloakProfile } from 'keycloak-js';
@@ -20,7 +21,8 @@ export class AppComponent implements OnInit {
     private alertService: AlertService,
     private menuService: MenuService,
     private modalService: NgbModal,
-    protected readonly keycloak: KeycloakService) {
+    protected readonly keycloak: KeycloakService,
+    protected readonly router: Router) {
   }
 
   async ngOnInit() {
@@ -28,6 +30,24 @@ export class AppComponent implements OnInit {
     // setTimeout(() => {
     //   this.modalService.dismissAll();
     // }, 1700);
+
+    setInterval(async () => {
+      if (!this.keycloak.isLoggedIn()) {
+        console.log('login');
+        await this.keycloak.login({
+          redirectUri: window.location.origin + this.router.routerState.snapshot.url,
+        });
+      } else {
+        console.log('updateToken');
+        await this.keycloak.updateToken().catch(err => {
+          this.keycloak.login({
+            redirectUri: window.location.origin + this.router.routerState.snapshot.url,
+          }).then().catch();
+        });
+      }
+
+    }, 5000);
+
     this.notifications!.warning = 1;
 
     let token = await this.keycloak.getToken();
@@ -41,5 +61,6 @@ export class AppComponent implements OnInit {
     // @ts-ignore
     this.loggedUser.costCenter = userInfo.attributes.centro_custos;
     this.menuService.listarMenu(token).subscribe(data => this.menus = data);
+
   }
 }
