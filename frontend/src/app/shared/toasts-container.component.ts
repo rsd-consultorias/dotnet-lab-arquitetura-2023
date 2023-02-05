@@ -8,6 +8,13 @@ import { AlertService } from '../services/alert.service';
 	selector: 'app-toasts',
 	standalone: true,
 	imports: [NgbToastModule, NgIf, NgTemplateOutlet, NgFor],
+	styles: [`:host {
+		position: fixed;
+		top: 0;
+		right: 0;
+		margin: 0.5em;
+		z-index: 1200;
+	  }`],
 	template: `
 		<ngb-toast
 			*ngFor="let toast of toastService.toasts"
@@ -22,7 +29,7 @@ import { AlertService } from '../services/alert.service';
 			<ng-template #text>{{ toast.textOrTpl }}</ng-template>
 		</ngb-toast>
 	`,
-	host: { class: 'toast-container position-fixed bottom-0 end-0 p-3', style: 'z-index: 1200' },
+	host: { class: 'toast-container', style: 'z-index: 1200' },
 })
 export class ToastsContainer {
 	constructor(public toastService: AlertService) { }

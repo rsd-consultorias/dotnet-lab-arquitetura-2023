@@ -20,7 +20,7 @@ public class MenuViewModel
     }
 
     public MenuViewModel AddSubMenu(MenuViewModel subMenu) {
-        ((List<MenuViewModel>)SubMenus).Add(subMenu);
+        ((List<MenuViewModel>)SubMenus!).Add(subMenu);
         return this;
     }
 }

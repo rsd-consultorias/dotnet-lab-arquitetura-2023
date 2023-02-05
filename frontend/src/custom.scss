@@ -9,41 +9,10 @@ $breadcrumb-divider: quote(">");
     }
 }
 
+.pagination {
+    cursor: pointer;
+}
+
 * {
     font-weight: lighter;
-}
-
-$container-backgroundcolor: rgb(230, 233, 234);
-$body-color: rgb(99, 102, 105);
-
-.rsd-container {
-    background-color: $container-backgroundcolor;
-}
-
-.rsd-container-body {
-    color: $body-color
-}
-
-.rsd-container-header {
-    background-color: $bg-primary;
-    color: rgb(250, 250, 250);
-}
-
-.rsd-menu {
-    background-color: $bg-primary;
-    color: rgb(250, 250, 250);
-
-    -webkit-user-select: none; /* Safari */
-    -ms-user-select: none; /* IE 10 and IE 11 */
-    user-select: none; /* Standard syntax */
-}
-
-.rsd-menu-item {
-    padding: 8px;
-    border-bottom: 1px solid rgb(77, 99, 119);
-    cursor: pointer;
-
-    &:hover {
-        background-color: rgb(73, 107, 138);
-    }
 }

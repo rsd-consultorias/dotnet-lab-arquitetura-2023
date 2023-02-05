@@ -1,22 +1,21 @@
 <div class="col">
-    <div class="row rsd-container-header bg-primary" style="height: 48px;">
+    <div class="row text-bg-primary" style="height: 48px;">
         <div class="col-2 m-auto"><span>Admitir Funcionário</span></div>
         <div class="col m-auto text-end">
-            <button class="btn btn-primary" [routerLink]="['/cadastros/funcionarios']">Voltar</button>
-            <button class="btn btn-primary" (click)="salvar()">Salvar</button>
+
         </div>
     </div>
     <div class="row p-2 bg-white">
         <div class="col-6">
             <label class="form-label">Nome</label>
             <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="Nome" [(ngModel)]="funcionario.Nome">
+                <input type="text" class="form-control" placeholder="Nome" [(ngModel)]="funcionario.nome">
             </div>
         </div>
         <div class="col-6">
             <label class="form-label">CPF</label>
             <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="CPF" maxlength="11" [(ngModel)]="funcionario.CPF">
+                <input type="text" class="form-control" placeholder="CPF" maxlength="11" [(ngModel)]="funcionario.cpf">
             </div>
         </div>
     </div>
@@ -24,7 +23,21 @@
         <div class="col-6">
             <label class="form-label">E-Mail</label>
             <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="E-Mail" [(ngModel)]="funcionario.EMail">
+                <input type="text" class="form-control" placeholder="E-Mail" [(ngModel)]="funcionario.eMail">
+            </div>
+        </div>
+    </div>
+    <div class="row p-2 bg-white">
+        <div class="col"></div>
+        <div class="col-2 text-end">
+            <div class="btn-group">
+                <button class="btn btn-secondary" [routerLink]="['/cadastros/funcionarios']">Voltar</button>
+                <button class="btn btn-primary" (click)="salvar()">
+                    <div *ngIf="isWaiting" class="spinner-grow spinner-grow-sm bg-text-primary" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    Salvar
+                </button>
             </div>
         </div>
     </div>

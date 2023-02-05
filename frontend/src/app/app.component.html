@@ -1,5 +1,5 @@
 <div class="container-fluid rsd-container vh-100">
-  <div class="row bg-primary text-white" style="height: 64px;">
+  <div class="row text-bg-primary" style="height: 64px;">
     <div class="col-2 m-auto">
       <h5>{{title}}</h5>
     </div>
@@ -10,18 +10,27 @@
         {{loggedUser.costCenter}}
       </small>
     </div>
-    <div class="col-3 pe-3 m-auto text-end">
-      <a class="link text-white me-2"
+    <div class="col pe-3 m-auto text-end">
+      <button class="btn btn-primary me-2 position-relative"
+        href="http://localhost:8080/realms/master/account?referrer_uri=http://localhost:4200" target="_blank">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope"
+          viewBox="0 0 16 16">
+          <path
+            d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z" />
+        </svg>
+        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+          style="z-index: 1200">
+          {{notifications!.warning > 60 ? '99+' : notifications!.warning ? notifications!.warning : '99+'}}
+        </span>
+      </button>
+      <a class="btn btn-primary me-2 position-relative"
         href="http://localhost:8080/realms/master/account?referrer_uri=http://localhost:4200"
-        target="_blank">{{loggedUser.name}}</a>
-      <span>
-        <span class="badge text-bg-warning p-2 rounded-pill me-1">{{notifications!.warning > 60 ? '99+' :
-          notifications!.warning}}</span>
-      </span>
+        target="_blank">{{loggedUser.name}}
+      </a>
     </div>
   </div>
   <div class="row" style="height: calc(100% - 64px);">
-    <div class="h-100 col-2 overflow-auto overflow-x-hidden rsd-menu"><app-menu-lateral
+    <div class="h-100 col-2 overflow-auto overflow-x-hidden text-bg-primary"><app-menu-lateral
         [menus]="menus"></app-menu-lateral>
     </div>
     <div class="col-10 text-body h-100 col-2 overflow-auto overflow-x-hidden">
@@ -41,9 +50,8 @@
     </div>
   </div>
 </div>
-<div class="toast-container position-static">
-  <app-toasts aria-live="polite" aria-atomic="true"></app-toasts>
-</div>
+
+<app-toasts aria-live="polite" aria-atomic="true"></app-toasts>
 <ng-template #content let-modal>
   <!-- <div class="modal modal-fullscreen-sm-down fade-out" id="splashModal" style="background-color: white;">
     <div class="modal-dialog modal-dialog-centered border-0">

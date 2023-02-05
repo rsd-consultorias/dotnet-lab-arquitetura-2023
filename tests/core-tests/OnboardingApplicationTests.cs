@@ -8,7 +8,7 @@ public class Tests
     private ParametroFolhaDomainService? _parametroFolhaDomainService;
     private IMaquinaQuery? _maquinaQuery;
     private IUsuarioQuery? _usuarioQuery;
-    private IFuncionarioCommand _funcionarioCommand;
+    private IFuncionarioCommand? _funcionarioCommand;
     private IFolhaService? _folhaService;
     private IEMailService? _emailService;
     private OnboardingApplication? _onboardingApplication;
