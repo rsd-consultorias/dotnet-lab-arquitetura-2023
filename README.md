@@ -1,13 +1,5 @@
 ![alt text](./doc/label.png)
 # [dotnet] Lab Arquitetura 2023
-
-## Projetos
-### [Frontend (Angular)](./frontend/)
-
-### [Frontend (dotnet web API)](./frontend-api/)
-
-### [Frontend (NUnit)](./tests/core-tests/)
-
 <br />
 
 ## Executar os projetos
