@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { AlertService } from 'src/app/services/alert.service';
 import { OnboardingService } from 'src/app/services/onboarding.service';
 
@@ -14,7 +15,8 @@ export class FuncionariosAdmitirComponent {
   validateForm: boolean = false;
 
   constructor(private onboardService: OnboardingService,
-    private alertService: AlertService) {
+    private alertService: AlertService,
+    private router: Router) {
 
   }
 
@@ -32,6 +34,7 @@ export class FuncionariosAdmitirComponent {
             let data = response.body!;
             if (data?.funcionarioSalvo!) {
               this.alertService.show('Funcionário salvo.', { classname: 'text-bg-success' });
+              this.router.navigate(['cadastros/funcionarios']);
             } else {
               let msg = `Máquina pronta: ${data.maquinaPronta ? 'OK' : 'NOG'}. Usuário de Rede: ${data.usuarioRede ? 'OK' : 'NOK'}. Parâmetro da Folha: ${data.parametroFolha ? 'OK' : 'NOK'}`;
               this.alertService.show(msg, { classname: 'text-bg-warning' });
