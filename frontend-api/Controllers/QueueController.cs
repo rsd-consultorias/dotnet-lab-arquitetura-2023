@@ -11,12 +11,14 @@ namespace FrontEndAPI.Controllers;
 public class QueueController : Controller
 {
     private readonly LabArquiteturaDbContext _dbContext;
-    private readonly ILogger _logger;
+    //private readonly ILogger _logger;
 
-    public QueueController(LabArquiteturaDbContext dbContext, ILogger<QueueController> logger)
+    public QueueController(LabArquiteturaDbContext dbContext
+        //, ILogger<QueueController> logger
+        )
     {
         _dbContext = dbContext;
-        _logger = logger;
+        //_logger = logger;
     }
 
     [HttpGet()]

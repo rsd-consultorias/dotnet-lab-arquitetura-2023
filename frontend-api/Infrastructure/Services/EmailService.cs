@@ -14,6 +14,7 @@ public sealed class EMailService : IEMailService
 
     public void EnviarBoasVindas(Funcionario funcionario)
     {
+
         // Chamar API do MailChimp
         _logger.Information($"Enviando email de boas vindas para {funcionario.EMail}");
     }

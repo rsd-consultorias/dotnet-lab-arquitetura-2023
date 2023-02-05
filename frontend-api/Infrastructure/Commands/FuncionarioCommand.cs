@@ -16,7 +16,7 @@ public class FuncionarioCommand : IFuncionarioCommand
     public bool Salvar(Funcionario funcionario)
     {
         this._context.Funcionarios.Add(funcionario);
-        this._context.SaveChangesAsync().RunSynchronously();
+        this._context.SaveChangesAsync();
 
         return true;
     }

@@ -54,14 +54,14 @@ namespace FrontEndAPI.Controllers
             var apiResponse = new ApiResponse<OnboardFuncionarioResult>();
             try
             {
-                Task salvarTask = Task.Run(() =>
+                var salvarTask = Task<ApiResponse<OnboardFuncionarioResult>>.Factory.StartNew(() =>
                 {
-                    apiResponse.Body = this._onboardApplication.OnboardFuncionario(funcionario.ToModel());
-                    apiResponse.Status = Constants.STATUS_SUCCESS;
+                    var apiResponseTemp = new ApiResponse<OnboardFuncionarioResult>();
+                    apiResponseTemp.Body = this._onboardApplication.OnboardFuncionario(funcionario.ToModel());
 
-                    if (!apiResponse.Body.MaquinaPronta || !apiResponse.Body.ParametroFolhaHabilitado || !apiResponse.Body.UsuarioRedeCriado)
+                    if (!apiResponseTemp.Body!.MaquinaPronta || !apiResponseTemp.Body!.ParametroFolhaHabilitado || !apiResponseTemp.Body!.UsuarioRedeCriado)
                     {
-                        string msgQueue = $"CPF: {funcionario.CPF} => Maquina: {apiResponse.Body.MaquinaPronta}, Folha: {apiResponse.Body.ParametroFolhaHabilitado}, Usuário: {apiResponse.Body.UsuarioRedeCriado}";
+                        string msgQueue = $"CPF: {funcionario.CPF} => Maquina: {apiResponseTemp.Body.MaquinaPronta}, Folha: {apiResponseTemp.Body.ParametroFolhaHabilitado}, Usuário: {apiResponseTemp.Body.UsuarioRedeCriado}";
                         _dbContext.Queues.Add(new Infrastructure.Repositories.Models.Queue()
                         {
                             Message = msgQueue,
@@ -69,16 +69,19 @@ namespace FrontEndAPI.Controllers
                             Body = JsonSerializer.Serialize(funcionario),
                             Referrer = funcionario.Referrer
                         });
-                        _dbContext.SaveChangesAsync();
+                        _dbContext.SaveChanges();
                     }
+                    apiResponseTemp.Status = Constants.STATUS_SUCCESS;
+                    return apiResponseTemp;
                 });
 
                 if (!(await Task.WhenAny(salvarTask, Task.Delay(250)) == salvarTask))
                 {
                     apiResponse.Status = Constants.STATUS_QUEUED;
                     return Ok(apiResponse);
+                }else {
+                    return Ok(salvarTask.Result);
                 }
-
             }
             catch (Exception exception)
             {

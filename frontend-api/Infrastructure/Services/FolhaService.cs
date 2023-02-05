@@ -14,6 +14,7 @@ public sealed class FolhaService : IFolhaService
     public bool HabilitaParametroProCPF(string? cpf)
     {
         _logger.Information($"Verificando parâmetros da folha para o CPF {cpf}");
+
         // Chamar API da ADP
         return true;
     }
