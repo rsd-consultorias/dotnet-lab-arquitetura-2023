@@ -36,7 +36,7 @@ export class FuncionariosAdmitirComponent {
               this.alertService.show('Funcionário salvo.', { classname: 'text-bg-success' });
               this.router.navigate(['cadastros/funcionarios']);
             } else {
-              let msg = `Máquina pronta: ${data.maquinaPronta ? 'OK' : 'NOG'}. Usuário de Rede: ${data.usuarioRede ? 'OK' : 'NOK'}. Parâmetro da Folha: ${data.parametroFolha ? 'OK' : 'NOK'}`;
+              let msg = `Máquina pronta: ${data.maquinaPronta ? 'OK' : 'NOK'}. Usuário de Rede: ${data.usuarioRedeCriado ? 'OK' : 'NOK'}. Parâmetro da Folha: ${data.parametroFolhaHabilitado ? 'OK' : 'NOK'}`;
               this.alertService.show(msg, { classname: 'text-bg-warning' });
             }
           } else {
