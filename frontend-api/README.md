@@ -7,3 +7,4 @@
 
 ## Referência
 [DDD, Hexagonal, Onion, Clean, CQRS, … How I put it all together](https://herbertograca.com/2017/11/16/explicit-architecture-01-ddd-hexagonal-onion-clean-cqrs-how-i-put-it-all-together/)
+[Tutorial: Adicionar classificação, filtragem e paginação – ASP.NET MVC com EF Core](https://learn.microsoft.com/pt-br/aspnet/core/data/ef-mvc/sort-filter-page?view=aspnetcore-7.0)
