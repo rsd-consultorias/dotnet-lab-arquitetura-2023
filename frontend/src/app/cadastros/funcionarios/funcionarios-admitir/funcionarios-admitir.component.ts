@@ -30,7 +30,7 @@ export class FuncionariosAdmitirComponent {
     this.onboardService.salvar(this.funcionario)
       .subscribe({
         next: (response) => {
-          if (response.success) {
+          if (response.status === 'SUCCESS') {
             let data = response.body!;
             if (data?.funcionarioSalvo!) {
               this.alertService.show('Funcionário salvo.', { classname: 'text-bg-success' });

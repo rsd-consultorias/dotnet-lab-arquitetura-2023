@@ -49,10 +49,11 @@ namespace FrontEndAPI.Controllers
             try
             {
                 apiResponse.Body = this._onboardApplication.OnboardFuncionario(funcionario.ToModel());
-                apiResponse.Success = true;
+                apiResponse.Status = Constants.STATUS_SUCCESS;
             }
             catch (Exception exception)
             {
+                apiResponse.Status = Constants.STATUS_ERROR;
                 apiResponse.Errors = new List<string> { exception.Message };
                 _logger.LogError(new EventId(1000, "API"), exception, "Erro ao salvar funcionário");
             }
