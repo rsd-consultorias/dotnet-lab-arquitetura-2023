@@ -11,16 +11,16 @@
       </small>
     </div>
     <div class="col pe-3 m-auto text-end">
-      <button class="btn btn-sm btn-primary position-relative">
+      <button class="btn btn-sm btn-primary position-relative" (click)="openModalQueue(queueContent)">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-stopwatch"
           viewBox="0 0 16 16">
           <path d="M8.5 5.6a.5.5 0 1 0-1 0v2.9h-3a.5.5 0 0 0 0 1H8a.5.5 0 0 0 .5-.5V5.6z" />
           <path
             d="M6.5 1A.5.5 0 0 1 7 .5h2a.5.5 0 0 1 0 1v.57c1.36.196 2.594.78 3.584 1.64a.715.715 0 0 1 .012-.013l.354-.354-.354-.353a.5.5 0 0 1 .707-.708l1.414 1.415a.5.5 0 1 1-.707.707l-.353-.354-.354.354a.512.512 0 0 1-.013.012A7 7 0 1 1 7 2.071V1.5a.5.5 0 0 1-.5-.5zM8 3a6 6 0 1 0 .001 12A6 6 0 0 0 8 3z" />
         </svg>
-        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
-          style="z-index: 1200">
-          {{notifications!.warning > 60 ? '99+' : notifications!.warning ? notifications!.warning : '99+'}}
+        <span *ngIf="queueList.length > 0"
+          class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="z-index: 1200">
+          {{queueList.length > 99 ? '99+' : queueList!.length}}
         </span>
       </button>
       <button class="btn btn-sm btn-primary position-relative">
@@ -64,13 +64,13 @@
 </div>
 
 <app-toasts aria-live="polite" aria-atomic="true"></app-toasts>
-<ng-template #content let-modal>
-  <!-- <div class="modal modal-fullscreen-sm-down fade-out" id="splashModal" style="background-color: white;">
-    <div class="modal-dialog modal-dialog-centered border-0">
-      <div class="modal-content border-0 text-center" style="background-color: rgba(0,0,0,0);">
-        <h1 class="fade-in"><img height="300px" src="../assets/images/logo.png" /><br />RSD <span
-            style="padding-left: 8px; border-left: dashed 1px black;">Finanças</span></h1>
-      </div>
-    </div>
-  </div> -->
+
+<ng-template #queueContent let-modal>
+  <div class="modal-body" style="height: 400px;">
+    <ul>
+      <li *ngFor="let item of queueList">
+        <a (click)="modal.dismiss('')" [routerLink]="item.referrer + '/' + item.id + '/retry'">{{item.message}}</a>
+      </li>
+    </ul>
+  </div>
 </ng-template>

@@ -2,7 +2,7 @@ using FrontEndAPI.Core.Models;
 
 namespace FrontEndAPI.ViewModels;
 
-public class FuncionarioRequest
+public class FuncionarioRequest : ApiRequest
 {
     public string? CPF { get; set; }
     public string? Nome { get; set; }

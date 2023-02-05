@@ -5,6 +5,7 @@ import { KeycloakService } from 'keycloak-angular';
 import { KeycloakProfile } from 'keycloak-js';
 import { AlertService } from './services/alert.service';
 import { MenuService } from './services/menu.service';
+import { QueueService } from './services/queue.service';
 
 @Component({
   selector: 'app-root',
@@ -20,10 +21,14 @@ export class AppComponent implements OnInit {
   constructor(
     private alertService: AlertService,
     private menuService: MenuService,
+    private queueService: QueueService,
     private modalService: NgbModal,
     protected readonly keycloak: KeycloakService,
     protected readonly router: Router) {
   }
+
+  queueList: Array<any> = [];
+  closeResult = '';
 
   async ngOnInit() {
     // this.modalService.open(document.getElementById('splashModal')!, { windowClass: 'vh-100' });
@@ -44,6 +49,7 @@ export class AppComponent implements OnInit {
         });
       }
 
+      this.loadQueue();
     }, 5000);
 
     this.notifications!.warning = 1;
@@ -59,10 +65,28 @@ export class AppComponent implements OnInit {
     // @ts-ignore
     this.loggedUser.costCenter = userInfo.attributes.centro_custos;
     this.menuService.listarMenu(token).subscribe(data => this.menus = data);
-
   }
 
   async logoff() {
     await this.keycloak.logout('http://localhost:8080/realms/master/account/');
+  }
+
+  openModalQueue(content: any) {
+    this.loadQueue();
+
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then(
+      (result) => {
+        this.closeResult = `Closed with: ${result}`;
+      },
+      (reason) => {
+        // this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+      },
+    );
+  }
+
+  loadQueue() {
+    this.queueService.listarTodos().subscribe({
+      next: (result) => this.queueList = result
+    });
   }
 }

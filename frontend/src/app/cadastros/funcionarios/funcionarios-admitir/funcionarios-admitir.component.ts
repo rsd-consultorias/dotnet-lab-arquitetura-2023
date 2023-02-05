@@ -1,14 +1,15 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AlertService } from 'src/app/services/alert.service';
 import { OnboardingService } from 'src/app/services/onboarding.service';
+import { QueueService } from 'src/app/services/queue.service';
 
 @Component({
   selector: 'app-funcionarios-admitir',
   templateUrl: './funcionarios-admitir.component.html',
   styleUrls: ['./funcionarios-admitir.component.scss']
 })
-export class FuncionariosAdmitirComponent {
+export class FuncionariosAdmitirComponent implements OnInit {
 
   funcionario: any = {};
   isWaiting = false;
@@ -16,8 +17,29 @@ export class FuncionariosAdmitirComponent {
 
   constructor(private onboardService: OnboardingService,
     private alertService: AlertService,
-    private router: Router) {
+    private queueService: QueueService,
+    private router: Router,
+    private activateRouter: ActivatedRoute) {
 
+  }
+
+  ngOnInit(): void {
+    if (this.router.url.endsWith('/retry')) {
+      const id: number = Number(this.activateRouter.snapshot.paramMap.get('id'));
+      if (id) {
+        this.queueService.buscarPorId(id).subscribe({
+          next: (result) => {
+            const bodyResult = JSON.parse(result.body);
+
+            this.funcionario = {};
+            this.funcionario.nome = bodyResult.Nome;
+            this.funcionario.cpf = bodyResult.CPF;
+            this.funcionario.eMail = bodyResult.EMail;
+          },
+          complete: () => this.queueService.marcarComoLida(id).subscribe()
+        });
+      }
+    }
   }
 
   salvar() {
@@ -27,6 +49,7 @@ export class FuncionariosAdmitirComponent {
       return;
     }
     this.isWaiting = true;
+    this.funcionario.referrer = '/cadastros/funcionarios/admitir';
     this.onboardService.salvar(this.funcionario)
       .subscribe({
         next: (response) => {

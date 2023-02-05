@@ -3,7 +3,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NgbModule, NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbModule, NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
 import { HomeComponent } from './home/home.component';
 import { MenuLateralComponent } from './shared/menu-lateral/menu-lateral.component';
 import { MenuLateralItemComponent } from './shared/menu-lateral-item/menu-lateral-item.component';
@@ -50,7 +50,8 @@ import { LogoffComponent } from './logoff/logoff.component';
     useFactory: initializeKeycloak,
     multi: true,
     deps: [KeycloakService]
-  }],
+  }, 
+  NgbModal],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

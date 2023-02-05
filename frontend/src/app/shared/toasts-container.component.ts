@@ -10,7 +10,7 @@ import { AlertService } from '../services/alert.service';
 	imports: [NgbToastModule, NgIf, NgTemplateOutlet, NgFor],
 	styles: [`:host {
 		position: fixed;
-		top: 0;
+		bottom: 0;
 		right: 0;
 		margin: 0.5em;
 		z-index: 1200;

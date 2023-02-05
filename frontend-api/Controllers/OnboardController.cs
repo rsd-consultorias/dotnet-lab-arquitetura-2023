@@ -5,6 +5,8 @@ using FrontEndAPI.Infrastructure.Repositories.Contexts;
 using FrontEndAPI.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace FrontEndAPI.Controllers
 {
@@ -63,7 +65,9 @@ namespace FrontEndAPI.Controllers
                         _dbContext.Queues.Add(new Infrastructure.Repositories.Models.Queue()
                         {
                             Message = msgQueue,
-                            Read = false
+                            Read = false,
+                            Body = JsonSerializer.Serialize(funcionario),
+                            Referrer = funcionario.Referrer
                         });
                         _dbContext.SaveChangesAsync();
                     }

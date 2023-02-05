@@ -12,6 +12,7 @@ const routes: Routes = [
     path: 'cadastros', canActivate: [AuthGuardService], children: [
       {
         path: 'funcionarios', component: FuncionariosComponent, canActivate: [AuthGuardService], children: [
+          { path: 'admitir/:id/retry', component: FuncionariosAdmitirComponent, canActivate: [AuthGuardService] },
           { path: 'admitir', component: FuncionariosAdmitirComponent, canActivate: [AuthGuardService] },
           { path: '**', component: FuncionariosListarComponent, canActivate: [AuthGuardService] }
         ]
