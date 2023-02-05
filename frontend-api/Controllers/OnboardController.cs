@@ -1,6 +1,7 @@
 using FrontEndAPI.Core.Interfaces;
 using FrontEndAPI.Core.Models;
 using FrontEndAPI.Core.Types;
+using FrontEndAPI.Infrastructure.Repositories.Contexts;
 using FrontEndAPI.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -15,15 +16,18 @@ namespace FrontEndAPI.Controllers
         private readonly IOnboardingApplication _onboardApplication;
         private readonly IFuncionarioQuery _funcionarioQuery;
         private readonly ILogger _logger;
+        private readonly LabArquiteturaDbContext _dbContext;
 
         public OnboardController(
             IOnboardingApplication consultaApplication,
             IFuncionarioQuery funcionarioQuery,
-            ILogger<OnboardController> logger)
+            ILogger<OnboardController> logger,
+            LabArquiteturaDbContext dbContext)
         {
             _onboardApplication = consultaApplication;
             _funcionarioQuery = funcionarioQuery;
             _logger = logger;
+            _dbContext = dbContext;
         }
 
         [HttpGet()]
@@ -52,6 +56,17 @@ namespace FrontEndAPI.Controllers
                 {
                     apiResponse.Body = this._onboardApplication.OnboardFuncionario(funcionario.ToModel());
                     apiResponse.Status = Constants.STATUS_SUCCESS;
+
+                    if (!apiResponse.Body.MaquinaPronta || !apiResponse.Body.ParametroFolhaHabilitado || !apiResponse.Body.UsuarioRedeCriado)
+                    {
+                        string msgQueue = $"CPF: {funcionario.CPF} => Maquina: {apiResponse.Body.MaquinaPronta}, Folha: {apiResponse.Body.ParametroFolhaHabilitado}, Usuário: {apiResponse.Body.UsuarioRedeCriado}";
+                        _dbContext.Queues.Add(new Infrastructure.Repositories.Models.Queue()
+                        {
+                            Message = msgQueue,
+                            Read = false
+                        });
+                        _dbContext.SaveChanges();
+                    }
                 });
 
                 if (!(await Task.WhenAny(salvarTask, Task.Delay(250)) == salvarTask))
