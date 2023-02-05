@@ -28,6 +28,7 @@ export class AppComponent implements OnInit {
     // setTimeout(() => {
     //   this.modalService.dismissAll();
     // }, 1700);
+    this.notifications!.warning = 1;
 
     let token = await this.keycloak.getToken();
     let userInfo: KeycloakProfile = await this.keycloak.loadUserProfile();
