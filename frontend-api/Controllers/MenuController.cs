@@ -9,14 +9,22 @@ namespace FrontEndAPI.Controllers;
 [Authorize]
 public class MenuController : Controller
 {
+    private readonly ILogger _logger;
+
+    public MenuController(ILogger<OnboardController> logger)
+    {
+        _logger = logger;
+    }
+
     /// <summary>
     /// Retorna a estrutura de menu
     /// </summary>
     [HttpGet()]
     public IEnumerable<MenuViewModel>? Get()
     {
-        foreach(var item in this.User.Claims) {
-            Console.WriteLine($"{item.Type}:  {item.Value}");
+        foreach (var item in this.User.Claims)
+        {
+            _logger.LogDebug($"{item.Type}: {item.Value}");
         }
         var menus = new List<MenuViewModel>();
         var i = 0;

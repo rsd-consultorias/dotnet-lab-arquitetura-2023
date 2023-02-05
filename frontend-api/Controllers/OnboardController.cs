@@ -14,13 +14,16 @@ namespace FrontEndAPI.Controllers
     {
         private readonly IOnboardingApplication _onboardApplication;
         private readonly IFuncionarioQuery _funcionarioQuery;
+        private readonly ILogger _logger;
 
         public OnboardController(
             IOnboardingApplication consultaApplication,
-            IFuncionarioQuery funcionarioQuery)
+            IFuncionarioQuery funcionarioQuery,
+            ILogger<OnboardController> logger)
         {
             _onboardApplication = consultaApplication;
             _funcionarioQuery = funcionarioQuery;
+            _logger = logger;
         }
 
         [HttpGet()]
@@ -51,6 +54,7 @@ namespace FrontEndAPI.Controllers
             catch (Exception exception)
             {
                 apiResponse.Errors = new List<string> { exception.Message };
+                _logger.LogError(new EventId(1000, "API"), exception, "Erro ao salvar funcionário");
             }
             return Ok(apiResponse);
         }

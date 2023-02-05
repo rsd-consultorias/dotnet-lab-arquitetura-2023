@@ -7,8 +7,14 @@ using FrontEndAPI.Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
 using Keycloak.AuthServices.Authentication;
 using FrontEndAPI.Infrastructure.Commands;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// Serilog
+builder.Host.UseSerilog((context, configuration) => {
+    configuration.WriteTo.Console();
+});
 
 // Add services to the container.
 builder.Services.AddControllers();
