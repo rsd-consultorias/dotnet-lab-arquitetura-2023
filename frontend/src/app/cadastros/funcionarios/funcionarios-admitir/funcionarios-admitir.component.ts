@@ -39,7 +39,11 @@ export class FuncionariosAdmitirComponent {
               let msg = `Máquina pronta: ${data.maquinaPronta ? 'OK' : 'NOK'}. Usuário de Rede: ${data.usuarioRedeCriado ? 'OK' : 'NOK'}. Parâmetro da Folha: ${data.parametroFolhaHabilitado ? 'OK' : 'NOK'}`;
               this.alertService.show(msg, { classname: 'text-bg-warning' });
             }
-          } else {
+          } else if (response.status === 'QUEUED') {
+            this.alertService.show('Processamento longo. Operação enfileirada.', { classname: 'text-bg-warning' });
+            this.router.navigate(['cadastros/funcionarios']);
+          }
+          else {
             this.alertService.show(response.errors, { classname: 'text-bg-warning' });
           }
         },

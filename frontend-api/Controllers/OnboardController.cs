@@ -43,13 +43,23 @@ namespace FrontEndAPI.Controllers
 
         /// <summary>Salva os dados do funcionário</summary>
         [HttpPost]
-        public IActionResult Salvar([FromBody] FuncionarioRequest funcionario)
+        public async Task<IActionResult> Salvar([FromBody] FuncionarioRequest funcionario)
         {
             var apiResponse = new ApiResponse<OnboardFuncionarioResult>();
             try
             {
-                apiResponse.Body = this._onboardApplication.OnboardFuncionario(funcionario.ToModel());
-                apiResponse.Status = Constants.STATUS_SUCCESS;
+                Task salvarTask = Task.Run(() =>
+                {
+                    apiResponse.Body = this._onboardApplication.OnboardFuncionario(funcionario.ToModel());
+                    apiResponse.Status = Constants.STATUS_SUCCESS;
+                });
+
+                if (!(await Task.WhenAny(salvarTask, Task.Delay(250)) == salvarTask))
+                {
+                    apiResponse.Status = Constants.STATUS_QUEUED;
+                    return Ok(apiResponse);
+                }
+
             }
             catch (Exception exception)
             {
