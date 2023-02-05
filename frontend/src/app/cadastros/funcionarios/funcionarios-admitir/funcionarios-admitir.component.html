@@ -2,7 +2,7 @@
     <div class="row text-bg-primary" style="height: 48px;">
         <div class="col-2 m-auto"><span>Admitir Funcionário</span></div>
         <div class="col m-auto text-end">
-
+            <button class="btn btn-sm btn-secondary" [routerLink]="['/cadastros/funcionarios']">Voltar</button>
         </div>
     </div>
     <div class="row p-2 bg-white">
@@ -31,7 +31,6 @@
         <div class="col"></div>
         <div class="col-2 text-end">
             <div class="btn-group">
-                <button class="btn btn-secondary" [routerLink]="['/cadastros/funcionarios']">Voltar</button>
                 <button class="btn btn-primary" (click)="salvar()">
                     <div *ngIf="isWaiting" class="spinner-grow spinner-grow-sm bg-text-primary" role="status">
                         <span class="visually-hidden">Loading...</span>
