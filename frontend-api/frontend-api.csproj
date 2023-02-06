@@ -36,13 +36,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Remove="Factoriess\" />
     <None Remove="Infrastructure\Repositories\Mappings\" />
     <None Remove="Microsoft.EntityFrameworkCore.Sqlite" />
     <None Remove="Microsoft.EntityFrameworkCore.Design" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Factoriess\" />
     <Folder Include="Infrastructure\Repositories\Mappings\" />
   </ItemGroup>
 </Project>
