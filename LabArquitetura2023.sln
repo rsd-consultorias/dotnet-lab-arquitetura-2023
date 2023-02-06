@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "batch-service", "services\b
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "log-service", "services\log-service\log-service.csproj", "{3CF14445-507F-4CA2-AB5A-06E3FFC409B3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "core-tests", "tests\core-tests\core-tests.csproj", "{ACB273AD-CC19-4757-B97C-3189A8D7DDC1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{3CF14445-507F-4CA2-AB5A-06E3FFC409B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3CF14445-507F-4CA2-AB5A-06E3FFC409B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3CF14445-507F-4CA2-AB5A-06E3FFC409B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ACB273AD-CC19-4757-B97C-3189A8D7DDC1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ACB273AD-CC19-4757-B97C-3189A8D7DDC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ACB273AD-CC19-4757-B97C-3189A8D7DDC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ACB273AD-CC19-4757-B97C-3189A8D7DDC1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

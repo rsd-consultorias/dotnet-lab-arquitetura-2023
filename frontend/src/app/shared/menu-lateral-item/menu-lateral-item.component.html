@@ -3,7 +3,7 @@
     <span class="ps-2">{{display}}</span>
 </div>
 <div class="bg-white" #menu="ngbCollapse" [(ngbCollapse)]="isCollapsed">
-    <div class="row rsd-sub-menu" *ngFor="let menu of menus" [routerLink]="menu.target">
+    <a class="row rsd-sub-menu" *ngFor="let menu of menus" [routerLink]="menu.target">
         <span class="ps-3">{{menu.display}}</span>
-    </div>
+    </a>
 </div>

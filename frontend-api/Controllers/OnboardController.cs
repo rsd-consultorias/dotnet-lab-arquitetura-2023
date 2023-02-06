@@ -52,6 +52,7 @@ namespace FrontEndAPI.Controllers
         public async Task<IActionResult> Salvar([FromBody] FuncionarioRequest funcionario)
         {
             var apiResponse = new ApiResponse<OnboardFuncionarioResult>();
+            bool enqueue = false;
             try
             {
                 var salvarTask = Task<ApiResponse<OnboardFuncionarioResult>>.Factory.StartNew(() =>
@@ -59,7 +60,7 @@ namespace FrontEndAPI.Controllers
                     var apiResponseTemp = new ApiResponse<OnboardFuncionarioResult>();
                     apiResponseTemp.Body = this._onboardApplication.OnboardFuncionario(funcionario.ToModel());
 
-                    if (!apiResponseTemp.Body!.MaquinaPronta || !apiResponseTemp.Body!.ParametroFolhaHabilitado || !apiResponseTemp.Body!.UsuarioRedeCriado)
+                    if ((!apiResponseTemp.Body!.MaquinaPronta || !apiResponseTemp.Body!.ParametroFolhaHabilitado || !apiResponseTemp.Body!.UsuarioRedeCriado) && enqueue)
                     {
                         string msgQueue = $"CPF: {funcionario.CPF} => Maquina: {apiResponseTemp.Body.MaquinaPronta}, Folha: {apiResponseTemp.Body.ParametroFolhaHabilitado}, Usuário: {apiResponseTemp.Body.UsuarioRedeCriado}";
                         _dbContext.Queues.Add(new Infrastructure.Repositories.Models.Queue()
@@ -77,9 +78,12 @@ namespace FrontEndAPI.Controllers
 
                 if (!(await Task.WhenAny(salvarTask, Task.Delay(250)) == salvarTask))
                 {
+                    enqueue = true;
                     apiResponse.Status = Constants.STATUS_QUEUED;
                     return Ok(apiResponse);
-                }else {
+                }
+                else
+                {
                     return Ok(salvarTask.Result);
                 }
             }
