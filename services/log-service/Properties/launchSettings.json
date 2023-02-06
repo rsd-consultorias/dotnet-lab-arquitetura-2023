@@ -1,6 +1,6 @@
 {
   "profiles": {
-    "log-service": {
+    "LabArquitetura.Services.Log": {
       "commandName": "Project",
       "applicationUrl": "http://localhost:5157;https://localhost:7205",
       "environmentVariables": {

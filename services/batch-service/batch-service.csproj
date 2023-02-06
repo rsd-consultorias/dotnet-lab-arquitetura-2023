@@ -5,7 +5,7 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>dotnet-batch_service-116bf24c-cad1-4b9c-a747-67643f516d12</UserSecretsId>
-    <RootNamespace>batch_service</RootNamespace>
+    <RootNamespace>LabArquitetura.Workers.Batch</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

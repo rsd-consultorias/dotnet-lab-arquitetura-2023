@@ -1,12 +1,13 @@
-using FrontEndAPI.Core.Interfaces;
+using LabArquitetura.Core.Interfaces;
 
-namespace FrontEndAPI.Infrastructure.Services;
-
-public sealed class FolhaService : IFolhaService
+namespace LabArquitetura.Infrastructure.Services
 {
-    public bool HabilitaParametroProCPF(string? cpf)
+    public sealed class FolhaService : IFolhaService
     {
-        // Chamar API da ADP
-        return true;
+        public bool HabilitaParametroProCPF(string? cpf)
+        {
+            // Chamar API da ADP
+            return true;
+        }
     }
 }

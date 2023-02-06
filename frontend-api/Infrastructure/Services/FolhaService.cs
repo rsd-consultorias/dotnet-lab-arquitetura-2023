@@ -1,21 +1,23 @@
-using FrontEndAPI.Core.Interfaces;
+using LabArquitetura.Core.Interfaces;
 
-namespace FrontEndAPI.Infrastructure.Services;
-
-public sealed class FolhaService : IFolhaService
+namespace LabArquitetura.Infrastructure.Services
 {
-    private readonly Serilog.ILogger _logger;
 
-    public FolhaService(Serilog.ILogger logger)
+    public sealed class FolhaService : IFolhaService
     {
-        _logger = logger;
-    }
+        private readonly Serilog.ILogger _logger;
 
-    public bool HabilitaParametroProCPF(string? cpf)
-    {
-        _logger.Information($"Verificando parâmetros da folha para o CPF {cpf}");
+        public FolhaService(Serilog.ILogger logger)
+        {
+            _logger = logger;
+        }
 
-        // Chamar API da ADP
-        return true;
+        public bool HabilitaParametroProCPF(string? cpf)
+        {
+            _logger.Information($"Verificando parâmetros da folha para o CPF {cpf}");
+
+            // Chamar API da ADP
+            return true;
+        }
     }
 }

@@ -1,6 +1,6 @@
 {
   "profiles": {
-    "batch_service": {
+    "LabArquitetura.Workers.Batch": {
       "commandName": "Project",
       "environmentVariables": {
         "DOTNET_ENVIRONMENT": "Development"

@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
-    <RootNamespace>core_tests</RootNamespace>
+    <RootNamespace>core.tests</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
 
@@ -20,7 +20,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\frontend-api\frontend-api.csproj" />
+    <ProjectReference Include="..\..\core\core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="Infrastructure\Repositories\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Infrastructure\Repositories\" />
+  </ItemGroup>
 </Project>

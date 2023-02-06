@@ -1,16 +1,24 @@
-using FrontEndAPI.Core.Models;
-using FrontEndAPI.Infrastructure.Repositories.Models;
+using LabArquitetura.Infrastructure.Repositories.Mappings;
+using LabArquitetura.Infrastructure.Repositories.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace FrontEndAPI.Infrastructure.Repositories.Contexts;
-
-public class LabArquiteturaDbContext : DbContext
+namespace LabArquitetura.Infrastructure.Repositories.Contexts
 {
-    public LabArquiteturaDbContext(DbContextOptions<LabArquiteturaDbContext> options) : base(options)
+
+    public class LabArquiteturaDbContext : DbContext
     {
+        public LabArquiteturaDbContext(DbContextOptions<LabArquiteturaDbContext> options) : base(options)
+        {
+        }
 
+        public DbSet<FuncionarioDbModel> Funcionarios { get; set; } = null!;
+        public DbSet<QueueDbModel> Queues { get; set; } = null!;
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder) {
+
+            modelBuilder.ApplyConfiguration(new FuncionarioDBMapping());
+
+            base.OnModelCreating(modelBuilder);
+        }
     }
-
-    public DbSet<Funcionario> Funcionarios { get; set; } = null!;
-    public DbSet<Queue> Queues { get; set; } = null!;
 }

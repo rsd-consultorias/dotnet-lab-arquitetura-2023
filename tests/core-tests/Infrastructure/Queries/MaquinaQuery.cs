@@ -1,12 +1,13 @@
-using FrontEndAPI.Core.Interfaces;
+using LabArquitetura.Core.Interfaces;
 
-namespace FrontEndAPI.Infrastructure.Queries;
-
-public sealed class MaquinaQuery : IMaquinaQuery
+namespace LabArquitetura.Infrastructure.Queries
 {
-    public bool ExisteMaquinaProCPF(string? cPF)
+    public sealed class MaquinaQuery : IMaquinaQuery
     {
-        // Buscar na aplicação de CMDB do Service Desk
-        return true;
+        public bool ExisteMaquinaProCPF(string? cPF)
+        {
+            // Buscar na aplicação de CMDB do Service Desk
+            return true;
+        }
     }
 }

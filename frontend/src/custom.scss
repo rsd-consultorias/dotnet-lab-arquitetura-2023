@@ -1,5 +1,8 @@
-$primary: rgb(55, 81, 126);
-$bg-primary: rgb(55, 81, 126);
+$primary: rgb(0, 20, 50);
+$success: #006551;
+$warning: #fbc100;
+$danger: rgb(210,71,38);
+// $bg-primary: rgb(0, 32, 80);
 
 $breadcrumb-divider: quote(">");
 
@@ -14,5 +17,5 @@ $breadcrumb-divider: quote(">");
 }
 
 * {
-    font-weight: lighter;
+    font-weight: light;
 }

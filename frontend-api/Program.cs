@@ -1,18 +1,20 @@
 using System.Reflection;
-using FrontEndAPI.Core.ApplicationServices;
-using FrontEndAPI.Core.Interfaces;
-using FrontEndAPI.Infrastructure.Queries;
-using FrontEndAPI.Infrastructure.Repositories.Contexts;
-using FrontEndAPI.Infrastructure.Services;
+using LabArquitetura.Core.ApplicationServices;
+using LabArquitetura.Core.Interfaces;
+using LabArquitetura.Infrastructure.Repositories.Models;
+using LabArquitetura.Infrastructure.Queries;
+using LabArquitetura.Infrastructure.Repositories.Contexts;
+using LabArquitetura.Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
 using Keycloak.AuthServices.Authentication;
-using FrontEndAPI.Infrastructure.Commands;
+using LabArquitetura.Infrastructure.Commands;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Serilog
-builder.Host.UseSerilog((context, configuration) => {
+builder.Host.UseSerilog((context, configuration) =>
+{
     configuration.WriteTo.Console();
 });
 
@@ -21,7 +23,8 @@ builder.Services.AddControllers();
 
 builder.Services.AddDbContext<LabArquiteturaDbContext>(options =>
 {
-    options.UseInMemoryDatabase("LabArquitetura");
+    options.UseInMemoryDatabase("LabArquitetura", op => { op.EnableNullChecks(); });
+    //options.UseSqlite("Data Source=labArquitetura.db");
 }, ServiceLifetime.Singleton);
 
 builder.Services.AddCors(options =>
@@ -56,14 +59,13 @@ builder.Services.AddKeycloakAuthentication(builder.Configuration);
 
 // Inject dependencies
 /// ver: [Diretrizes de injeção de dependência](https://learn.microsoft.com/pt-br/dotnet/core/extensions/dependency-injection-guidelines)
-builder.Services.AddScoped<IOnboardingApplication, OnboardingApplication>();
-builder.Services.AddScoped<IOutraConsultaApplication, OutraConsultaApplication>();
+builder.Services.AddScoped<IOnboardingApplication<FuncionarioDbModel>, OnboardingApplication<FuncionarioDbModel>>();
 builder.Services.AddScoped<IEMailService, EMailService>();
 builder.Services.AddScoped<IFolhaService, FolhaService>();
 builder.Services.AddScoped<IMaquinaQuery, MaquinaQuery>();
 builder.Services.AddScoped<IUsuarioQuery, UsuarioQuery>();
-builder.Services.AddSingleton<IFuncionarioCommand, FuncionarioCommand>();
-builder.Services.AddSingleton<IFuncionarioQuery, FuncionarioQuery>();
+builder.Services.AddSingleton<IFuncionarioCommand<FuncionarioDbModel>, FuncionarioCommand>();
+builder.Services.AddSingleton<IFuncionarioQuery<FuncionarioDbModel>, FuncionarioQuery>();
 
 var app = builder.Build();
 

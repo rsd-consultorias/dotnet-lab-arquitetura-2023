@@ -1,22 +1,24 @@
-using FrontEndAPI.Core.Interfaces;
-using FrontEndAPI.Core.Models;
-using FrontEndAPI.Infrastructure.Repositories.Contexts;
+using LabArquitetura.Infrastructure.Repositories.Models;
 
-namespace FrontEndAPI.Infrastructure.Queries;
-public sealed class FuncionarioQuery : IFuncionarioQuery
+namespace LabArquitetura.Infrastructure.Queries
 {
-    public FuncionarioQuery()
+    public sealed class FuncionarioQuery : IFuncionarioQuery<FuncionarioDB>
     {
-    }
+        public FuncionarioQuery()
+        {
+        }
 
-    public IEnumerable<Funcionario> ListarTodos()
-    {
-        var lista = new List<Funcionario>();
-        lista.Add(new Funcionario("123456456", "DB Funcionario de Testes", "fute@teste.com"));
-        lista.Add(new Funcionario("123456456", "Funcionario de Testes", "fute@teste.com"));
-        lista.Add(new Funcionario("123456456", "Funcionario de Testes", "fute@teste.com"));
-        lista.Add(new Funcionario("123456456", "Funcionario de Testes", "fute@teste.com"));
+        public IEnumerable<FuncionarioDB> ListarTodos()
+        {
+            var lista = new List<FuncionarioDB>
+        {
+            new FuncionarioDB("123456456", "DB Funcionario de Testes", "fute@teste.com"),
+            new FuncionarioDB("123456456", "Funcionario de Testes", "fute@teste.com"),
+            new FuncionarioDB("123456456", "Funcionario de Testes", "fute@teste.com"),
+            new FuncionarioDB("123456456", "Funcionario de Testes", "fute@teste.com")
+        };
 
-        return lista;
+            return lista;
+        }
     }
 }

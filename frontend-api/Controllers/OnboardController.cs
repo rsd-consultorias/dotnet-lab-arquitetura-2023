@@ -1,28 +1,27 @@
-using FrontEndAPI.Core.Interfaces;
-using FrontEndAPI.Core.Models;
-using FrontEndAPI.Core.Types;
-using FrontEndAPI.Infrastructure.Repositories.Contexts;
-using FrontEndAPI.ViewModels;
+using LabArquitetura.Core.Interfaces;
+using LabArquitetura.Core.Types;
+using LabArquitetura.Infrastructure.Repositories.Models;
+using LabArquitetura.Infrastructure.Repositories.Contexts;
+using LabArquitetura.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Text.Json;
-using System.Text.Json.Serialization;
 
-namespace FrontEndAPI.Controllers
+namespace LabArquitetura.Controllers
 {
     [ApiController]
     [Authorize]
     [Route("api/v1/[controller]")]
     public class OnboardController : Controller
     {
-        private readonly IOnboardingApplication _onboardApplication;
-        private readonly IFuncionarioQuery _funcionarioQuery;
+        private readonly IOnboardingApplication<FuncionarioDbModel> _onboardApplication;
+        private readonly IFuncionarioQuery<FuncionarioDbModel> _funcionarioQuery;
         private readonly ILogger _logger;
         private readonly LabArquiteturaDbContext _dbContext;
 
         public OnboardController(
-            IOnboardingApplication consultaApplication,
-            IFuncionarioQuery funcionarioQuery,
+            IOnboardingApplication<FuncionarioDbModel> consultaApplication,
+            IFuncionarioQuery<FuncionarioDbModel> funcionarioQuery,
             ILogger<OnboardController> logger,
             LabArquiteturaDbContext dbContext)
         {
@@ -32,17 +31,11 @@ namespace FrontEndAPI.Controllers
             _dbContext = dbContext;
         }
 
-        [HttpGet()]
-        public OnboardFuncionarioResult? Get()
-        {
-            return this._onboardApplication.OnboardFuncionario(new Funcionario(cpf: "1234567890", nome: "Funcionario de Testes", email: "fute@teste.com"));
-        }
-
         /// <summary>
         /// Listar todos os funcionários Ativos
         /// </summary>
         [HttpGet("todos")]
-        public IEnumerable<Funcionario>? GetAllActive()
+        public IEnumerable<FuncionarioDbModel>? ListarTodos()
         {
             return _funcionarioQuery.ListarTodos();
         }
@@ -51,32 +44,50 @@ namespace FrontEndAPI.Controllers
         [HttpPost]
         public async Task<IActionResult> Salvar([FromBody] FuncionarioRequest funcionario)
         {
-            var apiResponse = new ApiResponse<OnboardFuncionarioResult>();
+            ApiResponse<OnboardFuncionarioResult<FuncionarioDbModel>> apiResponse = new();
             bool enqueue = false;
             try
             {
-                var salvarTask = Task<ApiResponse<OnboardFuncionarioResult>>.Factory.StartNew(() =>
+                Task<ApiResponse<OnboardFuncionarioResult<FuncionarioDbModel>>> salvarTask = Task<ApiResponse<OnboardFuncionarioResult<FuncionarioDbModel>>>.Factory.StartNew(() =>
                 {
-                    var apiResponseTemp = new ApiResponse<OnboardFuncionarioResult>();
-                    apiResponseTemp.Body = this._onboardApplication.OnboardFuncionario(funcionario.ToModel());
+                    if (funcionario.CPF!.Contains("999"))
+                    {
+                        Thread.Sleep(5000);
+                    }
+
+                    ApiResponse<OnboardFuncionarioResult<FuncionarioDbModel>> apiResponseTemp = new()
+                    {
+                        Body = _onboardApplication.OnboardFuncionario(funcionario.ToModel())
+                    };
 
                     if ((!apiResponseTemp.Body!.MaquinaPronta || !apiResponseTemp.Body!.ParametroFolhaHabilitado || !apiResponseTemp.Body!.UsuarioRedeCriado) && enqueue)
                     {
                         string msgQueue = $"CPF: {funcionario.CPF} => Maquina: {apiResponseTemp.Body.MaquinaPronta}, Folha: {apiResponseTemp.Body.ParametroFolhaHabilitado}, Usuário: {apiResponseTemp.Body.UsuarioRedeCriado}";
-                        _dbContext.Queues.Add(new Infrastructure.Repositories.Models.Queue()
+                        _ = _dbContext.Queues.Add(new QueueDbModel()
                         {
                             Message = msgQueue,
                             Read = false,
                             Body = JsonSerializer.Serialize(funcionario),
-                            Referrer = funcionario.Referrer
+                            Referrer = funcionario.Referrer,
+                            ActionType = Constants.ACTION_RETRY
                         });
-                        _dbContext.SaveChanges();
                     }
+                    else
+                    {
+                        _ = _dbContext.Queues.Add(new QueueDbModel()
+                        {
+                            Message = $"CPF: {funcionario.CPF!} incluído com sucesso",
+                            Read = false,
+                            Referrer = funcionario.Referrer,
+                            ActionType = Constants.ACTION_INFORM
+                        });
+                    }
+                    _dbContext.SaveChangesAsync();
                     apiResponseTemp.Status = Constants.STATUS_SUCCESS;
                     return apiResponseTemp;
                 });
 
-                if (!(await Task.WhenAny(salvarTask, Task.Delay(250)) == salvarTask))
+                if (!(await Task.WhenAny(salvarTask, Task.Delay(500)) == salvarTask))
                 {
                     enqueue = true;
                     apiResponse.Status = Constants.STATUS_QUEUED;
@@ -100,7 +111,7 @@ namespace FrontEndAPI.Controllers
         /// Listar todos os funcionários Ativos por setor
         /// </summary>
         [HttpGet("{setor}/todos")]
-        public IEnumerable<Funcionario>? GetAllBySetor(string setor)
+        public IEnumerable<FuncionarioDbModel>? ListarPorSetor([FromRoute] string setor)
         {
             return _funcionarioQuery.ListarTodos();
         }

@@ -9,18 +9,18 @@
     }
   },
   "profiles": {
-    "frontend_api": {
-      "commandName": "Project",
-      "launchUrl": "swagger",
-      "applicationUrl": "https://localhost:7090;http://localhost:5259",
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      }
-    },
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
       "launchUrl": "swagger",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    },
+    "LabArquitetura": {
+      "commandName": "Project",
+      "launchUrl": "swagger",
+      "applicationUrl": "https://localhost:7090;http://localhost:5259",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

@@ -1,45 +1,42 @@
-using FrontEndAPI.Infrastructure.Repositories.Contexts;
-using FrontEndAPI.Infrastructure.Repositories.Models;
+using LabArquitetura.Infrastructure.Repositories.Contexts;
+using LabArquitetura.Infrastructure.Repositories.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace FrontEndAPI.Controllers;
-
-[ApiController]
-// [Authorize]
-[Route("api/v1/[controller]")]
-public class QueueController : Controller
+namespace LabArquitetura.Controllers
 {
-    private readonly LabArquiteturaDbContext _dbContext;
-    //private readonly ILogger _logger;
-
-    public QueueController(LabArquiteturaDbContext dbContext
-        //, ILogger<QueueController> logger
-        )
+    [ApiController]
+    [Authorize]
+    [Route("api/v1/[controller]")]
+    public class QueueController : Controller
     {
-        _dbContext = dbContext;
-        //_logger = logger;
-    }
+        private readonly LabArquiteturaDbContext _dbContext;
 
-    [HttpGet()]
-    public IEnumerable<Queue> GetMessages()
-    {
-        return _dbContext.Queues.Where(x => !x.Read).ToList<Queue>();
-    }
+        public QueueController(LabArquiteturaDbContext dbContext)
+        {
+            _dbContext = dbContext;
+        }
 
-    [HttpGet("{id}")]
-    public IActionResult GetBody([FromRoute] int id)
-    {
-        return Ok(_dbContext.Queues.First(x => x.Id.Equals(id) & !x.Read));
-    }
+        [HttpGet()]
+        public IEnumerable<QueueDbModel> GetMessages()
+        {
+            return _dbContext.Queues.Where(x => !x.Read).OrderByDescending(x => x.Id).ToList();
+        }
 
-    [HttpPost("{id}")]
-    public IActionResult MarcarComoLido([FromRoute] int id)
-    {
-        var queue = _dbContext.Queues.First(x => x.Id.Equals(id));
-        queue.Read = true;
-        _dbContext.Update(queue);
-        _dbContext.SaveChanges();
-        return Ok();
+        [HttpGet("{id}")]
+        public IActionResult GetBody([FromRoute] int id)
+        {
+            return Ok(_dbContext.Queues.First(x => x.Id.Equals(id) & !x.Read));
+        }
+
+        [HttpPost("{id}")]
+        public IActionResult MarcarComoLido([FromRoute] int id)
+        {
+            var queue = _dbContext.Queues.First(x => x.Id.Equals(id));
+            queue.Read = true;
+            _dbContext.Update(queue);
+            _dbContext.SaveChangesAsync();
+            return Ok();
+        }
     }
 }

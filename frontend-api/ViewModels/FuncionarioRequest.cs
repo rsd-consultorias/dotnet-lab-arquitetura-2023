@@ -1,16 +1,19 @@
-using FrontEndAPI.Core.Models;
+using LabArquitetura.Infrastructure.Repositories.Models;
 
-namespace FrontEndAPI.ViewModels;
-
-public class FuncionarioRequest : ApiRequest
+namespace LabArquitetura.ViewModels
 {
-    public string? CPF { get; set; }
-    public string? Nome { get; set; }
-    public string? EMail { get; set; }
 
-    public FuncionarioRequest(){}
+    public class FuncionarioRequest : ApiRequest
+    {
+        public string? CPF { get; set; }
+        public string? Nome { get; set; }
+        public string? EMail { get; set; }
 
-    public Funcionario ToModel() {
-        return new Funcionario(this.CPF!, this.Nome!, this.EMail!);
+        public FuncionarioRequest() { }
+        public FuncionarioDbModel ToModel()
+
+        {
+            return new FuncionarioDbModel(CPF!, Nome!, EMail!);
+        }
     }
 }

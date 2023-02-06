@@ -1,13 +1,14 @@
-using FrontEndAPI.Core.Interfaces;
-using FrontEndAPI.Core.Models;
+using LabArquitetura.Core.Interfaces;
+using LabArquitetura.Core.Models;
 
-namespace FrontEndAPI.Infrastructure.Services;
-
-public sealed class EMailService : IEMailService
+namespace LabArquitetura.Infrastructure.Services
 {
-    public void EnviarBoasVindas(Funcionario funcionario)
+    public sealed class EMailService : IEMailService
     {
-        // Chamar API do MailChimp
-        Console.WriteLine($"Enviando email para {funcionario.EMail}");
+        public void EnviarBoasVindas(Funcionario funcionario)
+        {
+            // Chamar API do MailChimp
+            Console.WriteLine($"Enviando email para {funcionario.EMail}");
+        }
     }
 }

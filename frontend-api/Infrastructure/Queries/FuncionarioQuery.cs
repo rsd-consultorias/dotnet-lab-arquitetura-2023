@@ -1,18 +1,20 @@
-using FrontEndAPI.Core.Interfaces;
-using FrontEndAPI.Core.Models;
-using FrontEndAPI.Infrastructure.Repositories.Contexts;
+using LabArquitetura.Core.Interfaces;
+using LabArquitetura.Infrastructure.Repositories.Models;
+using LabArquitetura.Infrastructure.Repositories.Contexts;
 
-namespace FrontEndAPI.Infrastructure.Queries;
-public sealed class FuncionarioQuery : IFuncionarioQuery
+namespace LabArquitetura.Infrastructure.Queries
 {
-    private readonly LabArquiteturaDbContext _context;
-    public FuncionarioQuery(LabArquiteturaDbContext context)
+    public sealed class FuncionarioQuery : IFuncionarioQuery<FuncionarioDbModel>
     {
-        _context = context;
-    }
+        private readonly LabArquiteturaDbContext _context;
+        public FuncionarioQuery(LabArquiteturaDbContext context)
+        {
+            _context = context;
+        }
 
-    public IEnumerable<Funcionario> ListarTodos()
-    {
-        return _context.Funcionarios.Where<Funcionario>(x => x.Nome != "");
+        public IEnumerable<FuncionarioDbModel> ListarTodos()
+        {
+            return _context.Funcionarios.Where(x => x.Nome != "");
+        }
     }
 }

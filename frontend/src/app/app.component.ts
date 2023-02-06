@@ -86,7 +86,15 @@ export class AppComponent implements OnInit {
 
   loadQueue() {
     this.queueService.listarTodos().subscribe({
-      next: (result) => this.queueList = result
+      next: (result) => {
+        this.queueList = result;
+      }
     });
+  }
+
+  marcarComoLida(id: number) {
+    this.queueService.marcarComoLida(id).subscribe(
+      { complete: () => this.loadQueue() }
+    );
   }
 }

@@ -1,9 +1,12 @@
-namespace FrontEndAPI.Infrastructure.Commands;
+using LabArquitetura.Infrastructure.Repositories.Models;
 
-public class FuncionarioCommand : IFuncionarioCommand
+namespace LabArquitetura.Infrastructure.Commands
 {
-    public bool Salvar(Funcionario funcionario)
+    public class FuncionarioCommand : IFuncionarioCommand<FuncionarioDB>
     {
-        return true;
+        public bool Salvar(FuncionarioDB funcionario)
+        {
+            return true;
+        }
     }
 }

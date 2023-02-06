@@ -1,23 +1,24 @@
-using FrontEndAPI.Core.Interfaces;
-using FrontEndAPI.Core.Models;
-using FrontEndAPI.Infrastructure.Repositories.Contexts;
+using LabArquitetura.Core.Interfaces;
+using LabArquitetura.Infrastructure.Repositories.Contexts;
+using LabArquitetura.Infrastructure.Repositories.Models;
 
-namespace FrontEndAPI.Infrastructure.Commands;
-
-public class FuncionarioCommand : IFuncionarioCommand
+namespace LabArquitetura.Infrastructure.Commands
 {
-    private readonly LabArquiteturaDbContext _context;
-
-    public FuncionarioCommand(LabArquiteturaDbContext context)
+    public class FuncionarioCommand : IFuncionarioCommand<FuncionarioDbModel>
     {
-        _context = context;
-    }
+        private readonly LabArquiteturaDbContext _context;
 
-    public bool Salvar(Funcionario funcionario)
-    {
-        this._context.Funcionarios.Add(funcionario);
-        this._context.SaveChangesAsync();
+        public FuncionarioCommand(LabArquiteturaDbContext context)
+        {
+            _context = context;
+        }
 
-        return true;
+        public bool Salvar(FuncionarioDbModel funcionario)
+        {
+            _context.Funcionarios.Add(funcionario);
+            _context.SaveChangesAsync();
+
+            return true;
+        }
     }
 }

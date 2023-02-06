@@ -1,8 +1,4 @@
 
-.vs/LabArquitetura2023/xs/UserPrefs.xml
-.vs/LabArquitetura2023/xs/project-cache/log-service-Debug.json
-.vs/LabArquitetura2023/xs/project-cache/log-service-Release.json
-.vs/LabArquitetura2023/xs/project-cache/frontend-api-Release.json
-.vs/LabArquitetura2023/xs/project-cache/core-tests-Release.json
-.vs/LabArquitetura2023/xs/project-cache/core-tests-Debug.json
-.vs/LabArquitetura2023/xs/project-cache/batch-service-Release.json
+.vs
+Release/
+Debug/

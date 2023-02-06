@@ -6,6 +6,7 @@ import { FuncionariosComponent } from './cadastros/funcionarios/funcionarios.com
 import { AuthGuardService } from './guards/auth-guard.service';
 import { HomeComponent } from './home/home.component';
 import { LogoffComponent } from './logoff/logoff.component';
+import { ProcessoLongoComponent } from './processos/processo-longo/processo-longo.component';
 
 const routes: Routes = [
   {
@@ -17,6 +18,11 @@ const routes: Routes = [
           { path: '**', component: FuncionariosListarComponent, canActivate: [AuthGuardService] }
         ]
       }
+    ]
+  },
+  {
+    path: 'processos', canActivate: [AuthGuardService], children: [
+      { path: 'processo-longo', canActivate: [AuthGuardService], component: ProcessoLongoComponent }
     ]
   },
   { path: 'logoff', component: LogoffComponent },

@@ -1,24 +1,28 @@
 using System.ComponentModel;
-using FrontEndAPI.Core.Models;
+using LabArquitetura.Core.Models;
 
-namespace FrontEndAPI.ViewModels;
-
-public class ApiResponse<T>
+namespace LabArquitetura.ViewModels
 {
-
-    public string Status { get; set; }
-    public T? Body { get; set; }
-    public IEnumerable<string>? Errors { get; set; }
-
-    public static implicit operator ApiResponse<T>(ApiResponse<Funcionario> v)
+    public class ApiResponse<T>
     {
-        throw new NotImplementedException();
-    }
-}
 
-public sealed class Constants
-{
-    public const string STATUS_SUCCESS = "SUCCESS";
-    public const string STATUS_QUEUED = "QUEUED";
-    public const string STATUS_ERROR = "ERROR";
+        public string? Status { get; set; }
+        public T? Body { get; set; }
+        public IEnumerable<string>? Errors { get; set; }
+
+        public static implicit operator ApiResponse<T>(ApiResponse<Funcionario> v)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public sealed class Constants
+    {
+        public const string STATUS_SUCCESS = "SUCCESS";
+        public const string STATUS_QUEUED = "QUEUED";
+        public const string STATUS_ERROR = "ERROR";
+
+        public const string ACTION_INFORM = "INFORM";
+        public const string ACTION_RETRY = "RETRY";
+    }
 }

@@ -1,12 +1,13 @@
-using FrontEndAPI.Core.Interfaces;
+using LabArquitetura.Core.Interfaces;
 
-namespace FrontEndAPI.Infrastructure.Queries;
-
-public sealed class UsuarioQuery : IUsuarioQuery
+namespace LabArquitetura.Infrastructure.Queries
 {
-    public bool ExisteUsuarioProCPF(string? cpf)
+    public sealed class UsuarioQuery : IUsuarioQuery
     {
-        // Buscar no AD
-        return true;
+        public bool ExisteUsuarioProCPF(string? cpf)
+        {
+            // Buscar no AD
+            return true;
+        }
     }
 }

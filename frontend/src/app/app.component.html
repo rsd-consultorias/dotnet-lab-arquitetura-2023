@@ -11,7 +11,8 @@
       </small>
     </div>
     <div class="col pe-3 m-auto text-end">
-      <button [disabled]="queueList!.length == 0" class="btn btn-sm btn-primary position-relative" (click)="openModalQueue(queueContent)">
+      <button [disabled]="queueList!.length == 0" class="btn btn-sm btn-primary position-relative"
+        (click)="openModalQueue(queueContent)">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-stopwatch"
           viewBox="0 0 16 16">
           <path d="M8.5 5.6a.5.5 0 1 0-1 0v2.9h-3a.5.5 0 0 0 0 1H8a.5.5 0 0 0 .5-.5V5.6z" />
@@ -66,11 +67,20 @@
 <app-toasts aria-live="polite" aria-atomic="true"></app-toasts>
 
 <ng-template #queueContent let-modal>
-  <div class="modal-body" style="height: 400px;">
-    <ul>
-      <li *ngFor="let item of queueList">
-        <a (click)="modal.dismiss('')" [routerLink]="item.referrer + '/' + item.id + '/retry'">{{item.message}}</a>
-      </li>
+  <div class="modal-header">
+    <h1 class="h3">Operações Enfileiradas</h1>
+  </div>
+  <div class="modal-body overflow-auto" style="height: 400px;">
+    <ul class="list-group">
+      <ng-container *ngFor="let item of queueList">
+        <li *ngIf="item.actionType === 'RETRY'" class="list-group-item list-group-item-warning list-group-item-action" style="cursor: pointer;" (click)="modal.dismiss('')"
+          [routerLink]="item.referrer + '/' + item.id + '/retry'">
+          {{item.message}}
+        </li>
+        <li *ngIf="item.actionType === 'INFORM'" class="list-group-item list-group-item-success list-group-item-action" style="cursor: pointer;" (click)="marcarComoLida(item.id);modal.dismiss('')">
+          {{item.message}}
+        </li>
+      </ng-container>
     </ul>
   </div>
 </ng-template>
