@@ -74,13 +74,16 @@ namespace LabArquitetura.Controllers
                     }
                     else
                     {
-                        _ = _dbContext.Queues.Add(new QueueDbModel()
+                        if (enqueue)
                         {
-                            Message = $"CPF: {funcionario.CPF!} incluído com sucesso",
-                            Read = false,
-                            Referrer = funcionario.Referrer,
-                            ActionType = Constants.ACTION_INFORM
-                        });
+                            _ = _dbContext.Queues.Add(new QueueDbModel()
+                            {
+                                Message = $"CPF: {funcionario.CPF!} incluído com sucesso",
+                                Read = false,
+                                Referrer = funcionario.Referrer,
+                                ActionType = Constants.ACTION_INFORM
+                            });
+                        }
                     }
                     _dbContext.SaveChangesAsync();
                     apiResponseTemp.Status = Constants.STATUS_SUCCESS;

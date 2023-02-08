@@ -16,9 +16,15 @@ export class AuthGuardService extends KeycloakAuthGuard {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Promise<boolean | UrlTree> {
 
-    if (!this.authenticated) {
+    if (!this.keycloak.isLoggedIn()) {
       await this.keycloak.login({
-        redirectUri: window.location.origin + state.url,
+        redirectUri: window.location.origin + this.router.routerState.snapshot.url,
+      });
+    } else {
+      await this.keycloak.updateToken().catch(err => {
+        this.keycloak.login({
+          redirectUri: window.location.origin + this.router.routerState.snapshot.url,
+        }).then().catch();
       });
     }
     return this.authenticated;
