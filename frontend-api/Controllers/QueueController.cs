@@ -2,6 +2,7 @@ using LabArquitetura.Infrastructure.Repositories.Contexts;
 using LabArquitetura.Infrastructure.Repositories.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace LabArquitetura.Controllers
 {
@@ -20,13 +21,13 @@ namespace LabArquitetura.Controllers
         [HttpGet()]
         public IEnumerable<QueueDbModel> GetMessages()
         {
-            return _dbContext.Queues.Where(x => !x.Read).OrderByDescending(x => x.Id).ToList();
+            return _dbContext.Queues.AsNoTracking().Where(x => !x.Read).OrderByDescending(x => x.Id).ToList();
         }
 
         [HttpGet("{id}")]
         public IActionResult GetBody([FromRoute] int id)
         {
-            return Ok(_dbContext.Queues.First(x => x.Id.Equals(id) & !x.Read));
+            return Ok(_dbContext.Queues.AsNoTracking().First(x => x.Id.Equals(id) & !x.Read));
         }
 
         [HttpPost("{id}")]

@@ -4,6 +4,7 @@ using LabArquitetura.Infrastructure.Repositories.Models;
 using LabArquitetura.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace LabArquitetura.Controllers
 {
@@ -23,7 +24,7 @@ namespace LabArquitetura.Controllers
         public ApiResponse<FuncionarioDbModel> BuscarPorId([FromRoute] Guid id)
         {
             var response = new ApiResponse<FuncionarioDbModel>();
-            response.Body = _dbContext.Funcionarios.First(x => id.Equals(x.Id));
+            response.Body = _dbContext.Funcionarios.AsNoTracking().First(x => id.Equals(x.Id));
 
             return response;
         }
