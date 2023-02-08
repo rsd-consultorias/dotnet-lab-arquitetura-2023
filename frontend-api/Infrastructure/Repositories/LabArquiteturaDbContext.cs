@@ -9,6 +9,7 @@ namespace LabArquitetura.Infrastructure.Repositories.Contexts
     {
         public LabArquiteturaDbContext(DbContextOptions<LabArquiteturaDbContext> options) : base(options)
         {
+            
         }
 
         public DbSet<FuncionarioDbModel> Funcionarios { get; set; } = null!;

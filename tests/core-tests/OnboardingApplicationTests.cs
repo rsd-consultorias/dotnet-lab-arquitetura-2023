@@ -1,4 +1,6 @@
-using LabArquitetura.Core.Interfaces;
+using LabArquitetura.Core.Interfaces.Queries;
+using LabArquitetura.Core.Interfaces.Commands;
+using LabArquitetura.Core.Interfaces.Services;
 using LabArquitetura.Infrastructure.Commands;
 using LabArquitetura.Infrastructure.Repositories.Models;
 

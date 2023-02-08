@@ -1,4 +1,5 @@
-using LabArquitetura.Core.Interfaces;
+using LabArquitetura.Core.Interfaces.ApplicationServices;
+using LabArquitetura.Core.Interfaces.Queries;
 using LabArquitetura.Core.Types;
 using LabArquitetura.Infrastructure.Repositories.Models;
 using LabArquitetura.Infrastructure.Repositories.Contexts;
@@ -50,11 +51,6 @@ namespace LabArquitetura.Controllers
             {
                 Task<ApiResponse<OnboardFuncionarioResult<FuncionarioDbModel>>> salvarTask = Task<ApiResponse<OnboardFuncionarioResult<FuncionarioDbModel>>>.Factory.StartNew(() =>
                 {
-                    if (funcionario.CPF!.Contains("999"))
-                    {
-                        Thread.Sleep(5000);
-                    }
-
                     ApiResponse<OnboardFuncionarioResult<FuncionarioDbModel>> apiResponseTemp = new()
                     {
                         Body = _onboardApplication.OnboardFuncionario(funcionario.ToModel())
@@ -85,7 +81,7 @@ namespace LabArquitetura.Controllers
                             });
                         }
                     }
-                    _dbContext.SaveChangesAsync();
+                    _dbContext.SaveChanges();
                     apiResponseTemp.Status = Constants.STATUS_SUCCESS;
                     return apiResponseTemp;
                 });

@@ -1,6 +1,10 @@
 using System.Reflection;
 using LabArquitetura.Core.ApplicationServices;
 using LabArquitetura.Core.Interfaces;
+using LabArquitetura.Core.Interfaces.ApplicationServices;
+using LabArquitetura.Core.Interfaces.Queries;
+using LabArquitetura.Core.Interfaces.Commands;
+using LabArquitetura.Core.Interfaces.Services;
 using LabArquitetura.Infrastructure.Repositories.Models;
 using LabArquitetura.Infrastructure.Queries;
 using LabArquitetura.Infrastructure.Repositories.Contexts;
@@ -26,9 +30,11 @@ builder.Services.AddControllers().AddJsonOptions(options =>
 
 builder.Services.AddDbContext<LabArquiteturaDbContext>(options =>
 {
-    options.UseInMemoryDatabase("LabArquitetura", op => { op.EnableNullChecks(); });
-    //options.UseSqlite("Data Source=labArquitetura.db");
-}, ServiceLifetime.Singleton);
+    //options.UseInMemoryDatabase("LabArquitetura", op => { op.EnableNullChecks(); });
+    options.UseSqlite("Data Source=labArquitetura.db;Cache=Shared");
+    options.EnableDetailedErrors();
+    options.EnableSensitiveDataLogging();
+}, ServiceLifetime.Scoped);
 
 builder.Services.AddCors(options =>
 {
@@ -67,8 +73,8 @@ builder.Services.AddScoped<IEMailService, EMailService>();
 builder.Services.AddScoped<IFolhaService, FolhaService>();
 builder.Services.AddScoped<IMaquinaQuery, MaquinaQuery>();
 builder.Services.AddScoped<IUsuarioQuery, UsuarioQuery>();
-builder.Services.AddSingleton<IFuncionarioCommand<FuncionarioDbModel>, FuncionarioCommand>();
-builder.Services.AddSingleton<IFuncionarioQuery<FuncionarioDbModel>, FuncionarioQuery>();
+builder.Services.AddScoped<IFuncionarioCommand<FuncionarioDbModel>, FuncionarioCommand>();
+builder.Services.AddScoped<IFuncionarioQuery<FuncionarioDbModel>, FuncionarioQuery>();
 
 var app = builder.Build();
 

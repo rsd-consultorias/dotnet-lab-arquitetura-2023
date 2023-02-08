@@ -1,4 +1,4 @@
-namespace LabArquitetura.Core.Interfaces
+namespace LabArquitetura.Core.Interfaces.Services
 {
 
     public interface IFolhaService

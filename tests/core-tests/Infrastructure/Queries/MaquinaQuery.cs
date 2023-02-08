@@ -1,4 +1,4 @@
-using LabArquitetura.Core.Interfaces;
+using LabArquitetura.Core.Interfaces.Queries;
 
 namespace LabArquitetura.Infrastructure.Queries
 {

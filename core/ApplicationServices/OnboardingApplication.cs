@@ -1,5 +1,8 @@
 using LabArquitetura.Core.DomainServices;
-using LabArquitetura.Core.Interfaces;
+using LabArquitetura.Core.Interfaces.ApplicationServices;
+using LabArquitetura.Core.Interfaces.Queries;
+using LabArquitetura.Core.Interfaces.Commands;
+using LabArquitetura.Core.Interfaces.Services;
 using LabArquitetura.Core.Models;
 using LabArquitetura.Core.Types;
 
@@ -56,7 +59,7 @@ namespace LabArquitetura.Core.ApplicationServices
             if (maquinaOk & usuarioRedeOk & parametroFolhaHabilitado)
             {
 
-                funcionarioSalvo = _funcionarioCommand.Salvar(funcionario);
+                funcionarioSalvo = _funcionarioCommand.Salvar(funcionario).Success;
             }
 
             // Retornar resumo do onboarding

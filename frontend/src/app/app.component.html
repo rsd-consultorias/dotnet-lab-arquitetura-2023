@@ -73,11 +73,12 @@
   <div class="modal-body overflow-auto" style="height: 400px;">
     <ul class="list-group">
       <ng-container *ngFor="let item of queueList">
-        <li *ngIf="item.actionType === 'RETRY'" class="list-group-item list-group-item-warning list-group-item-action" style="cursor: pointer;" (click)="modal.dismiss('')"
-          [routerLink]="item.referrer + '/' + item.id + '/retry'">
+        <li *ngIf="item.actionType === 'RETRY'" class="list-group-item list-group-item-warning list-group-item-action"
+          style="cursor: pointer;" (click)="modal.dismiss('')" [routerLink]="item.referrer + '/' + item.id + '/retry'">
           {{item.message}}
         </li>
-        <li *ngIf="item.actionType === 'INFORM'" class="list-group-item list-group-item-success list-group-item-action" style="cursor: pointer;" (click)="marcarComoLida(item.id);modal.dismiss('')">
+        <li *ngIf="item.actionType === 'INFORM'" class="list-group-item list-group-item-success list-group-item-action"
+          style="cursor: pointer;" (click)="marcarComoLida(item.id);modal.dismiss('')">
           {{item.message}}
         </li>
       </ng-container>

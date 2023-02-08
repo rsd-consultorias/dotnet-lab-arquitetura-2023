@@ -1,3 +1,4 @@
+using LabArquitetura.Core.Interfaces.Queries;
 using LabArquitetura.Infrastructure.Repositories.Models;
 
 namespace LabArquitetura.Infrastructure.Queries

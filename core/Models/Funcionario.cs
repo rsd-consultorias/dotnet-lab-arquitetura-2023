@@ -3,9 +3,9 @@ namespace LabArquitetura.Core.Models
 
     public abstract class Funcionario
     {
-        public abstract string? CPF { get; protected set; }
-        public abstract string? Nome { get; protected set; }
-        public abstract string? EMail { get; protected set; }
+        public string? CPF { get; set; }
+        public string? Nome { get; set; }
+        public string? EMail { get; set; }
 
         public Funcionario()
         { }

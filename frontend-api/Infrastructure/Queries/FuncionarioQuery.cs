@@ -1,4 +1,4 @@
-using LabArquitetura.Core.Interfaces;
+using LabArquitetura.Core.Interfaces.Queries;
 using LabArquitetura.Infrastructure.Repositories.Models;
 using LabArquitetura.Infrastructure.Repositories.Contexts;
 
@@ -14,7 +14,7 @@ namespace LabArquitetura.Infrastructure.Queries
 
         public IEnumerable<FuncionarioDbModel> ListarTodos()
         {
-            return _context.Funcionarios.Where(x => x.Nome != "");
+            return _context.Funcionarios.AsQueryable().Where(x => x.Nome != "");
         }
     }
 }

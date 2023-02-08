@@ -9,7 +9,7 @@
         <table class="table table-sm table-hover">
             <thead>
                 <tr>
-                    <th class="col-2" scope="col">CPF</th>
+                    <th class="col-1" scope="col">CPF</th>
                     <th scope="col">Nome</th>
                     <th class="col-3" scope="col">E-Mail</th>
                     <th></th>
@@ -22,7 +22,7 @@
                     <td scope="row">{{funcionario.eMail}}</td>
                     <td class="text-end">
                         <div class="btn-group">
-                            <button class="btn btn-sm btn-outline-primary">
+                            <button class="btn btn-sm btn-outline-primary" [routerLink]="['editar', funcionario.id]">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                     class="bi bi-pencil" viewBox="0 0 16 16">
                                     <path

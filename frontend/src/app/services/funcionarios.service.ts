@@ -1,13 +1,11 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
-import { KeycloakService } from 'keycloak-angular';
 import { Observable } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
 })
-export class QueueService {
+export class FuncionariosService {
 
     constructor(private httpClient: HttpClient) {
 
@@ -17,8 +15,8 @@ export class QueueService {
         return this.httpClient.get<Array<any>>('https://localhost:7090/api/v1/queue');
     }
 
-    buscarPorId(id: number): Observable<any> {
-        return this.httpClient.get<any>(`https://localhost:7090/api/v1/queue/${id}`);
+    buscarPorId(id: string): Observable<any> {
+        return this.httpClient.get<any>(`https://localhost:7090/api/v1/funcionarios/${id}`);
     }
 
     marcarComoLida(id: number) {

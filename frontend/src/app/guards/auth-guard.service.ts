@@ -15,18 +15,31 @@ export class AuthGuardService extends KeycloakAuthGuard {
   async isAccessAllowed(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Promise<boolean | UrlTree> {
-
-    if (!this.keycloak.isLoggedIn()) {
+    const _isLoggedIn = this.keycloak.isLoggedIn();
+    if (!_isLoggedIn) {
       await this.keycloak.login({
         redirectUri: window.location.origin + this.router.routerState.snapshot.url,
       });
     } else {
-      await this.keycloak.updateToken().catch(err => {
-        this.keycloak.login({
-          redirectUri: window.location.origin + this.router.routerState.snapshot.url,
-        }).then().catch();
-      });
+      await this.keycloak.updateToken()
+        .then(refreshed => {
+        })
+        .catch(err => {
+          this.keycloak.login({
+            redirectUri: window.location.origin + this.router.routerState.snapshot.url,
+          })
+            .then(response => console.warn(JSON.stringify(response)))
+            .catch(reason => console.error(reason));
+        });
     }
+    
+    if (this.authenticated) {
+      await this.keycloak.loadUserProfile(true);
+      if (!this.keycloak.isUserInRole(route.data['role'])) {
+        this.router.navigate(['http-401']);
+      }
+    }
+
     return this.authenticated;
   }
 }

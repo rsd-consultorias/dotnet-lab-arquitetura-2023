@@ -40,6 +40,7 @@ namespace LabArquitetura.Controllers
             );
 
             menus.Add(new MenuViewModel(i++, "Configurações")
+                .AddSubMenu(new MenuViewModel(i++, "Permissões de Usuários", new List<string> { "" }))
             );
 
             return menus;

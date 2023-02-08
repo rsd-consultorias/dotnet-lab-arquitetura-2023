@@ -12,6 +12,10 @@
     <None Remove="Interfaces\" />
     <None Remove="Models\" />
     <None Remove="Types\" />
+    <None Remove="Interfaces\Commands\" />
+    <None Remove="Interfaces\Queries\" />
+    <None Remove="Interfaces\Services\" />
+    <None Remove="Interfaces\ApplicationServices\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ApplicationServices\" />
@@ -19,5 +23,9 @@
     <Folder Include="Interfaces\" />
     <Folder Include="Models\" />
     <Folder Include="Types\" />
+    <Folder Include="Interfaces\Commands\" />
+    <Folder Include="Interfaces\Queries\" />
+    <Folder Include="Interfaces\Services\" />
+    <Folder Include="Interfaces\ApplicationServices\" />
   </ItemGroup>
 </Project>

@@ -20,6 +20,8 @@ import { FuncionariosListarComponent } from './cadastros/funcionarios/funcionari
 import { FormsModule } from '@angular/forms';
 import { LogoffComponent } from './logoff/logoff.component';
 import { ProcessoLongoComponent } from './processos/processo-longo/processo-longo.component';
+import { Http401Component } from './errors/http401/http401.component';
+import { FuncionarioEditarComponent } from './cadastros/funcionarios/funcionario-editar/funcionario-editar.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,9 @@ import { ProcessoLongoComponent } from './processos/processo-longo/processo-long
     FuncionariosAdmitirComponent,
     FuncionariosListarComponent,
     LogoffComponent,
-    ProcessoLongoComponent
+    ProcessoLongoComponent,
+    Http401Component,
+    FuncionarioEditarComponent
   ],
   imports: [
     BrowserModule,

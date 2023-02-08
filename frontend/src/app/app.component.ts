@@ -18,6 +18,9 @@ export class AppComponent implements OnInit {
   loggedUser?: any = {};
   notifications?: any = {};
 
+  loggedUserStr?: string;
+  aux?: string;
+
   constructor(
     private alertService: AlertService,
     private menuService: MenuService,
@@ -37,7 +40,8 @@ export class AppComponent implements OnInit {
     // }, 1700);
 
     setInterval(async () => {
-      if (!this.keycloak.isLoggedIn()) {
+      const _isLoggedIn = await this.keycloak.isLoggedIn();
+      if (!_isLoggedIn) {
         await this.keycloak.login({
           redirectUri: window.location.origin + this.router.routerState.snapshot.url,
         });
@@ -49,13 +53,16 @@ export class AppComponent implements OnInit {
         });
       }
 
-      this.loadQueue();
+      if (_isLoggedIn) this.loadQueue();
     }, 5000);
 
     this.notifications!.warning = 1;
 
-    let token = await this.keycloak.getToken();
-    let userInfo: KeycloakProfile = await this.keycloak.loadUserProfile();
+    const token = await this.keycloak.getToken();
+    const userInfo: KeycloakProfile = await this.keycloak.loadUserProfile(true);
+    // @ts-ignore
+    this.aux = JSON.stringify(this.keycloak.isUserInRole('lab-arquitetura-admin-role'));
+    this.loggedUserStr = JSON.stringify(userInfo, null, 4);
     // @ts-ignore
     this.loggedUser.name = `${userInfo.firstName!} ${userInfo.lastName!} [${userInfo.attributes.chapa!}]`;
     // @ts-ignore
