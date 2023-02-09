@@ -22,6 +22,7 @@ import { LogoffComponent } from './logoff/logoff.component';
 import { ProcessoLongoComponent } from './processos/processo-longo/processo-longo.component';
 import { Http401Component } from './errors/http401/http401.component';
 import { FuncionarioEditarComponent } from './cadastros/funcionarios/funcionario-editar/funcionario-editar.component';
+import { Http404Component } from './errors/http404/http404.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { FuncionarioEditarComponent } from './cadastros/funcionarios/funcionario
     LogoffComponent,
     ProcessoLongoComponent,
     Http401Component,
-    FuncionarioEditarComponent
+    FuncionarioEditarComponent,
+    Http404Component
   ],
   imports: [
     BrowserModule,

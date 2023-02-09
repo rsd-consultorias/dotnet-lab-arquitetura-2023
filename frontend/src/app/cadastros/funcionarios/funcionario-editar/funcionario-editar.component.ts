@@ -26,13 +26,26 @@ export class FuncionarioEditarComponent implements OnInit {
       });
   }
 
-  salvar() { 
+  salvar() {
     if (!this.funcionario.nome || !this.funcionario.cpf || !this.funcionario.eMail) {
       this.validate();
       this.alertService.show('Todos os dados devem ser preenchidos', { classname: 'text-bg-warning' });
       return;
     }
-    this.isWaiting = true;}
+    this.isWaiting = true;
+
+    this.funcionariosServices.alterar(this.funcionario)
+      .subscribe({
+        next: (response) => {
+          if (response.status === 'Success') {
+            this.alertService.show('Funcionário atualizado', { classname: 'text-bg-success' });
+          } else {
+            this.alertService.show(JSON.stringify(response.errors), { classname: 'text-bg-danger' });
+          }
+          this.isWaiting = false;
+        }
+      });
+  }
 
   validate() {
     this.validateForm = true;

@@ -32,15 +32,6 @@ namespace LabArquitetura.Controllers
             _dbContext = dbContext;
         }
 
-        /// <summary>
-        /// Listar todos os funcionários Ativos
-        /// </summary>
-        [HttpGet("todos")]
-        public IEnumerable<FuncionarioDbModel>? ListarTodos()
-        {
-            return _funcionarioQuery.ListarTodos();
-        }
-
         /// <summary>Salva os dados do funcionário</summary>
         [HttpPost]
         public async Task<IActionResult> Salvar([FromBody] FuncionarioRequest funcionario)

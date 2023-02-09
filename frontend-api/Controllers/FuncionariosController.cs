@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore;
 namespace LabArquitetura.Controllers
 {
     [ApiController]
-    [AllowAnonymous]
-    [Route("api/v1/funcionarios")]
+    [Authorize]
+    [Route("api/v1/[controller]")]
     public class FuncionariosController : Controller
     {
         private readonly LabArquiteturaDbContext _dbContext;
@@ -20,11 +20,62 @@ namespace LabArquitetura.Controllers
             _dbContext = dbContext;
         }
 
+        /// <summary>
+        /// Listar todos os funcionários Ativos
+        /// </summary>
+        [HttpGet("")]
+        public IEnumerable<FuncionarioDbModel>? ListarTodos()
+        {
+            return _dbContext.Funcionarios.AsNoTracking().OrderBy(x => x.Nome);
+        }
+
         [HttpGet("{id}")]
         public ApiResponse<FuncionarioDbModel> BuscarPorId([FromRoute] Guid id)
         {
             var response = new ApiResponse<FuncionarioDbModel>();
             response.Body = _dbContext.Funcionarios.AsNoTracking().First(x => id.Equals(x.Id));
+
+            return response;
+        }
+
+        [HttpPost("")]
+        public ApiResponse<FuncionarioDbModel> Alterar([FromBody] FuncionarioDbModel funcionario)
+        {
+            var response = new ApiResponse<FuncionarioDbModel>();
+
+            try
+            {
+                var updated = _dbContext.Funcionarios.Update(funcionario);
+                response.Body = updated.Entity;
+                response.Status = "Success";
+                _dbContext.SaveChanges();
+            }
+            catch (Exception exception)
+            {
+                response.Status = "Error";
+                response.Errors = new List<string> { exception.Message };
+            }
+
+            return response;
+        }
+
+        [HttpDelete("{id}")]
+        public ApiResponse<bool> Excluir([FromRoute] Guid id)
+        {
+            var response = new ApiResponse<bool>();
+
+            try
+            {
+                var funcionarioToRemove = _dbContext.Funcionarios.First(x => id.Equals(x.Id));
+                var deleted = _dbContext.Funcionarios.Remove(funcionarioToRemove);
+                _dbContext.SaveChanges();
+                response.Status = "Success";
+            }
+            catch (Exception ex)
+            {
+                response.Status = "Error";
+                response.Errors = new List<string> { ex.Message };
+            }
 
             return response;
         }

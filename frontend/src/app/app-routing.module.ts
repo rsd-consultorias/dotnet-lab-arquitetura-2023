@@ -5,6 +5,7 @@ import { FuncionariosAdmitirComponent } from './cadastros/funcionarios/funcionar
 import { FuncionariosListarComponent } from './cadastros/funcionarios/funcionarios-listar/funcionarios-listar.component';
 import { FuncionariosComponent } from './cadastros/funcionarios/funcionarios.component';
 import { Http401Component } from './errors/http401/http401.component';
+import { Http404Component } from './errors/http404/http404.component';
 import { AuthGuardService } from './guards/auth-guard.service';
 import { HomeComponent } from './home/home.component';
 import { LogoffComponent } from './logoff/logoff.component';
@@ -29,8 +30,8 @@ const routes: Routes = [
     ]
   },
   { path: 'logoff', data: { role: 'lab-arquitetura-user' }, component: LogoffComponent },
-  { path: 'http-401', component: Http401Component },
-  { path: '**', data: { role: 'lab-arquitetura-user' }, component: HomeComponent, canActivate: [AuthGuardService] }
+  { path: 'http-401', component: Http404Component },
+  { path: '**', component: Http404Component }
 ];
 
 @NgModule({

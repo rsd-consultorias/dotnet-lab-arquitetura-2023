@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertService } from 'src/app/services/alert.service';
+import { FuncionariosService } from 'src/app/services/funcionarios.service';
 import { OnboardingService } from 'src/app/services/onboarding.service';
 
 @Component({
@@ -9,18 +10,41 @@ import { OnboardingService } from 'src/app/services/onboarding.service';
 })
 export class FuncionariosListarComponent implements OnInit {
   funcionarios: Array<any> = [];
+  isWaiting: boolean = false;
 
   constructor(private onboardingService: OnboardingService,
+    private funcionariosService: FuncionariosService,
     private alertService: AlertService) { }
 
   ngOnInit(): void {
-    this.onboardingService.listarTodos().subscribe(data => this.funcionarios = data);
+    this.funcionariosService.listarTodos()
+      .subscribe({
+        next: (data) => this.funcionarios = data
+      });
   }
 
   atualizar() {
-    this.onboardingService.listarTodos().subscribe(data => {
-      this.funcionarios = data;
-      this.alertService.show('Tabela atualizada.', { classname: 'text-bg-success' })
-    });
+    this.isWaiting = true;
+    this.funcionariosService.listarTodos()
+      .subscribe({
+        next: (data) => {
+          this.funcionarios = data;
+          this.alertService.show('Tabela atualizada.', { classname: 'text-bg-success' });
+        },
+        complete: () => this.isWaiting = false
+      });
+  }
+
+  excluir(id: string) {
+    this.isWaiting = true;
+    // @ts-ignore
+    this.funcionariosService.excluir(id)
+      .subscribe({
+        next: (data) => {
+          this.atualizar();
+        },
+        error: (reason) => { this.alertService.show(reason, { classname: 'txt-bg-danger' }) },
+        complete: () => { this.isWaiting = false }
+      });
   }
 }

@@ -12,14 +12,18 @@ export class FuncionariosService {
     }
 
     listarTodos(): Observable<Array<any>> {
-        return this.httpClient.get<Array<any>>('https://localhost:7090/api/v1/queue');
+        return this.httpClient.get<Array<any>>('https://localhost:7090/api/v1/funcionarios');
     }
 
     buscarPorId(id: string): Observable<any> {
         return this.httpClient.get<any>(`https://localhost:7090/api/v1/funcionarios/${id}`);
     }
 
-    marcarComoLida(id: number) {
-        return this.httpClient.post<void>(`https://localhost:7090/api/v1/queue/${id}`, {});
+    alterar(funcionario: any): Observable<any> {
+        return this.httpClient.post(`https://localhost:7090/api/v1/funcionarios`, funcionario)
+    }
+
+    excluir(id: string): Observable<any>{
+        return this.httpClient.delete(`https://localhost:7090/api/v1/funcionarios/${id}`);
     }
 }
