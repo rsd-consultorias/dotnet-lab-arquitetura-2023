@@ -16,7 +16,7 @@ dotnet test && dotnet run
 ```
 
 ## Modelo
-![Modelo](./doc/modelo-4.png)
+![Modelo](./doc/modelo-5.png)
 
 ## Referências
 - [dotnet core WebAPI](https://learn.microsoft.com/en-us/aspnet/core/web-api/?WT.mc_id=dotnet-35129-website&view=aspnetcore-7.0)
