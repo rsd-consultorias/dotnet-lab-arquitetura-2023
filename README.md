@@ -15,6 +15,9 @@ ng serve
 dotnet test && dotnet run
 ```
 
+## Modelo
+![Modelo](./doc/modelo.png)
+
 ## Referências
 - [dotnet core WebAPI](https://learn.microsoft.com/en-us/aspnet/core/web-api/?WT.mc_id=dotnet-35129-website&view=aspnetcore-7.0)
 - [Angular](https://angular.io/)
