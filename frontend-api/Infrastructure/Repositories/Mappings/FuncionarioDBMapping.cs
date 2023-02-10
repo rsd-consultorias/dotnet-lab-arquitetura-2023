@@ -25,6 +25,9 @@ namespace LabArquitetura.Infrastructure.Repositories.Mappings
             builder.Property(x => x.EMail).IsRequired();
 
             builder.HasIndex(x => x.CPF).IsUnique();
+
+            builder.Property(x => x.DataCriacao).HasColumnName("DataCriacao");
+            builder.Property(x => x.DataAlteracao).HasColumnName("DataAlteracao");
         }
     }
 }

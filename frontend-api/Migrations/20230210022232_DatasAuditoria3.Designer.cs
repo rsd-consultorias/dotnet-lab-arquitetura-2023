@@ -3,6 +3,7 @@ using System;
 using LabArquitetura.Infrastructure.Repositories.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LabArquitetura.Migrations
 {
     [DbContext(typeof(LabArquiteturaDbContext))]
-    partial class LabArquiteturaDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230210022232_DatasAuditoria3")]
+    partial class DatasAuditoria3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.13");
