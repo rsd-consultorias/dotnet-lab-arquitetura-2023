@@ -15,7 +15,7 @@ export function initializeKeycloak(
                 scope: 'profile email',
                 pkceMethod: 'S256',
                 // must match to the configured value in keycloak
-                redirectUri: 'http://localhost:4200',
+                // redirectUri: 'http://localhost:4200/',
                 // this will solved the error 
                 checkLoginIframe: false,
             }

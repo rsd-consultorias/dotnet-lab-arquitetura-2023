@@ -18,7 +18,7 @@ export class AuthGuardService extends KeycloakAuthGuard {
     const _isLoggedIn = this.keycloak.isLoggedIn();
     if (!_isLoggedIn) {
       await this.keycloak.login({
-        redirectUri: window.location.origin + this.router.routerState.snapshot.url,
+        // redirectUri: window.location.origin + this.router.routerState.snapshot.url,
       });
     } else {
       await this.keycloak.updateToken()
@@ -26,7 +26,7 @@ export class AuthGuardService extends KeycloakAuthGuard {
         })
         .catch(err => {
           this.keycloak.login({
-            redirectUri: window.location.origin + this.router.routerState.snapshot.url,
+            // redirectUri: window.location.origin + this.router.routerState.snapshot.url,
           })
             .then(response => console.warn(JSON.stringify(response)))
             .catch(reason => console.error(reason));

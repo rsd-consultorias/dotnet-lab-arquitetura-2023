@@ -30,8 +30,9 @@ const routes: Routes = [
     ]
   },
   { path: 'logoff', data: { role: 'lab-arquitetura-user' }, component: LogoffComponent },
-  { path: 'http-401', component: Http404Component },
-  { path: '**', component: Http404Component }
+  { path: 'http-401', component: Http401Component },
+  { path: 'http-404', component: Http404Component },
+  { path: '**', component: HomeComponent }
 ];
 
 @NgModule({

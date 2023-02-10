@@ -45,6 +45,7 @@ namespace LabArquitetura.Controllers
 
             try
             {
+                funcionario.DataAlteracao = DateTime.UtcNow;
                 var updated = _dbContext.Funcionarios.Update(funcionario);
                 response.Body = updated.Entity;
                 response.Status = "Success";

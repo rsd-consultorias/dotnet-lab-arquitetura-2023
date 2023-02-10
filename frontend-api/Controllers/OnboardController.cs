@@ -7,6 +7,9 @@ using LabArquitetura.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Text.Json;
+using LabArquitetura.Core.Interfaces.Commands;
+using Microsoft.Extensions.DependencyInjection;
+using LabArquitetura.Infrastructure.Commands;
 
 namespace LabArquitetura.Controllers
 {
@@ -19,38 +22,48 @@ namespace LabArquitetura.Controllers
         private readonly IFuncionarioQuery<FuncionarioDbModel> _funcionarioQuery;
         private readonly ILogger _logger;
         private readonly LabArquiteturaDbContext _dbContext;
+        private readonly IServiceScopeFactory _scopeFactory;
 
         public OnboardController(
             IOnboardingApplication<FuncionarioDbModel> consultaApplication,
             IFuncionarioQuery<FuncionarioDbModel> funcionarioQuery,
             ILogger<OnboardController> logger,
-            LabArquiteturaDbContext dbContext)
+            LabArquiteturaDbContext dbContext,
+            IServiceScopeFactory scopeFactory)
         {
             _onboardApplication = consultaApplication;
             _funcionarioQuery = funcionarioQuery;
             _logger = logger;
             _dbContext = dbContext;
+            _scopeFactory = scopeFactory;
         }
 
         /// <summary>Salva os dados do funcionário</summary>
         [HttpPost]
-        public async Task<IActionResult> Salvar([FromBody] FuncionarioRequest funcionario)
+        public async Task<IActionResult> SalvarAsync([FromBody] FuncionarioRequest funcionario)
         {
             ApiResponse<OnboardFuncionarioResult<FuncionarioDbModel>> apiResponse = new();
             bool enqueue = false;
             try
             {
-                Task<ApiResponse<OnboardFuncionarioResult<FuncionarioDbModel>>> salvarTask = Task<ApiResponse<OnboardFuncionarioResult<FuncionarioDbModel>>>.Factory.StartNew(() =>
+                var salvarTask = Task<ApiResponse<OnboardFuncionarioResult<FuncionarioDbModel>>>.Factory.StartNew(() =>
                 {
+                    if (funcionario.CPF!.Contains("999")) Thread.Sleep(2000);
+                    // Necessário para rodar de forma assíncrona
+                    var scope = _scopeFactory.CreateAsyncScope();
+                    var ctx = scope.ServiceProvider.GetRequiredService<LabArquiteturaDbContext>();
+                    var ctxOnboardApplication = scope.ServiceProvider.GetRequiredService<IOnboardingApplication<FuncionarioDbModel>>();
+                    // Fim: Necessário para rodar de forma assíncrona
+
                     ApiResponse<OnboardFuncionarioResult<FuncionarioDbModel>> apiResponseTemp = new()
                     {
-                        Body = _onboardApplication.OnboardFuncionario(funcionario.ToModel())
+                        Body = ctxOnboardApplication.OnboardFuncionario(funcionario.ToModel())
                     };
 
                     if ((!apiResponseTemp.Body!.MaquinaPronta || !apiResponseTemp.Body!.ParametroFolhaHabilitado || !apiResponseTemp.Body!.UsuarioRedeCriado) && enqueue)
                     {
                         string msgQueue = $"CPF: {funcionario.CPF} => Maquina: {apiResponseTemp.Body.MaquinaPronta}, Folha: {apiResponseTemp.Body.ParametroFolhaHabilitado}, Usuário: {apiResponseTemp.Body.UsuarioRedeCriado}";
-                        _ = _dbContext.Queues.Add(new QueueDbModel()
+                        _ = ctx.Queues.Add(new QueueDbModel()
                         {
                             Message = msgQueue,
                             Read = false,
@@ -63,7 +76,7 @@ namespace LabArquitetura.Controllers
                     {
                         if (enqueue)
                         {
-                            _ = _dbContext.Queues.Add(new QueueDbModel()
+                            _ = ctx.Queues.Add(new QueueDbModel()
                             {
                                 Message = $"CPF: {funcionario.CPF!} incluído com sucesso",
                                 Read = false,
@@ -72,7 +85,7 @@ namespace LabArquitetura.Controllers
                             });
                         }
                     }
-                    _dbContext.SaveChanges();
+                    ctx.SaveChanges();
                     apiResponseTemp.Status = Constants.STATUS_SUCCESS;
                     return apiResponseTemp;
                 });
@@ -85,7 +98,7 @@ namespace LabArquitetura.Controllers
                 }
                 else
                 {
-                    return Ok(salvarTask.Result);
+                    return Ok(await salvarTask);
                 }
             }
             catch (Exception exception)

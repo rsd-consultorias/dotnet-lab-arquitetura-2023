@@ -11,6 +11,7 @@ import { OnboardingService } from 'src/app/services/onboarding.service';
 export class FuncionariosListarComponent implements OnInit {
   funcionarios: Array<any> = [];
   isWaiting: boolean = false;
+  idExcluir?: string;
 
   constructor(private onboardingService: OnboardingService,
     private funcionariosService: FuncionariosService,
@@ -35,6 +36,14 @@ export class FuncionariosListarComponent implements OnInit {
       });
   }
 
+  habilitarExclusao(id: string) {
+    if (this.idExcluir) {
+      this.idExcluir = undefined;
+    } else {
+      this.idExcluir = id;
+    }
+  }
+
   excluir(id: string) {
     this.isWaiting = true;
     // @ts-ignore
@@ -44,7 +53,10 @@ export class FuncionariosListarComponent implements OnInit {
           this.atualizar();
         },
         error: (reason) => { this.alertService.show(reason, { classname: 'txt-bg-danger' }) },
-        complete: () => { this.isWaiting = false }
+        complete: () => {
+          this.isWaiting = false;
+          this.idExcluir = undefined;
+        }
       });
   }
 }

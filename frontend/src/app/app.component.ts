@@ -41,19 +41,19 @@ export class AppComponent implements OnInit {
 
     setInterval(async () => {
       const _isLoggedIn = await this.keycloak.isLoggedIn();
-      if (!_isLoggedIn) {
+      if (!this.keycloak.isLoggedIn()) {
         await this.keycloak.login({
-          redirectUri: window.location.origin + this.router.routerState.snapshot.url,
+          // redirectUri: window.location.origin + this.router.routerState.snapshot.url,
         });
       } else {
         await this.keycloak.updateToken().catch(err => {
           this.keycloak.login({
-            redirectUri: window.location.origin + this.router.routerState.snapshot.url,
+            // redirectUri: window.location.origin + this.router.routerState.snapshot.url,
           }).then().catch();
         });
       }
 
-      // if (_isLoggedIn) this.loadQueue();
+      if (_isLoggedIn) this.loadQueue();
     }, 5000);
 
     this.notifications!.warning = 1;
