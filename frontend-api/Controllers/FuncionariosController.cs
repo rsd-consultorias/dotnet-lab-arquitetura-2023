@@ -25,9 +25,18 @@ namespace LabArquitetura.Controllers
         /// Listar todos os funcionários Ativos
         /// </summary>
         [HttpGet("")]
-        public PaginatedResult<FuncionarioDbModel>? ListarTodos([FromQuery] int? page = 1)
+        public PaginatedResult<FuncionarioDbModel>? ListarTodos([FromQuery] int? page = 1, [FromQuery] string? filter = null)
         {
-            return _dbContext.Funcionarios.AsNoTracking().OrderBy(x => x.Nome).Paginate(page!);
+
+            var searchTerms = new List<SearchTerm> {
+                new SearchTerm("cpf", "Contains", "347"),
+                new SearchTerm("cpf", "EndsWith", "4")
+            };
+
+            var retorno = _dbContext.Funcionarios.AsNoTracking()
+                .OrderBy(x => x.Nome).FilterAndPaginate(searchTerms, page!);
+
+            return retorno;
         }
 
         [HttpGet("{id}")]

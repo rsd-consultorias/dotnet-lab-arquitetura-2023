@@ -4,6 +4,7 @@ import { FuncionarioEditarComponent } from './cadastros/funcionarios/funcionario
 import { FuncionariosAdmitirComponent } from './cadastros/funcionarios/funcionarios-admitir/funcionarios-admitir.component';
 import { FuncionariosListarComponent } from './cadastros/funcionarios/funcionarios-listar/funcionarios-listar.component';
 import { FuncionariosComponent } from './cadastros/funcionarios/funcionarios.component';
+import { UploadHorasComponent } from './cadastros/funcionarios/upload-horas/upload-horas.component';
 import { Http401Component } from './errors/http401/http401.component';
 import { Http404Component } from './errors/http404/http404.component';
 import { AuthGuardService } from './guards/auth-guard.service';
@@ -20,6 +21,7 @@ const routes: Routes = [
           { path: 'admitir', data: { role: 'lab-arquitetura-admin' }, component: FuncionariosAdmitirComponent, canActivate: [AuthGuardService] },
           { path: 'editar/:id', data: { role: 'lab-arquitetura-admin' }, component: FuncionarioEditarComponent, canActivate: [AuthGuardService] },
           { path: 'listar', data: { role: 'lab-arquitetura-user' }, component: FuncionariosListarComponent, canActivate: [AuthGuardService] },
+          { path: 'upload', data: { role: 'lab-arquitetura-user' }, component: UploadHorasComponent, canActivate: [AuthGuardService] },
           { path: '**', data: { role: 'lab-arquitetura-user' }, component: FuncionariosListarComponent, canActivate: [AuthGuardService] }
         ]
       }

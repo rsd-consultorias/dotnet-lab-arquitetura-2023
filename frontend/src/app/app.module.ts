@@ -23,6 +23,7 @@ import { ProcessoLongoComponent } from './processos/processo-longo/processo-long
 import { Http401Component } from './errors/http401/http401.component';
 import { FuncionarioEditarComponent } from './cadastros/funcionarios/funcionario-editar/funcionario-editar.component';
 import { Http404Component } from './errors/http404/http404.component';
+import { UploadHorasComponent } from './cadastros/funcionarios/upload-horas/upload-horas.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { Http404Component } from './errors/http404/http404.component';
     ProcessoLongoComponent,
     Http401Component,
     FuncionarioEditarComponent,
-    Http404Component
+    Http404Component,
+    UploadHorasComponent
   ],
   imports: [
     BrowserModule,
