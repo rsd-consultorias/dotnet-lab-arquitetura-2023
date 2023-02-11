@@ -1,5 +1,5 @@
 ![alt text](./doc/label.png)
-# [dotnet] Lab Arquitetura 2023
+# [dotnet] Lab Arquitetura 2023 (work in progress)
 <br />
 
 ## Modelo
