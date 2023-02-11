@@ -27,6 +27,8 @@ export class FuncionariosListarComponent implements OnInit {
   previousPage?: number;
   currentPage?: number;
   nextPage?: number;
+  totalRecords?: number;
+  currentRecords?: number;
 
   constructor(private onboardingService: OnboardingService,
     private funcionariosService: FuncionariosService,
@@ -39,6 +41,12 @@ export class FuncionariosListarComponent implements OnInit {
   atualizar(page?: number) {
     this.isWaiting = true;
     this.paginas = [];
+    this.nextPage = undefined;
+    this.currentPage = undefined;
+    this.previousPage = undefined;
+    this.totalRecords = undefined;
+    this.currentRecords = undefined;
+
     this.funcionariosService.listarTodos(page)
       .subscribe({
         next: (data: PaginatedResult) => {
@@ -46,6 +54,8 @@ export class FuncionariosListarComponent implements OnInit {
           this.currentPage = data.page!;
           this.previousPage = data.previousPage! === data.page! ? undefined : data.previousPage!;
           this.nextPage = data.nextPage! === data.page! ? undefined : data.nextPage!;
+          this.currentRecords = data.collection!.length;
+          this.totalRecords = data.totalRecords!;
 
           for(let i = 0; i < data.totalPages!; i++){
             this.paginas.push(i+1);

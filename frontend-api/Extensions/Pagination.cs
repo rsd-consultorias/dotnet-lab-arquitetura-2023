@@ -5,7 +5,7 @@ namespace LabArquitetura.Extensions
 {
     public static class PaginationExtensions
     {
-        public static PaginatedResult<TEntity>? Paginate<TEntity>(this IQueryable<TEntity> source, int? page, int? pageSize = 3) where TEntity : class
+        public static PaginatedResult<TEntity>? Paginate<TEntity>(this IQueryable<TEntity> source, int? page, int? pageSize = 10) where TEntity : class
         {
             var paginatedResult = new PaginatedResult<TEntity>();
             paginatedResult.Page = page!;

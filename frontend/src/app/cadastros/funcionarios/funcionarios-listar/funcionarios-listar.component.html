@@ -74,6 +74,7 @@
                 <li *ngFor="let item of paginas" [class]="currentPage === item ? 'page-item active' : 'page-item'"><a (click)="atualizar(item)" class="page-link">{{item}}</a></li>
                 <li [class]="nextPage! ? 'page-item' : 'page-item disabled'"><a (click)="atualizar(nextPage)" class="page-link">Próxima</a></li>
             </ul>
+            <span>Exibindo {{currentRecords}} de {{totalRecords}}</span>
         </nav>
     </div>
 </div>
