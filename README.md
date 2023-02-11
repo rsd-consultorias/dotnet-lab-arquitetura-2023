@@ -15,6 +15,31 @@ ng serve
 dotnet test && dotnet run
 ```
 
+## Comandos do Kafka
+``` bash
+# Iniciar serviço ZooKeeper
+sh bin/zookeeper-server-start.sh config/zookeeper.properties
+
+# Iniciar Kafka broker service
+sh bin/kafka-server-start.sh config/server.properties
+
+# Criar um tópico
+sh bin/kafka-topics.sh --create --topic nome-topico --bootstrap-server localhost:9092
+
+# Listar tópicos
+sh bin/kafka-topics.sh --describe --topic quickstart-events --bootstrap-server localhost:9092
+
+# Escrever uma mensagem no tópico
+sh bin/kafka-console-producer.sh --topic quickstart-events --bootstrap-server localhost:9092
+
+# Receber mensagem do tópico
+# note que o parâmetro --from-beginning lê todas as mensagens desde o início
+sh bin/kafka-console-consumer.sh --topic quickstart-events --from-beginning --bootstrap-server localhost:9092
+
+# Para apagar os dados gerados durante os testes
+rm -rf /tmp/kafka-logs /tmp/zookeeper /tmp/kraft-combined-logs
+```
+
 ## Modelo
 ![Modelo](./doc/modelo-5.png)
 
