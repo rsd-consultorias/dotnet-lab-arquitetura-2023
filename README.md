@@ -3,7 +3,7 @@
 <br />
 
 ## Modelo
-![Modelo](./doc/modelo-7.png)
+![Modelo](./doc/modelo-8.png)
 
 ## Executar os projetos
 ```bash
