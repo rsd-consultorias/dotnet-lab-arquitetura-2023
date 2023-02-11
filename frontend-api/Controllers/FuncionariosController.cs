@@ -33,10 +33,9 @@ namespace LabArquitetura.Controllers
                 new SearchTerm("cpf", "EndsWith", "4")
             };
 
-            var retorno = _dbContext.Funcionarios.AsNoTracking()
-                .OrderBy(x => x.Nome).FilterAndPaginate(searchTerms, page!);
 
-            return retorno;
+            return _dbContext.Funcionarios.AsNoTracking()
+                .OrderBy(x => x.Nome).FilterAndPaginate(searchTerms, page!);
         }
 
         [HttpGet("{id}")]
