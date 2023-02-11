@@ -40,9 +40,10 @@ namespace LabArquitetura.Controllers
         }
 
         [HttpPost("")]
-        public ApiResponse<FuncionarioDbModel> Alterar([FromBody] FuncionarioDbModel funcionario)
+        public ApiResponse<FuncionarioDbModel> Alterar([FromBody] FuncionarioDbModel funcionario, [FromQuery] string? returnUrl = null)
         {
             var response = new ApiResponse<FuncionarioDbModel>();
+            response.ReturnUrl = returnUrl!;
 
             try
             {
@@ -62,9 +63,10 @@ namespace LabArquitetura.Controllers
         }
 
         [HttpDelete("{id}")]
-        public ApiResponse<bool> Excluir([FromRoute] Guid id)
+        public ApiResponse<bool> Excluir([FromRoute] Guid id, [FromQuery] string? returnUrl = null)
         {
             var response = new ApiResponse<bool>();
+            response.ReturnUrl = returnUrl!;
 
             try
             {

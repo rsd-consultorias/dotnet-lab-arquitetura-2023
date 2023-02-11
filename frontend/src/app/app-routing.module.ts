@@ -19,6 +19,7 @@ const routes: Routes = [
           { path: 'admitir/:id/retry', data: { role: 'lab-arquitetura-admin' }, component: FuncionariosAdmitirComponent, canActivate: [AuthGuardService] },
           { path: 'admitir', data: { role: 'lab-arquitetura-admin' }, component: FuncionariosAdmitirComponent, canActivate: [AuthGuardService] },
           { path: 'editar/:id', data: { role: 'lab-arquitetura-admin' }, component: FuncionarioEditarComponent, canActivate: [AuthGuardService] },
+          { path: 'listar', data: { role: 'lab-arquitetura-user' }, component: FuncionariosListarComponent, canActivate: [AuthGuardService] },
           { path: '**', data: { role: 'lab-arquitetura-user' }, component: FuncionariosListarComponent, canActivate: [AuthGuardService] }
         ]
       }

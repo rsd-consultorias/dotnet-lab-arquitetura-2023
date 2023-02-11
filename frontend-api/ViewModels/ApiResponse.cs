@@ -9,6 +9,7 @@ namespace LabArquitetura.ViewModels
         public string? Status { get; set; }
         public T? Body { get; set; }
         public IEnumerable<string>? Errors { get; set; }
+        public string? ReturnUrl { get; set; }
 
         public static implicit operator ApiResponse<T>(ApiResponse<Funcionario> v)
         {

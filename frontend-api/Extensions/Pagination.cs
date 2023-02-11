@@ -8,13 +8,16 @@ namespace LabArquitetura.Extensions
         public static PaginatedResult<TEntity>? Paginate<TEntity>(this IQueryable<TEntity> source, int? page, int? pageSize = 10) where TEntity : class
         {
             var paginatedResult = new PaginatedResult<TEntity>();
-            paginatedResult.Page = page!;
             paginatedResult.PageSize = pageSize!;
             paginatedResult.TotalRecords = source.Count();
             paginatedResult.TotalPages = (int?)(Math.Ceiling(((double)paginatedResult.TotalRecords / (double)paginatedResult.PageSize)));
-
+            if(page! < 1)
+            {
+                paginatedResult.Page = 1;
+            }
+            paginatedResult.Page = page! > paginatedResult.TotalPages! ? paginatedResult.TotalPages!: page!;
             paginatedResult.Collection = source
-                .Skip((int)((page! * pageSize!) - pageSize!))
+                .Skip((int)((paginatedResult.Page! * pageSize!) - pageSize!))
                     .Take(pageSize!.Value).ToList();
 
             if (!(source.Provider is EntityQueryProvider))

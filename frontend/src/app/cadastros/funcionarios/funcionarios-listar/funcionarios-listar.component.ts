@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AlertService } from 'src/app/services/alert.service';
 import { FuncionariosService } from 'src/app/services/funcionarios.service';
 import { OnboardingService } from 'src/app/services/onboarding.service';
@@ -22,20 +23,29 @@ export class FuncionariosListarComponent implements OnInit {
   funcionarios: Array<any> = [];
   isWaiting: boolean = false;
   idExcluir?: string;
-  
+
   paginas: Array<number> = [];
   previousPage?: number;
-  currentPage?: number;
+  currentPage?: number = undefined;
   nextPage?: number;
   totalRecords?: number;
   currentRecords?: number;
 
   constructor(private onboardingService: OnboardingService,
     private funcionariosService: FuncionariosService,
-    private alertService: AlertService) { }
+    private alertService: AlertService,
+    private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.atualizar();
+    this.route.queryParams
+      .subscribe({
+        next: (params) => {
+          if(params['page']){
+            this.currentPage = Number(params['page']);
+          }
+        }
+      });
+    this.atualizar(this.currentPage);
   }
 
   atualizar(page?: number) {
@@ -57,10 +67,10 @@ export class FuncionariosListarComponent implements OnInit {
           this.currentRecords = data.collection!.length;
           this.totalRecords = data.totalRecords!;
 
-          for(let i = 0; i < data.totalPages!; i++){
-            this.paginas.push(i+1);
+          for (let i = 0; i < data.totalPages!; i++) {
+            this.paginas.push(i + 1);
           }
-          this.alertService.show('Tabela atualizada.', { classname: 'text-bg-success' });
+          // this.alertService.show('Tabela atualizada.', { classname: 'text-bg-success' });
         },
         complete: () => this.isWaiting = false
       });
