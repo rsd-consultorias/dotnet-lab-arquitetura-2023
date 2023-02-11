@@ -1,4 +1,5 @@
 ﻿using System;
+using LabArquitetura.Extensions;
 using LabArquitetura.Infrastructure.Repositories.Contexts;
 using LabArquitetura.Infrastructure.Repositories.Models;
 using LabArquitetura.ViewModels;
@@ -24,9 +25,9 @@ namespace LabArquitetura.Controllers
         /// Listar todos os funcionários Ativos
         /// </summary>
         [HttpGet("")]
-        public IEnumerable<FuncionarioDbModel>? ListarTodos()
+        public PaginatedResult<FuncionarioDbModel>? ListarTodos([FromQuery] int? page = 1)
         {
-            return _dbContext.Funcionarios.AsNoTracking().OrderBy(x => x.Nome);
+            return _dbContext.Funcionarios.AsNoTracking().OrderBy(x => x.Nome).Paginate(page!);
         }
 
         [HttpGet("{id}")]

@@ -11,8 +11,8 @@ export class FuncionariosService {
 
     }
 
-    listarTodos(): Observable<Array<any>> {
-        return this.httpClient.get<Array<any>>('https://localhost:7090/api/v1/funcionarios');
+    listarTodos(page?: number): Observable<any> {
+        return this.httpClient.get<any>(`https://localhost:7090/api/v1/funcionarios/${page ? '?page=' + page! : ''}`);
     }
 
     buscarPorId(id: string): Observable<any> {
