@@ -1,3 +1,4 @@
+using FolhaService.Services;
 using FolhaWorker;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,7 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddGrpc();
 
 builder.Services.AddHostedService<Worker>();
-//builder.Services.AddSingleton<Worker>();
+builder.Services.AddSingleton<ServiceStatus>();
 
 builder.WebHost.ConfigureKestrel(options =>
 {

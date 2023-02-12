@@ -8,21 +8,26 @@ namespace FolhaService.Services
 {
 	public class FolhaService : FolhaServiceStatusBase
     {
-        private readonly Worker _worker;
+        private readonly ServiceStatus _serviceStatus;
 
-        public FolhaService(Worker worker)
+        public FolhaService(ServiceStatus serviceStatus)
         {
-            _worker = worker;
+            _serviceStatus = serviceStatus;
         }
 
         public override Task<FolhaServiceStatusResponse> GetStatus(FolhaServiceStatusRequest request, ServerCallContext context)
         {
             var response = new FolhaServiceStatusResponse {
-                Status = "Teste OK! ====>" + _worker.Status
+                Status = "Teste OK! ====>" + _serviceStatus.Status
             };
 
             return Task.FromResult(response);
         }
+    }
+
+    public class ServiceStatus
+    {
+        public string? Status { get; set; }
     }
 }
 
