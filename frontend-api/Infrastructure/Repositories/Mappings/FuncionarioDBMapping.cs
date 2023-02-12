@@ -16,15 +16,15 @@ namespace LabArquitetura.Infrastructure.Repositories.Mappings
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id)
                 .HasConversion(e => e.ToString(), d => new Guid(d))
-                .HasColumnType("VARCHAR(36)");
+                .HasColumnType("CHAR(36)");
 
             builder.Property(x => x.CPF)
                 .IsRequired()
                 .HasMaxLength(11)
                 .HasColumnType("CHAR(11)");
 
-            builder.OwnsMany(x => x.Documentos).Property(x=>x.Id).HasConversion(e => e.ToString(), d => new Guid(d!)).HasMaxLength(36);
-            builder.OwnsMany(x => x.Enderecos).Property(x => x.Id).HasConversion(e => e.ToString(), d => new Guid(d!)).HasMaxLength(36);
+            builder.OwnsMany(x => x.Documentos).Property(x=>x.Id).HasConversion(e => e.ToString(), d => new Guid(d!)).HasColumnType("CHAR(36)");
+            builder.OwnsMany(x => x.Enderecos).Property(x => x.Id).HasConversion(e => e.ToString(), d => new Guid(d!)).HasColumnType("CHAR(36)");
 
             builder.Property(x => x.EMail).IsRequired();
 
