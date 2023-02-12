@@ -1,10 +1,11 @@
+using core.Types;
 using LabArquitetura.Core.Interfaces.Services;
 
 namespace LabArquitetura.Infrastructure.Services
 {
     public sealed class FolhaService : IFolhaService
     {
-        public Task<string> GetStatusProcessamento()
+        public Task<ServiceStatusResponse> GetStatusProcessamento()
         {
             throw new NotImplementedException();
         }

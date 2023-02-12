@@ -18,7 +18,8 @@ namespace FolhaService.Services
         public override Task<FolhaServiceStatusResponse> GetStatus(FolhaServiceStatusRequest request, ServerCallContext context)
         {
             var response = new FolhaServiceStatusResponse {
-                Status = _serviceStatus.Status
+                Status = _serviceStatus.Status,
+                Progress = _serviceStatus.Progress
             };
 
             return Task.FromResult(response);
@@ -28,6 +29,7 @@ namespace FolhaService.Services
     public class ServiceStatus
     {
         public string? Status { get; set; }
+        public int Progress { get; set; }
     }
 }
 

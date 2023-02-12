@@ -1,3 +1,4 @@
+using core.Types;
 using Grpc.Net.ClientFactory;
 using LabArquitetura.Core.Interfaces.Services;
 using static FolhaServiceGRPC.FolhaServiceStatus;
@@ -26,14 +27,14 @@ namespace LabArquitetura.Infrastructure.Services
             return true;
         }
 
-        public async Task<string> GetStatusProcessamento()
+        public async Task<ServiceStatusResponse> GetStatusProcessamento()
         {
             var response = await _folhaServiceStatusClient.GetStatusAsync(new FolhaServiceGRPC.FolhaServiceStatusRequest
             {
                 Cpf = ""
             });
 
-            return response.Status!;
+            return new ServiceStatusResponse { Status = response.Status!, Progress = response.Progress! };
         }
     }
 }

@@ -1,9 +1,11 @@
+using core.Types;
+
 namespace LabArquitetura.Core.Interfaces.Services
 {
 
     public interface IFolhaService
     {
         bool HabilitaParametroProCPF(string? cPF);
-        Task<string> GetStatusProcessamento();
+        Task<ServiceStatusResponse> GetStatusProcessamento();
     }
 }

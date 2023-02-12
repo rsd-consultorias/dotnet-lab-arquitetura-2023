@@ -53,7 +53,7 @@ export class AppComponent implements OnInit {
         });
       }
 
-      // if (_isLoggedIn) this.loadQueue();
+      if (_isLoggedIn) this.loadQueue();
     }, 5000);
 
     this.notifications!.warning = 1;

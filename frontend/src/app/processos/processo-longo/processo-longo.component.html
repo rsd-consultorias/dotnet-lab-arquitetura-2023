@@ -1,1 +1,7 @@
-Status do processamento: {{statusFolha}}
+<h3 class="h3">{{statusFolha}}</h3>
+<div class="progress" role="progressbar" aria-label="Animated striped example" aria-valuenow="75" aria-valuemin="0"
+    aria-valuemax="100">
+    <div [class]="'progress-bar progress-bar-animated ' + (progress === 100 ? 'bg-success': 'bg-warning progress-bar-striped')" [style]="'width: '+ progress + '%'">
+        
+    </div>
+</div>

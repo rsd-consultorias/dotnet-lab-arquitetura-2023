@@ -18,4 +18,5 @@ message FolhaServiceStatusRequest {
 // The response message containing the greetings.
 message FolhaServiceStatusResponse {
   string status = 1;
+  int32 progress = 2;
 }

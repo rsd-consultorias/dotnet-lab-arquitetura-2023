@@ -1,4 +1,5 @@
 ﻿using System;
+using core.Types;
 using LabArquitetura.Core.Interfaces.Services;
 using LabArquitetura.Core.Models;
 using LabArquitetura.Extensions;
@@ -34,7 +35,8 @@ namespace LabArquitetura.Controllers
         public PaginatedResult<Funcionario>? ListarTodos([FromQuery] int? page = 1, [FromQuery] string? filter = null)
         {
 
-            var searchTerms = new List<SearchTerm> {
+            var searchTerms = new List<SearchTerm>
+            {
                 //new SearchTerm("cpf", "Contains", "347"),
                 //new SearchTerm("cpf", "EndsWith", "4")
             };
@@ -98,12 +100,9 @@ namespace LabArquitetura.Controllers
         }
 
         [HttpGet("status-folha")]
-        public async Task<ApiResponse<string>> StatusFolha()
+        public async Task<ApiResponse<ServiceStatusResponse>> StatusFolha()
         {
-            return new ApiResponse<string> {
-                Body = await _folhaService.GetStatusProcessamento(),
-                Status = "Success"
-            };
+            return new ApiResponse<ServiceStatusResponse> { Body = await _folhaService.GetStatusProcessamento() };
         }
     }
 }

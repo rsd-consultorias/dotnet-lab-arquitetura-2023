@@ -10,6 +10,7 @@ export class ProcessoLongoComponent implements OnInit, OnDestroy {
 
   statusFolha?: string = undefined;
   intervalFolha?: any = undefined;
+  progress: number = 0;
 
   constructor(private funcionarioService: FuncionariosService) { }
 
@@ -21,7 +22,8 @@ export class ProcessoLongoComponent implements OnInit, OnDestroy {
     this.intervalFolha = setInterval(() => {
       this.funcionarioService.statusFolha().subscribe({
         next: (response) => {
-          this.statusFolha = response!.body;
+          this.statusFolha = response!.body.status;
+          this.progress = Number(response!.body.progress);
         }
       });
     }, 1000);
