@@ -31,25 +31,42 @@ public class Worker : BackgroundService
             this.Status = string.Format("Worker running at A: {0}", DateTimeOffset.UtcNow);
             _logger.LogInformation(Status);
             _serviceStatus.Status = Status;
-            _serviceStatus.Progress = 40;
-            await Task.Delay(6000, stoppingToken);
+
+            for (var i = 10; i < 40; i++)
+            {
+                _serviceStatus.Progress = i;
+                await Task.Delay(6000 / 30, stoppingToken);
+            }
 
             this.Status = string.Format("Worker running at B: {0}", DateTimeOffset.UtcNow);
             _logger.LogInformation(Status);
             _serviceStatus.Status = Status;
-            _serviceStatus.Progress = 60;
-            await Task.Delay(6000, stoppingToken);
+
+            for (var i = 40; i < 40; i++)
+            {
+                _serviceStatus.Progress = i;
+                await Task.Delay(6000 / 20, stoppingToken);
+            }
 
             this.Status = string.Format("Worker running at C: {0}", DateTimeOffset.UtcNow);
             _logger.LogInformation(Status);
             _serviceStatus.Status = Status;
-            _serviceStatus.Progress = 90;
-            await Task.Delay(6000, stoppingToken);
+
+            for (var i = 60; i < 90; i++)
+            {
+                _serviceStatus.Progress = i;
+                await Task.Delay(6000 / 30, stoppingToken);
+            }
 
             this.Status = string.Format("Worker running at Finish: {0}", DateTimeOffset.UtcNow);
             _serviceStatus.Status = Status;
             _logger.LogInformation(Status);
-            _serviceStatus.Progress = 100;
+
+            for (var i = 90; i <= 100; i++)
+            {
+                _serviceStatus.Progress = i;
+                await Task.Delay(6000 / 10, stoppingToken);
+            }
 
             await Task.Delay(10000, stoppingToken);
         }
