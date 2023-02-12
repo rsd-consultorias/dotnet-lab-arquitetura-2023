@@ -20,8 +20,8 @@ public class Worker : BackgroundService
         while (!stoppingToken.IsCancellationRequested)
         {
             _serviceStatus.Progress = 0;
+            _serviceStatus.Status = string.Empty;
             await Task.Delay(6000, stoppingToken);
-
             this.Status = string.Format("Worker running at Start: {0}", DateTimeOffset.UtcNow);
             _logger.LogInformation(Status);
             _serviceStatus.Status = Status;
@@ -42,7 +42,7 @@ public class Worker : BackgroundService
             _logger.LogInformation(Status);
             _serviceStatus.Status = Status;
 
-            for (var i = 40; i < 40; i++)
+            for (var i = 40; i < 60; i++)
             {
                 _serviceStatus.Progress = i;
                 await Task.Delay(6000 / 20, stoppingToken);
@@ -58,7 +58,7 @@ public class Worker : BackgroundService
                 await Task.Delay(6000 / 30, stoppingToken);
             }
 
-            this.Status = string.Format("Worker running at Finish: {0}", DateTimeOffset.UtcNow);
+            this.Status = string.Format("Worker running at Finishing: {0}", DateTimeOffset.UtcNow);
             _serviceStatus.Status = Status;
             _logger.LogInformation(Status);
 
@@ -67,6 +67,8 @@ public class Worker : BackgroundService
                 _serviceStatus.Progress = i;
                 await Task.Delay(6000 / 10, stoppingToken);
             }
+            this.Status = string.Format("Worker running Finish: {0}", DateTimeOffset.UtcNow);
+            _serviceStatus.Status = Status;
 
             await Task.Delay(10000, stoppingToken);
         }

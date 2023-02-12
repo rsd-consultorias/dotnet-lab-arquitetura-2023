@@ -22,8 +22,12 @@ export class ProcessoLongoComponent implements OnInit, OnDestroy {
     this.intervalFolha = setInterval(() => {
       this.funcionarioService.statusFolha().subscribe({
         next: (response) => {
+          if(response.body){
           this.statusFolha = response!.body.status;
           this.progress = Number(response!.body.progress);
+          } else {
+            this.statusFolha = response.errors[0];
+          }
         }
       });
     }, 1000);

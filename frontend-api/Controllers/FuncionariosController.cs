@@ -102,7 +102,13 @@ namespace LabArquitetura.Controllers
         [HttpGet("status-folha")]
         public async Task<ApiResponse<ServiceStatusResponse>> StatusFolha()
         {
-            return new ApiResponse<ServiceStatusResponse> { Body = await _folhaService.GetStatusProcessamento() };
+            try
+            {
+                return new ApiResponse<ServiceStatusResponse> { Body = await _folhaService.GetStatusProcessamento() };
+            } catch
+            {
+                return new ApiResponse<ServiceStatusResponse> { Body = null, Errors = new List<string> { "Não foi possível conectar ao serviço" }, Status = "Error" };
+            }
         }
     }
 }
