@@ -18,9 +18,9 @@ namespace LabArquitetura.Infrastructure.Repositories.Contexts
 
         protected override void OnModelCreating(ModelBuilder modelBuilder) {
 
-            //modelBuilder.Entity<AuditoriaDbModel<FuncionarioDbModel>>();
-            //modelBuilder.Entity<AuditoriaDbModel<QueueDbModel>>();
-            modelBuilder.ApplyConfiguration(new FuncionarioDBMapping());
+            modelBuilder.ApplyConfiguration(new FuncionarioMapping());
+            modelBuilder.ApplyConfiguration(new EnderecoMapping());
+            modelBuilder.ApplyConfiguration(new DocumentoMapping());
 
             base.OnModelCreating(modelBuilder);
         }

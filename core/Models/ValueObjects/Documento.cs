@@ -8,6 +8,7 @@ namespace core.Models.ValueObjects
 		public DateTime? Emissao { get; set; }
 		public string? OrgaoEmissor { get; set; }
 		public DateTime? Validade { get; set; }
+		public Int16? NumeroVia { get; set; }
 
 		public Documento()
 		{}

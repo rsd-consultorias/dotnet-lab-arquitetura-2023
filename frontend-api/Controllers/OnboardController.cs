@@ -58,38 +58,10 @@ namespace LabArquitetura.Controllers
                     // Fim: Necessário para rodar de forma assíncrona
 
                     var _funcionario = funcionario.ToModel();
-                    _funcionario.Documentos = new List<Documento> {
-                        new Documento()
-                        {
-                            Tipo = "CPF",
-                            Emissao = new DateTime(2020, 01, 01).ToUniversalTime(),
-                            Validade = new DateTime(2023, 12, 31).ToUniversalTime(),
-                            Numero = _funcionario.CPF,
-                            OrgaoEmissor = "Receita Federal"
-                        },
-                        new Documento()
-                        {
-                            Tipo = "RG",
-                            Emissao = new DateTime(2020, 01, 01).ToUniversalTime(),
-                            Validade = new DateTime(2023, 12, 31).ToUniversalTime(),
-                            Numero = "1423432423-54",
-                            OrgaoEmissor = "SSP"
-                        }
-                    };
+                    _funcionario.AddDocumento(tipo: "CPF", numero: "12345678901");
+                    _funcionario.AddDocumento(tipo: "RG", numero: "12345678901");
 
-                    _funcionario.Enderecos = new List<Endereco> {
-                        new Endereco
-                        {
-                            TipoEndereco = "Correspondencia",
-                            CEP = "12345-123",
-                            Numero = "123",
-                            Complemento = "Apartamento 123",
-                            UF = "SP",
-                            Cidade = "Cidade",
-                            Logradouro = "Teste",
-                            TipoLogradouro = "Rua"
-                        }
-                    };
+                    _funcionario.AddEndereco(tipoEndereco: "Residencial", cep: "12345678");
 
                     ApiResponse<OnboardFuncionarioResult<Funcionario>> apiResponseTemp = new()
                     {

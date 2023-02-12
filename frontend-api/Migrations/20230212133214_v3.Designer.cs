@@ -3,6 +3,7 @@ using System;
 using LabArquitetura.Infrastructure.Repositories.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,45 +11,46 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LabArquitetura.Migrations
 {
     [DbContext(typeof(LabArquiteturaDbContext))]
-    partial class LabArquiteturaDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230212133214_v3")]
+    partial class v3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.13");
 
             modelBuilder.Entity("core.Models.ValueObjects.Documento", b =>
                 {
-                    b.Property<string>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("CHAR(36)");
+                        .HasColumnType("TEXT");
 
                     b.Property<DateTime?>("DataAlteracao")
-                        .HasColumnType("DATETIME");
+                        .HasColumnType("TEXT");
 
                     b.Property<DateTime>("DataCriacao")
-                        .HasColumnType("DATETIME");
+                        .HasColumnType("TEXT");
 
                     b.Property<DateTime?>("Emissao")
-                        .HasColumnType("DATETIME");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("FuncionarioId")
                         .HasColumnType("CHAR(36)");
 
                     b.Property<string>("Numero")
-                        .HasColumnType("VARCHAR(40)");
+                        .HasColumnType("TEXT");
 
                     b.Property<short?>("NumeroVia")
-                        .HasColumnType("INT(2)");
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("OrgaoEmissor")
-                        .HasColumnType("VARCHAR(120)");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Tipo")
-                        .HasColumnType("VARCHAR(20)");
+                        .HasColumnType("TEXT");
 
                     b.Property<DateTime?>("Validade")
-                        .HasColumnType("DATETIME");
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 

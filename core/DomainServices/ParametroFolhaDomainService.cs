@@ -4,7 +4,7 @@ namespace LabArquitetura.Core.DomainServices
     {
         public bool PodeHabilitarFolha(string cpf)
         {
-            return cpf.Length == 11 & cpf.StartsWith("347");
+            return cpf.Length == 11;
         }
     }
 }

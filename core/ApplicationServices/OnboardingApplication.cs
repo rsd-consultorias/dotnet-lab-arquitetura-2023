@@ -49,17 +49,17 @@ namespace LabArquitetura.Core.ApplicationServices
                 parametroFolhaHabilitado = _folhaService.HabilitaParametroProCPF(funcionario.CPF);
             }
 
-            // Envia e-mail de boas vindas
-            if (maquinaOk & usuarioRedeOk & parametroFolhaHabilitado)
-            {
-                _emailService.EnviarBoasVindas(funcionario);
-            }
-
             bool funcionarioSalvo = false;
             if (maquinaOk & usuarioRedeOk & parametroFolhaHabilitado)
             {
 
                 funcionarioSalvo = _funcionarioCommand.Salvar(funcionario).Success;
+            }
+
+            // Envia e-mail de boas vindas
+            if (maquinaOk & usuarioRedeOk & parametroFolhaHabilitado & funcionarioSalvo)
+            {
+                _emailService.EnviarBoasVindas(funcionario);
             }
 
             // Retornar resumo do onboarding

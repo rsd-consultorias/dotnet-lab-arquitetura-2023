@@ -5,9 +5,9 @@ using LabArquitetura.Core.Models;
 
 namespace LabArquitetura.Infrastructure.Repositories.Mappings
 {
-    public class FuncionarioDBMapping : IEntityTypeConfiguration<Funcionario>
+    public class FuncionarioMapping : IEntityTypeConfiguration<Funcionario>
     {
-        public FuncionarioDBMapping()
+        public FuncionarioMapping()
         {
         }
 
@@ -23,8 +23,9 @@ namespace LabArquitetura.Infrastructure.Repositories.Mappings
                 .HasMaxLength(11)
                 .HasColumnType("CHAR(11)");
 
-            builder.OwnsMany(x => x.Documentos).Property(x=>x.Id).HasConversion(e => e.ToString(), d => new Guid(d!)).HasColumnType("CHAR(36)");
-            builder.OwnsMany(x => x.Enderecos).Property(x => x.Id).HasConversion(e => e.ToString(), d => new Guid(d!)).HasColumnType("CHAR(36)");
+            builder.HasMany(x => x.Documentos);
+
+            builder.HasMany(x => x.Enderecos);
 
             builder.Property(x => x.EMail).IsRequired();
 
