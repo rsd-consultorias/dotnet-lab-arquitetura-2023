@@ -26,4 +26,8 @@ export class FuncionariosService {
     excluir(id: string): Observable<any>{
         return this.httpClient.delete(`https://localhost:7090/api/v1/funcionarios/${id}`);
     }
+
+    statusFolha(): Observable<any> {
+        return this.httpClient.get<any>(`https://localhost:7090/api/v1/funcionarios/status-folha`);
+    }
 }

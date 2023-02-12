@@ -97,12 +97,13 @@ namespace LabArquitetura.Controllers
             return response;
         }
 
-        [HttpGet("/status-folha")]
-        [AllowAnonymous]
-        public async Task<IActionResult> StatusFolha()
+        [HttpGet("status-folha")]
+        public async Task<ApiResponse<string>> StatusFolha()
         {
-            
-            return Ok(await _folhaService.GetStatusProcessamento());
+            return new ApiResponse<string> {
+                Body = await _folhaService.GetStatusProcessamento(),
+                Status = "Success"
+            };
         }
     }
 }

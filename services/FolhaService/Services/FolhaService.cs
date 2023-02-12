@@ -18,7 +18,7 @@ namespace FolhaService.Services
         public override Task<FolhaServiceStatusResponse> GetStatus(FolhaServiceStatusRequest request, ServerCallContext context)
         {
             var response = new FolhaServiceStatusResponse {
-                Status = "Teste OK! ====>" + _serviceStatus.Status
+                Status = _serviceStatus.Status
             };
 
             return Task.FromResult(response);

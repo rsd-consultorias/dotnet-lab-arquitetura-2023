@@ -22,28 +22,28 @@ public class Worker : BackgroundService
             this.Status = string.Format("Worker running at Start: {0}", DateTimeOffset.UtcNow);
             _logger.LogInformation(Status);
             _serviceStatus.Status = Status;
-            await Task.Delay(60000, stoppingToken);
+            await Task.Delay(6000, stoppingToken);
 
             this.Status = string.Format("Worker running at A: {0}", DateTimeOffset.UtcNow);
             _logger.LogInformation(Status);
             _serviceStatus.Status = Status;
-            await Task.Delay(60000, stoppingToken);
+            await Task.Delay(6000, stoppingToken);
 
             this.Status = string.Format("Worker running at B: {0}", DateTimeOffset.UtcNow);
             _logger.LogInformation(Status);
             _serviceStatus.Status = Status;
-            await Task.Delay(60000, stoppingToken);
+            await Task.Delay(6000, stoppingToken);
 
             this.Status = string.Format("Worker running at C: {0}", DateTimeOffset.UtcNow);
             _logger.LogInformation(Status);
             _serviceStatus.Status = Status;
-            await Task.Delay(60000, stoppingToken);
+            await Task.Delay(6000, stoppingToken);
 
             this.Status = string.Format("Worker running at Finish: {0}", DateTimeOffset.UtcNow);
             _serviceStatus.Status = Status;
             _logger.LogInformation(Status);
 
-            await Task.Delay(1000, stoppingToken);
+            await Task.Delay(10000, stoppingToken);
         }
     }
 }
