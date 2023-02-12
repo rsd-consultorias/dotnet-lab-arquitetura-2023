@@ -19,13 +19,14 @@ namespace LabArquitetura.Infrastructure.Repositories.Mappings
             builder.Property(x => x.Cidade).HasColumnType("CHAR(240)");
             builder.Property(x => x.CodigoCidadeIBGE).HasColumnType("CHAR(8)");
             builder.Property(x => x.Complemento).HasColumnType("VARCHAR(240)");
-            builder.Property(x => x.DataAlteracao).HasColumnType("DATETIME");
-            builder.Property(x => x.DataCriacao).HasColumnType("DATETIME");
             builder.Property(x => x.Logradouro).HasColumnType("VARCHAR(240)");
             builder.Property(x => x.Numero).HasColumnType("VARCHAR(10)");
             builder.Property(x => x.TipoEndereco).HasColumnType("VARCHAR(20)");
             builder.Property(x => x.TipoLogradouro).HasColumnType("VARCHAR(20)");
             builder.Property(x => x.UF).HasColumnType("CHAR(2)");
+
+            builder.Property(x => x.DataAlteracao).HasColumnType("DATETIME");
+            builder.Property(x => x.DataCriacao).HasColumnType("DATETIME");
         }
     }
 }

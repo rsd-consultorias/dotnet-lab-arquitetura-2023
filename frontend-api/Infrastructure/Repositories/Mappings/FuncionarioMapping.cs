@@ -18,6 +18,8 @@ namespace LabArquitetura.Infrastructure.Repositories.Mappings
                 .HasConversion(e => e.ToString(), d => new Guid(d))
                 .HasColumnType("CHAR(36)");
 
+            builder.Property(x => x.Nome).HasColumnType("VARCHAR(240)");
+
             builder.Property(x => x.CPF)
                 .IsRequired()
                 .HasMaxLength(11)
@@ -31,8 +33,8 @@ namespace LabArquitetura.Infrastructure.Repositories.Mappings
 
             builder.HasIndex(x => x.CPF).IsUnique();
 
-            builder.Property(x => x.DataCriacao).HasColumnName("DataCriacao");
-            builder.Property(x => x.DataAlteracao).HasColumnName("DataAlteracao");
+            builder.Property(x => x.DataAlteracao).HasColumnType("DATETIME");
+            builder.Property(x => x.DataCriacao).HasColumnType("DATETIME");
         }
     }
 }
