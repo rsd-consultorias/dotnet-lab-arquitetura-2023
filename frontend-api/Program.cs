@@ -14,6 +14,8 @@ using Keycloak.AuthServices.Authentication;
 using LabArquitetura.Infrastructure.Commands;
 using Serilog;
 using LabArquitetura.Core.Models;
+using FolhaServiceGRPC;
+using static FolhaServiceGRPC.FolhaServiceStatus;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -63,6 +65,12 @@ builder.Services.AddSwaggerGen(config =>
     var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
     var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
     config.IncludeXmlComments(xmlPath, includeControllerXmlComments: true);
+});
+
+// gRPC clients
+builder.Services.AddGrpcClient<FolhaServiceStatusClient>(options =>
+{
+    options.Address = new Uri("http://localhost:5097");
 });
 
 // Authentication & Authorization

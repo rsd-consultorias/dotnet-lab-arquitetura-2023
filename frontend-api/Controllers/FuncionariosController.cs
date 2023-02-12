@@ -1,4 +1,5 @@
 ﻿using System;
+using LabArquitetura.Core.Interfaces.Services;
 using LabArquitetura.Core.Models;
 using LabArquitetura.Extensions;
 using LabArquitetura.Infrastructure.Repositories.Contexts;
@@ -16,9 +17,13 @@ namespace LabArquitetura.Controllers
     public class FuncionariosController : Controller
     {
         private readonly LabArquiteturaDbContext _dbContext;
+        private readonly IFolhaService _folhaService;
 
-        public FuncionariosController(LabArquiteturaDbContext dbContext)
+        public FuncionariosController(
+            IFolhaService folhaService,
+            LabArquiteturaDbContext dbContext)
         {
+            _folhaService = folhaService;
             _dbContext = dbContext;
         }
 
@@ -90,6 +95,14 @@ namespace LabArquitetura.Controllers
             }
 
             return response;
+        }
+
+        [HttpGet("/status-folha")]
+        [AllowAnonymous]
+        public async Task<IActionResult> StatusFolha()
+        {
+            
+            return Ok(await _folhaService.GetStatusProcessamento());
         }
     }
 }

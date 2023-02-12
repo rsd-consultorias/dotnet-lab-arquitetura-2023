@@ -31,6 +31,9 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
+    <PackageReference Include="Grpc.Net.Client" Version="2.51.0" />
+    <PackageReference Include="Grpc.AspNetCore" Version="2.23.2" />
+    <PackageReference Include="Google.Protobuf" Version="3.21.12" />
   </ItemGroup>
 
   <ItemGroup>
@@ -44,9 +47,17 @@
     <None Remove="Microsoft.EntityFrameworkCore.Design" />
     <None Remove="Microsoft.EntityFrameworkCore.Tools" />
     <None Remove="Extensions\" />
+    <None Remove="Grpc.Net.Client" />
+    <None Remove="Grpc.AspNetCore" />
+    <None Remove="Google.Protobuf" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Infrastructure\Repositories\Mappings\" />
     <Folder Include="Extensions\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Protobuf Include="..\services\FolhaService\Protos\folhaservice.proto" GrpcServices="Client">
+      <Link>Protos\folhaservice.proto</Link>
+    </Protobuf>
   </ItemGroup>
 </Project>

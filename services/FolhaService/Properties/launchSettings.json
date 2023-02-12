@@ -1,8 +1,8 @@
 {
   "profiles": {
-    "LabArquitetura.Services.Log": {
+    "FolhaService": {
       "commandName": "Project",
-      "applicationUrl": "http://localhost:5157;https://localhost:7205",
+      "applicationUrl": "http://localhost:5097;https://localhost:7111",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
