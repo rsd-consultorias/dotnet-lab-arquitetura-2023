@@ -22,6 +22,9 @@ namespace LabArquitetura.Infrastructure.Repositories.Mappings
                 .HasMaxLength(11)
                 .HasColumnType("CHAR(11)");
 
+            builder.OwnsMany(x => x.Documentos).Property(x=>x.Id).HasConversion(e => e.ToString(), d => new Guid(d!));
+            builder.OwnsMany(x => x.Enderecos).Property(x => x.Id).HasConversion(e => e.ToString(), d => new Guid(d!));
+
             builder.Property(x => x.EMail).IsRequired();
 
             builder.HasIndex(x => x.CPF).IsUnique();

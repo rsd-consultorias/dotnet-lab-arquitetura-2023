@@ -10,6 +10,7 @@ using System.Text.Json;
 using LabArquitetura.Core.Interfaces.Commands;
 using Microsoft.Extensions.DependencyInjection;
 using LabArquitetura.Infrastructure.Commands;
+using core.Models.ValueObjects;
 
 namespace LabArquitetura.Controllers
 {
@@ -55,9 +56,43 @@ namespace LabArquitetura.Controllers
                     var ctxOnboardApplication = scope.ServiceProvider.GetRequiredService<IOnboardingApplication<FuncionarioDbModel>>();
                     // Fim: Necessário para rodar de forma assíncrona
 
+                    var _funcionario = funcionario.ToModel();
+                    _funcionario.Documentos = new List<Documento> {
+                        new Documento()
+                        {
+                            Tipo = "CPF",
+                            Emissao = new DateTime(2020, 01, 01).ToUniversalTime(),
+                            Validade = new DateTime(2023, 12, 31).ToUniversalTime(),
+                            Numero = _funcionario.CPF,
+                            OrgaoEmissor = "Receita Federal"
+                        },
+                        new Documento()
+                        {
+                            Tipo = "RG",
+                            Emissao = new DateTime(2020, 01, 01).ToUniversalTime(),
+                            Validade = new DateTime(2023, 12, 31).ToUniversalTime(),
+                            Numero = "1423432423-54",
+                            OrgaoEmissor = "SSP"
+                        }
+                    };
+
+                    _funcionario.Enderecos = new List<Endereco> {
+                        new Endereco
+                        {
+                            TipoEndereco = "Correspondencia",
+                            CEP = "12345-123",
+                            Numero = "123",
+                            Complemento = "Apartament 123",
+                            UF = "SP",
+                            Cidade = "Cidade",
+                            Logradouro = "Teste",
+                            TipoLogradouro = "Rua"
+                        }
+                    };
+
                     ApiResponse<OnboardFuncionarioResult<FuncionarioDbModel>> apiResponseTemp = new()
                     {
-                        Body = ctxOnboardApplication.OnboardFuncionario(funcionario.ToModel())
+                        Body = ctxOnboardApplication.OnboardFuncionario(_funcionario)
                     };
 
                     if ((!apiResponseTemp.Body!.MaquinaPronta || !apiResponseTemp.Body!.ParametroFolhaHabilitado || !apiResponseTemp.Body!.UsuarioRedeCriado) && enqueue)

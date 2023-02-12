@@ -29,8 +29,8 @@ namespace LabArquitetura.Controllers
         {
 
             var searchTerms = new List<SearchTerm> {
-                new SearchTerm("cpf", "Contains", "347"),
-                new SearchTerm("cpf", "EndsWith", "4")
+                //new SearchTerm("cpf", "Contains", "347"),
+                //new SearchTerm("cpf", "EndsWith", "4")
             };
 
 

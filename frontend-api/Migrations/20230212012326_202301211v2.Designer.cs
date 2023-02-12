@@ -3,6 +3,7 @@ using System;
 using LabArquitetura.Infrastructure.Repositories.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LabArquitetura.Migrations
 {
     [DbContext(typeof(LabArquiteturaDbContext))]
-    partial class LabArquiteturaDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230212012326_202301211v2")]
+    partial class _202301211v2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.13");
@@ -84,9 +86,9 @@ namespace LabArquitetura.Migrations
                             b1.Property<string>("FuncionarioDbModelId")
                                 .HasColumnType("VARCHAR(36)");
 
-                            b1.Property<string>("Id")
+                            b1.Property<int>("Id")
                                 .ValueGeneratedOnAdd()
-                                .HasColumnType("TEXT");
+                                .HasColumnType("INTEGER");
 
                             b1.Property<DateTime?>("Emissao")
                                 .HasColumnType("TEXT");
@@ -116,9 +118,9 @@ namespace LabArquitetura.Migrations
                             b1.Property<string>("FuncionarioDbModelId")
                                 .HasColumnType("VARCHAR(36)");
 
-                            b1.Property<string>("Id")
+                            b1.Property<int>("Id")
                                 .ValueGeneratedOnAdd()
-                                .HasColumnType("TEXT");
+                                .HasColumnType("INTEGER");
 
                             b1.Property<string>("CEP")
                                 .HasColumnType("TEXT");

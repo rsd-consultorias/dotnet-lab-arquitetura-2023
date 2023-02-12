@@ -3,6 +3,7 @@ using System;
 using LabArquitetura.Infrastructure.Repositories.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LabArquitetura.Migrations
 {
     [DbContext(typeof(LabArquiteturaDbContext))]
-    partial class LabArquiteturaDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230212010206_20230211v1")]
+    partial class _20230211v1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.13");
@@ -79,46 +81,14 @@ namespace LabArquitetura.Migrations
 
             modelBuilder.Entity("LabArquitetura.Infrastructure.Repositories.Models.FuncionarioDbModel", b =>
                 {
-                    b.OwnsMany("core.Models.ValueObjects.Documento", "Documentos", b1 =>
-                        {
-                            b1.Property<string>("FuncionarioDbModelId")
-                                .HasColumnType("VARCHAR(36)");
-
-                            b1.Property<string>("Id")
-                                .ValueGeneratedOnAdd()
-                                .HasColumnType("TEXT");
-
-                            b1.Property<DateTime?>("Emissao")
-                                .HasColumnType("TEXT");
-
-                            b1.Property<string>("Numero")
-                                .HasColumnType("TEXT");
-
-                            b1.Property<string>("OrgaoEmissor")
-                                .HasColumnType("TEXT");
-
-                            b1.Property<string>("Tipo")
-                                .HasColumnType("TEXT");
-
-                            b1.Property<DateTime?>("Validade")
-                                .HasColumnType("TEXT");
-
-                            b1.HasKey("FuncionarioDbModelId", "Id");
-
-                            b1.ToTable("Documento");
-
-                            b1.WithOwner()
-                                .HasForeignKey("FuncionarioDbModelId");
-                        });
-
                     b.OwnsMany("core.Models.ValueObjects.Endereco", "Enderecos", b1 =>
                         {
                             b1.Property<string>("FuncionarioDbModelId")
                                 .HasColumnType("VARCHAR(36)");
 
-                            b1.Property<string>("Id")
+                            b1.Property<int>("Id")
                                 .ValueGeneratedOnAdd()
-                                .HasColumnType("TEXT");
+                                .HasColumnType("INTEGER");
 
                             b1.Property<string>("CEP")
                                 .HasColumnType("TEXT");
@@ -154,8 +124,6 @@ namespace LabArquitetura.Migrations
                             b1.WithOwner()
                                 .HasForeignKey("FuncionarioDbModelId");
                         });
-
-                    b.Navigation("Documentos");
 
                     b.Navigation("Enderecos");
                 });

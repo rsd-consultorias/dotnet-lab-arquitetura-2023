@@ -16,6 +16,7 @@
     <None Remove="Interfaces\Queries\" />
     <None Remove="Interfaces\Services\" />
     <None Remove="Interfaces\ApplicationServices\" />
+    <None Remove="Models\ValueObjects\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ApplicationServices\" />
@@ -27,5 +28,6 @@
     <Folder Include="Interfaces\Queries\" />
     <Folder Include="Interfaces\Services\" />
     <Folder Include="Interfaces\ApplicationServices\" />
+    <Folder Include="Models\ValueObjects\" />
   </ItemGroup>
 </Project>

@@ -1,3 +1,5 @@
+using core.Models.ValueObjects;
+
 namespace LabArquitetura.Core.Models
 {
 
@@ -6,6 +8,9 @@ namespace LabArquitetura.Core.Models
         public string? CPF { get; set; }
         public string? Nome { get; set; }
         public string? EMail { get; set; }
+
+        public IEnumerable<Documento>? Documentos { get; set; }
+        public IEnumerable<Endereco>? Enderecos { get; set; }
 
         public Funcionario()
         { }
