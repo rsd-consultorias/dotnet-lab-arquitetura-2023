@@ -1,12 +1,13 @@
 using core.Types;
 using LabArquitetura.Core.Interfaces;
 using LabArquitetura.Core.Interfaces.Commands;
+using LabArquitetura.Core.Models;
 using LabArquitetura.Infrastructure.Repositories.Contexts;
 using LabArquitetura.Infrastructure.Repositories.Models;
 
 namespace LabArquitetura.Infrastructure.Commands
 {
-    public class FuncionarioCommand : IFuncionarioCommand<FuncionarioDbModel>
+    public class FuncionarioCommand : IFuncionarioCommand<Funcionario>
     {
         private readonly LabArquiteturaDbContext _context;
 
@@ -15,9 +16,9 @@ namespace LabArquitetura.Infrastructure.Commands
             _context = context;
         }
 
-        public CommandResponse<FuncionarioDbModel> Salvar(FuncionarioDbModel funcionario)
+        public CommandResponse<Funcionario> Salvar(Funcionario funcionario)
         {
-            var response = new CommandResponse<FuncionarioDbModel>();
+            var response = new CommandResponse<Funcionario>();
 
             try
             {

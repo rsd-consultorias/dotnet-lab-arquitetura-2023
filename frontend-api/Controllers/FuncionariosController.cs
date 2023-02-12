@@ -1,4 +1,5 @@
 ﻿using System;
+using LabArquitetura.Core.Models;
 using LabArquitetura.Extensions;
 using LabArquitetura.Infrastructure.Repositories.Contexts;
 using LabArquitetura.Infrastructure.Repositories.Models;
@@ -25,7 +26,7 @@ namespace LabArquitetura.Controllers
         /// Listar todos os funcionários Ativos
         /// </summary>
         [HttpGet("")]
-        public PaginatedResult<FuncionarioDbModel>? ListarTodos([FromQuery] int? page = 1, [FromQuery] string? filter = null)
+        public PaginatedResult<Funcionario>? ListarTodos([FromQuery] int? page = 1, [FromQuery] string? filter = null)
         {
 
             var searchTerms = new List<SearchTerm> {
@@ -33,24 +34,23 @@ namespace LabArquitetura.Controllers
                 //new SearchTerm("cpf", "EndsWith", "4")
             };
 
-
             return _dbContext.Funcionarios.AsNoTracking()
                 .OrderBy(x => x.Nome).FilterAndPaginate(searchTerms, page!);
         }
 
         [HttpGet("{id}")]
-        public ApiResponse<FuncionarioDbModel> BuscarPorId([FromRoute] Guid id)
+        public ApiResponse<Funcionario> BuscarPorId([FromRoute] Guid id)
         {
-            var response = new ApiResponse<FuncionarioDbModel>();
+            var response = new ApiResponse<Funcionario>();
             response.Body = _dbContext.Funcionarios.AsNoTracking().First(x => id.Equals(x.Id));
 
             return response;
         }
 
         [HttpPost("")]
-        public ApiResponse<FuncionarioDbModel> Alterar([FromBody] FuncionarioDbModel funcionario, [FromQuery] string? returnUrl = null)
+        public ApiResponse<Funcionario> Alterar([FromBody] Funcionario funcionario, [FromQuery] string? returnUrl = null)
         {
-            var response = new ApiResponse<FuncionarioDbModel>();
+            var response = new ApiResponse<Funcionario>();
             response.ReturnUrl = returnUrl!;
 
             try
@@ -93,4 +93,3 @@ namespace LabArquitetura.Controllers
         }
     }
 }
-

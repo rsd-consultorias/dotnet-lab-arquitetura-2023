@@ -13,6 +13,7 @@ using Microsoft.EntityFrameworkCore;
 using Keycloak.AuthServices.Authentication;
 using LabArquitetura.Infrastructure.Commands;
 using Serilog;
+using LabArquitetura.Core.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -69,13 +70,13 @@ builder.Services.AddKeycloakAuthentication(builder.Configuration);
 
 // Inject dependencies
 /// ver: [Diretrizes de injeção de dependência](https://learn.microsoft.com/pt-br/dotnet/core/extensions/dependency-injection-guidelines)
-builder.Services.AddScoped<IOnboardingApplication<FuncionarioDbModel>, OnboardingApplication<FuncionarioDbModel>>();
+builder.Services.AddScoped<IOnboardingApplication<Funcionario>, OnboardingApplication<Funcionario>>();
 builder.Services.AddScoped<IEMailService, EMailService>();
 builder.Services.AddScoped<IFolhaService, FolhaService>();
 builder.Services.AddScoped<IMaquinaQuery, MaquinaQuery>();
 builder.Services.AddScoped<IUsuarioQuery, UsuarioQuery>();
-builder.Services.AddScoped<IFuncionarioCommand<FuncionarioDbModel>, FuncionarioCommand>();
-builder.Services.AddScoped<IFuncionarioQuery<FuncionarioDbModel>, FuncionarioQuery>();
+builder.Services.AddScoped<IFuncionarioCommand<Funcionario>, FuncionarioCommand>();
+builder.Services.AddScoped<IFuncionarioQuery<Funcionario>, FuncionarioQuery>();
 
 var app = builder.Build();
 

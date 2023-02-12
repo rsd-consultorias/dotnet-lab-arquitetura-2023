@@ -1,9 +1,10 @@
+using core.Models;
 using core.Models.ValueObjects;
 
 namespace LabArquitetura.Core.Models
 {
 
-    public abstract class Funcionario
+    public class Funcionario : BaseModel
     {
         public string? CPF { get; set; }
         public string? Nome { get; set; }

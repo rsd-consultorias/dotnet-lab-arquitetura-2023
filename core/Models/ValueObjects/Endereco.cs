@@ -1,9 +1,8 @@
 ﻿using System;
 namespace core.Models.ValueObjects
 {
-    public class Endereco
+    public class Endereco : BaseModel
     {
-        public Guid? Id { get; set; } = Guid.NewGuid();
         public string? TipoEndereco { get; set; }
         public string? TipoLogradouro { get; set; }
         public string? Logradouro { get; set; }

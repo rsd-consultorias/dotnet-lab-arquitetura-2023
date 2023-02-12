@@ -11,6 +11,7 @@ using LabArquitetura.Core.Interfaces.Commands;
 using Microsoft.Extensions.DependencyInjection;
 using LabArquitetura.Infrastructure.Commands;
 using core.Models.ValueObjects;
+using LabArquitetura.Core.Models;
 
 namespace LabArquitetura.Controllers
 {
@@ -19,15 +20,15 @@ namespace LabArquitetura.Controllers
     [Route("api/v1/[controller]")]
     public class OnboardController : Controller
     {
-        private readonly IOnboardingApplication<FuncionarioDbModel> _onboardApplication;
-        private readonly IFuncionarioQuery<FuncionarioDbModel> _funcionarioQuery;
+        private readonly IOnboardingApplication<Funcionario> _onboardApplication;
+        private readonly IFuncionarioQuery<Funcionario> _funcionarioQuery;
         private readonly ILogger _logger;
         private readonly LabArquiteturaDbContext _dbContext;
         private readonly IServiceScopeFactory _scopeFactory;
 
         public OnboardController(
-            IOnboardingApplication<FuncionarioDbModel> consultaApplication,
-            IFuncionarioQuery<FuncionarioDbModel> funcionarioQuery,
+            IOnboardingApplication<Funcionario> consultaApplication,
+            IFuncionarioQuery<Funcionario> funcionarioQuery,
             ILogger<OnboardController> logger,
             LabArquiteturaDbContext dbContext,
             IServiceScopeFactory scopeFactory)
@@ -43,17 +44,17 @@ namespace LabArquitetura.Controllers
         [HttpPost]
         public async Task<IActionResult> SalvarAsync([FromBody] FuncionarioRequest funcionario)
         {
-            ApiResponse<OnboardFuncionarioResult<FuncionarioDbModel>> apiResponse = new();
+            ApiResponse<OnboardFuncionarioResult<Funcionario>> apiResponse = new();
             bool enqueue = false;
             try
             {
-                var salvarTask = Task<ApiResponse<OnboardFuncionarioResult<FuncionarioDbModel>>>.Factory.StartNew(() =>
+                var salvarTask = Task<ApiResponse<OnboardFuncionarioResult<Funcionario>>>.Factory.StartNew(() =>
                 {
                     if (funcionario.CPF!.Contains("999")) Thread.Sleep(2000);
                     // Necessário para rodar de forma assíncrona
                     var scope = _scopeFactory.CreateAsyncScope();
                     var ctx = scope.ServiceProvider.GetRequiredService<LabArquiteturaDbContext>();
-                    var ctxOnboardApplication = scope.ServiceProvider.GetRequiredService<IOnboardingApplication<FuncionarioDbModel>>();
+                    var ctxOnboardApplication = scope.ServiceProvider.GetRequiredService<IOnboardingApplication<Funcionario>>();
                     // Fim: Necessário para rodar de forma assíncrona
 
                     var _funcionario = funcionario.ToModel();
@@ -82,7 +83,7 @@ namespace LabArquitetura.Controllers
                             TipoEndereco = "Correspondencia",
                             CEP = "12345-123",
                             Numero = "123",
-                            Complemento = "Apartament 123",
+                            Complemento = "Apartamento 123",
                             UF = "SP",
                             Cidade = "Cidade",
                             Logradouro = "Teste",
@@ -90,7 +91,7 @@ namespace LabArquitetura.Controllers
                         }
                     };
 
-                    ApiResponse<OnboardFuncionarioResult<FuncionarioDbModel>> apiResponseTemp = new()
+                    ApiResponse<OnboardFuncionarioResult<Funcionario>> apiResponseTemp = new()
                     {
                         Body = ctxOnboardApplication.OnboardFuncionario(_funcionario)
                     };
@@ -149,7 +150,7 @@ namespace LabArquitetura.Controllers
         /// Listar todos os funcionários Ativos por setor
         /// </summary>
         [HttpGet("{setor}/todos")]
-        public IEnumerable<FuncionarioDbModel>? ListarPorSetor([FromRoute] string setor)
+        public IEnumerable<Funcionario>? ListarPorSetor([FromRoute] string setor)
         {
             return _funcionarioQuery.ListarTodos();
         }

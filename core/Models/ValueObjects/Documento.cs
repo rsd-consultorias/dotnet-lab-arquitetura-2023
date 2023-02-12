@@ -1,9 +1,8 @@
 ﻿using System;
 namespace core.Models.ValueObjects
 {
-	public class Documento
+	public class Documento : BaseModel
 	{
-		public Guid? Id { get; set; } = Guid.NewGuid();
 		public string? Tipo { get; set; }
 		public string? Numero { get; set; }
 		public DateTime? Emissao { get; set; }

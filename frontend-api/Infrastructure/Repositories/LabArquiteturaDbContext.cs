@@ -1,3 +1,4 @@
+using LabArquitetura.Core.Models;
 using LabArquitetura.Infrastructure.Repositories.Mappings;
 using LabArquitetura.Infrastructure.Repositories.Models;
 using Microsoft.EntityFrameworkCore;
@@ -12,7 +13,7 @@ namespace LabArquitetura.Infrastructure.Repositories.Contexts
             
         }
 
-        public DbSet<FuncionarioDbModel> Funcionarios { get; set; } = null!;
+        public DbSet<Funcionario> Funcionarios { get; set; } = null!;
         public DbSet<QueueDbModel> Queues { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder) {

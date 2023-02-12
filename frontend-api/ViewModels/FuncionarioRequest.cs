@@ -1,3 +1,4 @@
+using LabArquitetura.Core.Models;
 using LabArquitetura.Infrastructure.Repositories.Models;
 
 namespace LabArquitetura.ViewModels
@@ -10,10 +11,10 @@ namespace LabArquitetura.ViewModels
         public string? EMail { get; set; }
 
         public FuncionarioRequest() { }
-        public FuncionarioDbModel ToModel()
 
+        public Funcionario ToModel()
         {
-            return new FuncionarioDbModel(CPF!, Nome!, EMail!);
+            return new Funcionario(CPF!, Nome!, EMail!);
         }
     }
 }
