@@ -1,6 +1,6 @@
 using core.Types;
 using Grpc.Net.ClientFactory;
-using LabArquitetura.Core.Interfaces.Services;
+using LabArquitetura.Core.Infrastrucuture.Services;
 using static FolhaServiceGRPC.FolhaServiceStatus;
 
 namespace LabArquitetura.Infrastructure.Services

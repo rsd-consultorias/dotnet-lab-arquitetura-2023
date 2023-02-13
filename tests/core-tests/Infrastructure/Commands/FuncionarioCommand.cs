@@ -1,6 +1,6 @@
 using core.Types;
-using LabArquitetura.Core.Interfaces.Commands;
-using LabArquitetura.Infrastructure.Repositories.Models;
+using LabArquitetura.Core.Infrastrucuture.Commands;
+using LabArquitetura.Infrastructure.DbContexts.Models;
 
 namespace LabArquitetura.Infrastructure.Commands
 {

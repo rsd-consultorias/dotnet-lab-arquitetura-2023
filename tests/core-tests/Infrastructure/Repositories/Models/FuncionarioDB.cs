@@ -1,11 +1,9 @@
 ﻿using LabArquitetura.Core.Models;
 
-namespace LabArquitetura.Infrastructure.Repositories.Models
+namespace LabArquitetura.Infrastructure.DbContexts.Models
 {
 	public class FuncionarioDB : Funcionario
     {
-		public int Id { get; set; }
-
         public FuncionarioDB()
         {
 

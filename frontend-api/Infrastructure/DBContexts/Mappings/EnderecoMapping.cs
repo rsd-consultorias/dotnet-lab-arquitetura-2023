@@ -3,7 +3,7 @@ using core.Models.ValueObjects;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace LabArquitetura.Infrastructure.Repositories.Mappings
+namespace LabArquitetura.Infrastructure.DbContexts.Mappings
 {
 	public class EnderecoMapping: IEntityTypeConfiguration<Endereco>
     {

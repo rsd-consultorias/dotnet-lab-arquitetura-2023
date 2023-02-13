@@ -1,9 +1,9 @@
 using LabArquitetura.Core.Models;
-using LabArquitetura.Infrastructure.Repositories.Mappings;
-using LabArquitetura.Infrastructure.Repositories.Models;
+using LabArquitetura.Infrastructure.DbContexts.Mappings;
+using LabArquitetura.Infrastructure.DbContexts.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace LabArquitetura.Infrastructure.Repositories.Contexts
+namespace LabArquitetura.Infrastructure.DbContexts.Contexts
 {
 
     public class LabArquiteturaDbContext : DbContext

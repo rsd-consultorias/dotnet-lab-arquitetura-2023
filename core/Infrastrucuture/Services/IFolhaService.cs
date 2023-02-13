@@ -1,6 +1,6 @@
 using core.Types;
 
-namespace LabArquitetura.Core.Interfaces.Services
+namespace LabArquitetura.Core.Infrastrucuture.Services
 {
 
     public interface IFolhaService

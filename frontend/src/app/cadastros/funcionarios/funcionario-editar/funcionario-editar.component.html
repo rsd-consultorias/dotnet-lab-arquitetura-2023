@@ -5,7 +5,7 @@
             <button class="btn btn-sm btn-secondary" [routerLink]="['/cadastros/funcionarios']">Voltar</button>
         </div>
     </div>
-    <div class="row p-2 bg-white">
+    <div class="row pt-2">
         <div class="col-6">
             <label class="form-label">Nome</label>
             <div class="input-group mb-3">
@@ -19,7 +19,7 @@
             </div>
         </div>
     </div>
-    <div class="row p-2 bg-white">
+    <div class="row">
         <div class="col-6">
             <label class="form-label">E-Mail</label>
             <div class="input-group mb-3">
@@ -27,7 +27,34 @@
             </div>
         </div>
     </div>
-    <div class="row p-2 bg-white">
+    <div class="row">
+        <label class="h5">Documento</label>
+        <div class="col-2">
+            <label class="form-label">Tipo</label>
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" [(ngModel)]="funcionario.documentos[0].tipo">
+            </div>
+        </div>
+        <div class="col-2">
+            <label class="form-label">Número</label>
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" [(ngModel)]="funcionario.documentos[0].numero">
+            </div>
+        </div>
+        <div class="col-2">
+            <label class="form-label">Emissão</label>
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" [(ngModel)]="funcionario.documentos[0].dataEmissao">
+            </div>
+        </div>
+        <div class="col-2">
+            <label class="form-label">Validade</label>
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" [(ngModel)]="funcionario.documentos[0].dataValidade">
+            </div>
+        </div>
+    </div>
+    <div class="row">
         <div class="col"></div>
         <div class="col-2 text-end">
             <div class="btn-group">

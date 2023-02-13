@@ -1,5 +1,5 @@
 using LabArquitetura.Core.Models;
-using LabArquitetura.Infrastructure.Repositories.Models;
+using LabArquitetura.Infrastructure.DbContexts.Models;
 
 namespace LabArquitetura.ViewModels
 {

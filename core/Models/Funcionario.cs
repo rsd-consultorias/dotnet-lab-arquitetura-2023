@@ -21,6 +21,8 @@ namespace LabArquitetura.Core.Models
             CPF = cpf;
             Nome = nome;
             EMail = email;
+            Documentos = new List<Documento>();
+            Enderecos = new List<Endereco>();
         }
 
         public void AddEndereco(string? tipoEndereco,

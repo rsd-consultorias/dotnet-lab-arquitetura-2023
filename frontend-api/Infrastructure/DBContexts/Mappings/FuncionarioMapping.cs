@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using LabArquitetura.Infrastructure.Repositories.Models;
+using LabArquitetura.Infrastructure.DbContexts.Models;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using LabArquitetura.Core.Models;
 
-namespace LabArquitetura.Infrastructure.Repositories.Mappings
+namespace LabArquitetura.Infrastructure.DbContexts.Mappings
 {
     public class FuncionarioMapping : IEntityTypeConfiguration<Funcionario>
     {

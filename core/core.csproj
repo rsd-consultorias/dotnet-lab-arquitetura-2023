@@ -9,7 +9,6 @@
   <ItemGroup>
     <None Remove="ApplicationServices\" />
     <None Remove="DomainServices\" />
-    <None Remove="Interfaces\" />
     <None Remove="Models\" />
     <None Remove="Types\" />
     <None Remove="Interfaces\Commands\" />
@@ -17,17 +16,23 @@
     <None Remove="Interfaces\Services\" />
     <None Remove="Interfaces\ApplicationServices\" />
     <None Remove="Models\ValueObjects\" />
+    <None Remove="Interfaces\Repositories\" />
+    <None Remove="Infrastrucuture\" />
+    <None Remove="Infrastrucuture\Commands\" />
+    <None Remove="Infrastrucuture\Queries\" />
+    <None Remove="Infrastrucuture\Repositories\" />
+    <None Remove="Infrastrucuture\Services\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ApplicationServices\" />
     <Folder Include="DomainServices\" />
-    <Folder Include="Interfaces\" />
     <Folder Include="Models\" />
     <Folder Include="Types\" />
-    <Folder Include="Interfaces\Commands\" />
-    <Folder Include="Interfaces\Queries\" />
-    <Folder Include="Interfaces\Services\" />
-    <Folder Include="Interfaces\ApplicationServices\" />
     <Folder Include="Models\ValueObjects\" />
+    <Folder Include="Infrastrucuture\" />
+    <Folder Include="Infrastrucuture\Commands\" />
+    <Folder Include="Infrastrucuture\Queries\" />
+    <Folder Include="Infrastrucuture\Repositories\" />
+    <Folder Include="Infrastrucuture\Services\" />
   </ItemGroup>
 </Project>

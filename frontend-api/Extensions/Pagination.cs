@@ -138,7 +138,7 @@ namespace LabArquitetura.Extensions
 
             private static Expression MakeBinary(ExpressionType type, Expression left, string value)
             {
-                object typedValue = value;
+                object? typedValue = value;
                 if (left.Type != typeof(string))
                 {
                     if (string.IsNullOrEmpty(value))

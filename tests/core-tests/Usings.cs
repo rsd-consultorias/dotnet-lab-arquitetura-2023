@@ -2,9 +2,9 @@ global using NUnit.Framework;
 global using LabArquitetura.Infrastructure.Queries;
 global using LabArquitetura.Infrastructure.Services;
 global using LabArquitetura.Core.DomainServices;
-global using LabArquitetura.Core.Interfaces;
+global using LabArquitetura.Core.Infrastrucuture;
 global using LabArquitetura.Core.ApplicationServices;
-global using LabArquitetura.Infrastructure.Repositories.Models;
+global using LabArquitetura.Infrastructure.DbContexts.Models;
 
 public class FuncionariosSource
 {

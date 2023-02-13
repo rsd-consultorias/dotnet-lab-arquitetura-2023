@@ -1,8 +1,8 @@
-using LabArquitetura.Core.Interfaces.Queries;
-using LabArquitetura.Core.Interfaces.Commands;
-using LabArquitetura.Core.Interfaces.Services;
+using LabArquitetura.Core.Infrastrucuture.Queries;
+using LabArquitetura.Core.Infrastrucuture.Commands;
+using LabArquitetura.Core.Infrastrucuture.Services;
 using LabArquitetura.Infrastructure.Commands;
-using LabArquitetura.Infrastructure.Repositories.Models;
+using LabArquitetura.Infrastructure.DbContexts.Models;
 
 namespace core_tests
 {

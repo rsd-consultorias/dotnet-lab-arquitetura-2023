@@ -1,7 +1,7 @@
 using core.Types;
 using LabArquitetura.Core.Models;
 
-namespace LabArquitetura.Core.Interfaces.Commands
+namespace LabArquitetura.Core.Infrastrucuture.Commands
 {
 
     public interface IFuncionarioCommand<TModel> where TModel : Funcionario

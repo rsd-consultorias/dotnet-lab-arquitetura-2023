@@ -1,8 +1,8 @@
+using LabArquitetura.Core.ApplicationServices;
 using LabArquitetura.Core.DomainServices;
-using LabArquitetura.Core.Interfaces.ApplicationServices;
-using LabArquitetura.Core.Interfaces.Queries;
-using LabArquitetura.Core.Interfaces.Commands;
-using LabArquitetura.Core.Interfaces.Services;
+using LabArquitetura.Core.Infrastrucuture.Queries;
+using LabArquitetura.Core.Infrastrucuture.Commands;
+using LabArquitetura.Core.Infrastrucuture.Services;
 using LabArquitetura.Core.Models;
 using LabArquitetura.Core.Types;
 

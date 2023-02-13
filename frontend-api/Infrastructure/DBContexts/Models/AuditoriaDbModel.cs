@@ -1,5 +1,5 @@
 ﻿using System;
-namespace LabArquitetura.Infrastructure.Repositories.Models
+namespace LabArquitetura.Infrastructure.DbContexts.Models
 {
     public abstract class AuditoriaDbModel
     {

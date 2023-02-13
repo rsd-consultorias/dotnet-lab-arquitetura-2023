@@ -42,7 +42,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Remove="Infrastructure\Repositories\Mappings\" />
     <None Remove="Microsoft.EntityFrameworkCore.Sqlite" />
     <None Remove="Microsoft.EntityFrameworkCore.Design" />
     <None Remove="Microsoft.EntityFrameworkCore.Tools" />
@@ -50,10 +49,17 @@
     <None Remove="Grpc.Net.Client" />
     <None Remove="Grpc.AspNetCore" />
     <None Remove="Google.Protobuf" />
+    <None Remove="Infrastructure\DBContexts\" />
+    <None Remove="Infrastructure\DBContexts\Mappings\" />
+    <None Remove="Infrastructure\DBContexts\Models\" />
+    <None Remove="Infrastructure\Repositories\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Infrastructure\Repositories\Mappings\" />
     <Folder Include="Extensions\" />
+    <Folder Include="Infrastructure\DBContexts\" />
+    <Folder Include="Infrastructure\DBContexts\Mappings\" />
+    <Folder Include="Infrastructure\DBContexts\Models\" />
+    <Folder Include="Infrastructure\Repositories\" />
   </ItemGroup>
   <ItemGroup>
     <Protobuf Include="..\services\FolhaService\Protos\folhaservice.proto" GrpcServices="Client">

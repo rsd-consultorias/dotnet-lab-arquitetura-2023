@@ -1,9 +1,9 @@
 using core.Types;
-using LabArquitetura.Core.Interfaces;
-using LabArquitetura.Core.Interfaces.Commands;
+using LabArquitetura.Core.Infrastrucuture;
+using LabArquitetura.Core.Infrastrucuture.Commands;
 using LabArquitetura.Core.Models;
-using LabArquitetura.Infrastructure.Repositories.Contexts;
-using LabArquitetura.Infrastructure.Repositories.Models;
+using LabArquitetura.Infrastructure.DbContexts.Contexts;
+using LabArquitetura.Infrastructure.DbContexts.Models;
 
 namespace LabArquitetura.Infrastructure.Commands
 {

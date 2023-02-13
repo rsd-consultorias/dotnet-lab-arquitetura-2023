@@ -1,6 +1,6 @@
 using LabArquitetura.Core.Models;
 
-namespace LabArquitetura.Core.Interfaces.Queries
+namespace LabArquitetura.Core.Infrastrucuture.Queries
 {
 
     public interface IFuncionarioQuery<TModel> where TModel : Funcionario

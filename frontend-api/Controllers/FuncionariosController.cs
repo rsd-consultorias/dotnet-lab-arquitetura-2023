@@ -1,10 +1,11 @@
 ﻿using System;
 using core.Types;
-using LabArquitetura.Core.Interfaces.Services;
+using LabArquitetura.Core.Infrastrucuture.Services;
 using LabArquitetura.Core.Models;
 using LabArquitetura.Extensions;
-using LabArquitetura.Infrastructure.Repositories.Contexts;
-using LabArquitetura.Infrastructure.Repositories.Models;
+using LabArquitetura.Infrastructure.DbContexts.Contexts;
+using LabArquitetura.Infrastructure.DbContexts.Models;
+using LabArquitetura.Infrastructure.Queries;
 using LabArquitetura.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -22,6 +23,7 @@ namespace LabArquitetura.Controllers
 
         public FuncionariosController(
             IFolhaService folhaService,
+            FuncionarioQuery funcionarioQuery,
             LabArquiteturaDbContext dbContext)
         {
             _folhaService = folhaService;
@@ -42,14 +44,20 @@ namespace LabArquitetura.Controllers
             };
 
             return _dbContext.Funcionarios.AsNoTracking()
-                .OrderBy(x => x.Nome).FilterAndPaginate(searchTerms, page!);
+                .Include(x => x.Documentos)
+                .Include(x => x.Enderecos)
+                .OrderBy(x => x.Nome)
+                .FilterAndPaginate(searchTerms, page!);
         }
 
         [HttpGet("{id}")]
         public ApiResponse<Funcionario> BuscarPorId([FromRoute] Guid id)
         {
             var response = new ApiResponse<Funcionario>();
-            response.Body = _dbContext.Funcionarios.AsNoTracking().First(x => id.Equals(x.Id));
+            response.Body = _dbContext.Funcionarios.AsNoTracking()
+                .Include(x => x.Enderecos)
+                .Include(x => x.Documentos)
+                .First(x => id.Equals(x.Id));
 
             return response;
         }
@@ -85,7 +93,10 @@ namespace LabArquitetura.Controllers
 
             try
             {
-                var funcionarioToRemove = _dbContext.Funcionarios.First(x => id.Equals(x.Id));
+                var funcionarioToRemove = _dbContext.Funcionarios
+                    .Include(x => x.Documentos)
+                    .Include(x => x.Enderecos)
+                    .First(x => id.Equals(x.Id));
                 var deleted = _dbContext.Funcionarios.Remove(funcionarioToRemove);
                 _dbContext.SaveChanges();
                 response.Status = "Success";
@@ -105,7 +116,8 @@ namespace LabArquitetura.Controllers
             try
             {
                 return new ApiResponse<ServiceStatusResponse> { Body = await _folhaService.GetStatusProcessamento() };
-            } catch
+            }
+            catch
             {
                 return new ApiResponse<ServiceStatusResponse> { Body = null, Errors = new List<string> { "Não foi possível conectar ao serviço" }, Status = "Error" };
             }

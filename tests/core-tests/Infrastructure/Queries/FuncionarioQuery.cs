@@ -1,5 +1,5 @@
-using LabArquitetura.Core.Interfaces.Queries;
-using LabArquitetura.Infrastructure.Repositories.Models;
+using LabArquitetura.Core.Infrastrucuture.Queries;
+using LabArquitetura.Infrastructure.DbContexts.Models;
 
 namespace LabArquitetura.Infrastructure.Queries
 {

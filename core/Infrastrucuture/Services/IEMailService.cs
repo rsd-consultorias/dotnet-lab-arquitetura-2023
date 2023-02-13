@@ -1,6 +1,6 @@
 using LabArquitetura.Core.Models;
 
-namespace LabArquitetura.Core.Interfaces.Services
+namespace LabArquitetura.Core.Infrastrucuture.Services
 {
 
     public interface IEMailService
