@@ -1,6 +1,6 @@
 ﻿using LabArquitetura.Core.Models;
 
-namespace LabArquitetura.Infrastructure.DbContexts.Models
+namespace LabArquitetura.Infrastructure.DBContexts.Models
 {
 	public class FuncionarioDB : Funcionario
     {

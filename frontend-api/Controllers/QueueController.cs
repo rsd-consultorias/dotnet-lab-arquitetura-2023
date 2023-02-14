@@ -1,5 +1,5 @@
-using LabArquitetura.Infrastructure.DbContexts.Contexts;
-using LabArquitetura.Infrastructure.DbContexts.Models;
+using LabArquitetura.Infrastructure.DBContexts.Contexts;
+using LabArquitetura.Infrastructure.DBContexts.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;

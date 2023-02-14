@@ -1,74 +1,41 @@
+using core.ApplicationServices;
 using FolhaService.Services;
+using LabArquitetura.Core.Infrastrucuture.Queries;
+using LabArquitetura.Core.Types;
 
 namespace FolhaWorker;
 
 public class Worker : BackgroundService
 {
     private readonly ILogger<Worker> _logger;
+    private readonly IProcessamentoFolhaApplication _processamentoFolhaApplication;
+
     private ServiceStatus _serviceStatus;
 
     public string Status { get; set; } = string.Empty;
 
-    public Worker(ILogger<Worker> logger, ServiceStatus serviceStatus)
+    public Worker(ILogger<Worker> logger,
+        ServiceStatus serviceStatus,
+        IProcessamentoFolhaApplication processamentoFolhaApplication)
     {
         _logger = logger;
+        _processamentoFolhaApplication = processamentoFolhaApplication;
         _serviceStatus = serviceStatus;
+    }
+
+    private void LogProgresso(UInt16 percentual, string mensagem)
+    {
+        _serviceStatus.Status = mensagem;
+        _serviceStatus.Progress = percentual;
+        this.Status = $"{percentual}% - {mensagem}";
     }
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
         while (!stoppingToken.IsCancellationRequested)
         {
-            _serviceStatus.Progress = 0;
-            _serviceStatus.Status = string.Empty;
-            await Task.Delay(6000, stoppingToken);
-            this.Status = string.Format("Worker running at Start: {0}", DateTimeOffset.UtcNow);
-            _logger.LogInformation(Status);
-            _serviceStatus.Status = Status;
-            _serviceStatus.Progress = 10;
-            await Task.Delay(6000, stoppingToken);
 
-            this.Status = string.Format("Worker running at A: {0}", DateTimeOffset.UtcNow);
-            _logger.LogInformation(Status);
-            _serviceStatus.Status = Status;
-
-            for (var i = 10; i < 40; i++)
-            {
-                _serviceStatus.Progress = i;
-                await Task.Delay(6000 / 30, stoppingToken);
-            }
-
-            this.Status = string.Format("Worker running at B: {0}", DateTimeOffset.UtcNow);
-            _logger.LogInformation(Status);
-            _serviceStatus.Status = Status;
-
-            for (var i = 40; i < 60; i++)
-            {
-                _serviceStatus.Progress = i;
-                await Task.Delay(6000 / 20, stoppingToken);
-            }
-
-            this.Status = string.Format("Worker running at C: {0}", DateTimeOffset.UtcNow);
-            _logger.LogInformation(Status);
-            _serviceStatus.Status = Status;
-
-            for (var i = 60; i < 90; i++)
-            {
-                _serviceStatus.Progress = i;
-                await Task.Delay(6000 / 30, stoppingToken);
-            }
-
-            this.Status = string.Format("Worker running at Finishing: {0}", DateTimeOffset.UtcNow);
-            _serviceStatus.Status = Status;
-            _logger.LogInformation(Status);
-
-            for (var i = 90; i <= 100; i++)
-            {
-                _serviceStatus.Progress = i;
-                await Task.Delay(6000 / 10, stoppingToken);
-            }
-            this.Status = string.Format("Worker running Finish: {0}", DateTimeOffset.UtcNow);
-            _serviceStatus.Status = Status;
+            await _processamentoFolhaApplication.RodarFolhaNoPeriodo(new Periodo { Inicio = DateTime.Now }, "", LogProgresso);
 
             await Task.Delay(10000, stoppingToken);
         }

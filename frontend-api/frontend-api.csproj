@@ -14,6 +14,9 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Keycloak.AuthServices.Authentication" Version="1.5.1" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.13" />
@@ -37,7 +40,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\core\core.csproj">
+    <ProjectReference Include="..\infrastructure\infrastructure.csproj">
       <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
     </ProjectReference>
   </ItemGroup>
@@ -45,21 +48,15 @@
     <None Remove="Microsoft.EntityFrameworkCore.Sqlite" />
     <None Remove="Microsoft.EntityFrameworkCore.Design" />
     <None Remove="Microsoft.EntityFrameworkCore.Tools" />
-    <None Remove="Extensions\" />
     <None Remove="Grpc.Net.Client" />
     <None Remove="Grpc.AspNetCore" />
     <None Remove="Google.Protobuf" />
-    <None Remove="Infrastructure\DBContexts\" />
-    <None Remove="Infrastructure\DBContexts\Mappings\" />
-    <None Remove="Infrastructure\DBContexts\Models\" />
-    <None Remove="Infrastructure\Repositories\" />
+    <None Remove="Infrastructure\" />
+    <None Remove="Infrastructure\Services\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Extensions\" />
-    <Folder Include="Infrastructure\DBContexts\" />
-    <Folder Include="Infrastructure\DBContexts\Mappings\" />
-    <Folder Include="Infrastructure\DBContexts\Models\" />
-    <Folder Include="Infrastructure\Repositories\" />
+    <Folder Include="Infrastructure\" />
+    <Folder Include="Infrastructure\Services\" />
   </ItemGroup>
   <ItemGroup>
     <Protobuf Include="..\services\FolhaService\Protos\folhaservice.proto" GrpcServices="Client">

@@ -3,8 +3,8 @@ using LabArquitetura.Core.Models;
 namespace LabArquitetura.Core.Infrastrucuture.Queries
 {
 
-    public interface IFuncionarioQuery<TModel> where TModel : Funcionario
+    public interface IFuncionarioQuery
     {
-        IEnumerable<TModel> ListarTodos();
+        IEnumerable<Funcionario> ListarTodos();
     }
 }

@@ -4,7 +4,7 @@ global using LabArquitetura.Infrastructure.Services;
 global using LabArquitetura.Core.DomainServices;
 global using LabArquitetura.Core.Infrastrucuture;
 global using LabArquitetura.Core.ApplicationServices;
-global using LabArquitetura.Infrastructure.DbContexts.Models;
+global using LabArquitetura.Infrastructure.DBContexts.Models;
 
 public class FuncionariosSource
 {

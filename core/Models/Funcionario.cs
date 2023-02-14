@@ -1,5 +1,5 @@
-using core.Models;
-using core.Models.ValueObjects;
+using LabArquitetura.Core.Models;
+using LabArquitetura.Core.Models.ValueObjects;
 
 namespace LabArquitetura.Core.Models
 {

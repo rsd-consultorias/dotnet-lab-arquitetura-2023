@@ -1,5 +1,5 @@
 ﻿using System;
-namespace core.Models
+namespace LabArquitetura.Core.Models
 {
 	public abstract class BaseModel
     {

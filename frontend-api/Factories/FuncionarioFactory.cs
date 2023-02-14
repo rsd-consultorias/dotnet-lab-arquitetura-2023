@@ -1,6 +1,6 @@
 ﻿using System;
 using LabArquitetura.Core.Models;
-using LabArquitetura.Infrastructure.DbContexts.Models;
+using LabArquitetura.Infrastructure.DBContexts.Models;
 
 namespace frontend_api.Factoriess
 {

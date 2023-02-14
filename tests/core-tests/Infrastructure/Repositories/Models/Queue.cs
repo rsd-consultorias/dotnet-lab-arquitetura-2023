@@ -1,4 +1,4 @@
-namespace LabArquitetura.Infrastructure.DbContexts.Models
+namespace LabArquitetura.Infrastructure.DBContexts.Models
 {
 
     public sealed class Queue

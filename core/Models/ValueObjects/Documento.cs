@@ -1,5 +1,5 @@
 ﻿using System;
-namespace core.Models.ValueObjects
+namespace LabArquitetura.Core.Models.ValueObjects
 {
 	public class Documento : BaseModel
 	{

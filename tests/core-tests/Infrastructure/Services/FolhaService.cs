@@ -1,4 +1,4 @@
-using core.Types;
+using LabArquitetura.Core.Types;
 using LabArquitetura.Core.Infrastrucuture.Services;
 
 namespace LabArquitetura.Infrastructure.Services

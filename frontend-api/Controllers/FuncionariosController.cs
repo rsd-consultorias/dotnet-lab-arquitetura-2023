@@ -1,15 +1,16 @@
 ﻿using System;
-using core.Types;
+using LabArquitetura.Core.Types;
 using LabArquitetura.Core.Infrastrucuture.Services;
 using LabArquitetura.Core.Models;
 using LabArquitetura.Extensions;
-using LabArquitetura.Infrastructure.DbContexts.Contexts;
-using LabArquitetura.Infrastructure.DbContexts.Models;
+using LabArquitetura.Infrastructure.DBContexts.Contexts;
+using LabArquitetura.Infrastructure.DBContexts.Models;
 using LabArquitetura.Infrastructure.Queries;
 using LabArquitetura.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using LabArquitetura.Core.Infrastrucuture.Queries;
 
 namespace LabArquitetura.Controllers
 {
@@ -23,7 +24,7 @@ namespace LabArquitetura.Controllers
 
         public FuncionariosController(
             IFolhaService folhaService,
-            FuncionarioQuery funcionarioQuery,
+            IFuncionarioQuery funcionarioQuery,
             LabArquiteturaDbContext dbContext)
         {
             _folhaService = folhaService;

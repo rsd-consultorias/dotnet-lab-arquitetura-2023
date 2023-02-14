@@ -2,7 +2,7 @@ using LabArquitetura.Core.Infrastrucuture.Queries;
 using LabArquitetura.Core.Infrastrucuture.Commands;
 using LabArquitetura.Core.Infrastrucuture.Services;
 using LabArquitetura.Infrastructure.Commands;
-using LabArquitetura.Infrastructure.DbContexts.Models;
+using LabArquitetura.Infrastructure.DBContexts.Models;
 
 namespace core_tests
 {

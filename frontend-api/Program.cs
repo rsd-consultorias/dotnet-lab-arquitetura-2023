@@ -4,9 +4,9 @@ using LabArquitetura.Core.Infrastrucuture;
 using LabArquitetura.Core.Infrastrucuture.Queries;
 using LabArquitetura.Core.Infrastrucuture.Commands;
 using LabArquitetura.Core.Infrastrucuture.Services;
-using LabArquitetura.Infrastructure.DbContexts.Models;
+using LabArquitetura.Infrastructure.DBContexts.Models;
 using LabArquitetura.Infrastructure.Queries;
-using LabArquitetura.Infrastructure.DbContexts.Contexts;
+using LabArquitetura.Infrastructure.DBContexts.Contexts;
 using LabArquitetura.Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
 using Keycloak.AuthServices.Authentication;
@@ -33,9 +33,12 @@ builder.Services.AddControllers().AddJsonOptions(options =>
 builder.Services.AddDbContext<LabArquiteturaDbContext>(options =>
 {
     //options.UseInMemoryDatabase("LabArquitetura", op => { op.EnableNullChecks(); });
-    options.UseSqlite("Data Source=labArquitetura.db;Cache=Shared");
+    options.UseSqlite("Data Source=labArquitetura.db;Cache=Shared", options => {
+        options.MigrationsAssembly("frontend-api");
+    });
     options.EnableDetailedErrors();
     options.EnableSensitiveDataLogging();
+    //options.MigrationsAssembly("frontend-api");
 }, ServiceLifetime.Scoped);
 
 builder.Services.AddCors(options =>
@@ -77,13 +80,13 @@ builder.Services.AddKeycloakAuthentication(builder.Configuration);
 
 // Inject dependencies
 /// ver: [Diretrizes de injeção de dependência](https://learn.microsoft.com/pt-br/dotnet/core/extensions/dependency-injection-guidelines)
-builder.Services.AddScoped<IOnboardingApplication<Funcionario>, OnboardingApplication<Funcionario>>();
 builder.Services.AddScoped<IEMailService, EMailService>();
 builder.Services.AddScoped<IFolhaService, FolhaService>();
 builder.Services.AddScoped<IMaquinaQuery, MaquinaQuery>();
 builder.Services.AddScoped<IUsuarioQuery, UsuarioQuery>();
 builder.Services.AddScoped<IFuncionarioCommand<Funcionario>, FuncionarioCommand>();
-builder.Services.AddScoped<IFuncionarioQuery<Funcionario>, FuncionarioQuery>();
+builder.Services.AddScoped<IFuncionarioQuery, FuncionarioQuery>();
+builder.Services.AddScoped<IOnboardingApplication<Funcionario>, OnboardingApplication<Funcionario>>();
 
 var app = builder.Build();
 

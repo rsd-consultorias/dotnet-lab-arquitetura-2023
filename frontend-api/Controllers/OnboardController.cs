@@ -1,8 +1,8 @@
 using LabArquitetura.Core.ApplicationServices;
 using LabArquitetura.Core.Infrastrucuture.Queries;
 using LabArquitetura.Core.Types;
-using LabArquitetura.Infrastructure.DbContexts.Models;
-using LabArquitetura.Infrastructure.DbContexts.Contexts;
+using LabArquitetura.Infrastructure.DBContexts.Models;
+using LabArquitetura.Infrastructure.DBContexts.Contexts;
 using LabArquitetura.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -10,7 +10,7 @@ using System.Text.Json;
 using LabArquitetura.Core.Infrastrucuture.Commands;
 using Microsoft.Extensions.DependencyInjection;
 using LabArquitetura.Infrastructure.Commands;
-using core.Models.ValueObjects;
+using LabArquitetura.Core.Models.ValueObjects;
 using LabArquitetura.Core.Models;
 
 namespace LabArquitetura.Controllers
@@ -21,14 +21,14 @@ namespace LabArquitetura.Controllers
     public class OnboardController : Controller
     {
         private readonly IOnboardingApplication<Funcionario> _onboardApplication;
-        private readonly IFuncionarioQuery<Funcionario> _funcionarioQuery;
+        private readonly IFuncionarioQuery _funcionarioQuery;
         private readonly ILogger _logger;
         private readonly LabArquiteturaDbContext _dbContext;
         private readonly IServiceScopeFactory _scopeFactory;
 
         public OnboardController(
             IOnboardingApplication<Funcionario> consultaApplication,
-            IFuncionarioQuery<Funcionario> funcionarioQuery,
+            IFuncionarioQuery funcionarioQuery,
             ILogger<OnboardController> logger,
             LabArquiteturaDbContext dbContext,
             IServiceScopeFactory scopeFactory)

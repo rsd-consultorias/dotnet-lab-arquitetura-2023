@@ -26,4 +26,12 @@
       <Link>Protos\folhaservice.proto</Link>
     </Protobuf>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\infrastructure\infrastructure.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
+    <ProjectReference Include="..\..\core\core.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
+  </ItemGroup>
 </Project>

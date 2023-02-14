@@ -1,5 +1,5 @@
 ﻿using System;
-namespace core.Types
+namespace LabArquitetura.Core.Types
 {
     public class ServiceStatusResponse
     {
