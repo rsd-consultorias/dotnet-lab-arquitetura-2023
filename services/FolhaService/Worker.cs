@@ -10,7 +10,7 @@ public class Worker : BackgroundService
     private readonly ILogger<Worker> _logger;
     private readonly IProcessamentoFolhaApplication _processamentoFolhaApplication;
 
-    private ServiceStatus _serviceStatus;
+    private readonly ServiceStatus _serviceStatus;
 
     public string Status { get; set; } = string.Empty;
 

@@ -3,6 +3,7 @@ using System;
 using LabArquitetura.Infrastructure.DBContexts.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LabArquitetura.Migrations
 {
     [DbContext(typeof(LabArquiteturaDbContext))]
-    partial class LabArquiteturaDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230214152757_v1.0.1")]
+    partial class v101
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.13");
@@ -296,12 +298,10 @@ namespace LabArquitetura.Migrations
                                 .HasColumnType("CHAR(36)");
 
                             b1.Property<DateTime>("Fim")
-                                .HasColumnType("DATETIME")
-                                .HasColumnName("PERIODO_FIM");
+                                .HasColumnType("TEXT");
 
                             b1.Property<DateTime>("Inicio")
-                                .HasColumnType("DATETIME")
-                                .HasColumnName("PERIODO_INICIO");
+                                .HasColumnType("TEXT");
 
                             b1.HasKey("FolhaFuncionarioId");
 

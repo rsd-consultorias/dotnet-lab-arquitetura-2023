@@ -25,50 +25,60 @@ namespace core.ApplicationServices
 
         public async Task<object> RodarFolhaNoPeriodo(Periodo periodo, string identificacao, Action<UInt16, string>? emitirStatusProcessamento = null)
         {
-            //var folhaProcessada = await _folhaFuncionarioRepository.BuscarPorPeriodoEIdentificacao(periodo, identificacao)!;
+            var folhaProcessada = await _folhaFuncionarioRepository.BuscarPorPeriodoEIdentificacao(periodo, identificacao)!;
 
             //if (folhaProcessada != null && folhaProcessada.Any())
             //{
             //    await _folhaFuncionarioRepository.ExcluirFolhaProcessadaNoPeriodoEIdentificacao(periodo, identificacao);
             //}
 
-            //var funcionariosAtivos = await _funcionarioRepository.ListarFuncionariosAtivosNoPeriodo(periodo);
-            //var unidadeProgresso = ((ushort)(99 / funcionariosAtivos!.Count()));
-            //UInt16 progresso = unidadeProgresso;
+            var funcionariosAtivos = await _funcionarioRepository.ListarFuncionariosAtivosNoPeriodo(periodo);
+            var quantidadeEtapasProcessamento = funcionariosAtivos!.Count() + 1;
+            UInt16 progresso = (ushort)(100 / quantidadeEtapasProcessamento);
+            UInt16 unidadeProgresso = (ushort)(100 / quantidadeEtapasProcessamento);
 
-            //foreach (var funcionario in funcionariosAtivos)
-            //{
-            //    var folhaFuncionario = new FolhaFuncionario
-            //    {
-            //        Identificacao = identificacao,
-            //        PeriodoFolha = periodo,
-            //        DataProcessamento = DateTime.UtcNow
-            //    };
+            for (ushort i = 0; i < progresso; i++)
+            {
+                emitirStatusProcessamento!(i, "Configurando processamento");
+                await Task.Delay(2000);
+            }
 
-            //    foreach (var evento in await _eventoFolhaQuery.ListarEventosNaoProcessadosPorFuncionarioId(funcionario.Id, periodo))
-            //    {
-            //        evento.UltimoProcessamento = evento.DataProcessamento;
-            //        evento.DataProcessamento = DateTime.UtcNow;
-            //        evento.Processado = true;
+            foreach (var funcionario in funcionariosAtivos)
+            {
+                var folhaFuncionario = new FolhaFuncionario
+                {
+                    Identificacao = identificacao,
+                    PeriodoFolha = new Periodo { Inicio = periodo.Inicio, Fim = periodo.Fim },
+                    DataProcessamento = DateTime.UtcNow
+                };
 
-            //        ((List<RubricaFolha>)(folhaFuncionario.Rubricas!)).Add(new RubricaFolha
-            //        {
-            //            CodigoRubrica = evento.CodigoEvento,
-            //            DescricaoRubrica = evento.Descricao,
-            //            Valor = decimal.Parse(evento.Valor!) / 100
-            //        });
-            //        emitirStatusProcessamento!(progresso, $"Processando: [{progresso}%] {funcionario.CPF} => Evento: {evento.CodigoTransacao}.{evento.CodigoEvento} - {evento.Descricao}...");
-            //    }
+                //    foreach (var evento in await _eventoFolhaQuery.ListarEventosNaoProcessadosPorFuncionarioId(funcionario.Id, periodo))
+                //    {
+                //        evento.UltimoProcessamento = evento.DataProcessamento;
+                //        evento.DataProcessamento = DateTime.UtcNow;
+                //        evento.Processado = true;
 
-            //    await _folhaFuncionarioRepository.Gravar(folhaFuncionario);
+                //        ((List<RubricaFolha>)(folhaFuncionario.Rubricas!)).Add(new RubricaFolha
+                //        {
+                //            CodigoRubrica = evento.CodigoEvento,
+                //            DescricaoRubrica = evento.Descricao,
+                //            Valor = decimal.Parse(evento.Valor!) / 100
+                //        });
+                //        emitirStatusProcessamento!(progresso, $"Processando: [{progresso}%] {funcionario.CPF} => Evento: {evento.CodigoTransacao}.{evento.CodigoEvento} - {evento.Descricao}...");
+                //    }
 
-            //    progresso += unidadeProgresso;
-            //    emitirStatusProcessamento!(progresso, $"Processando: [{progresso}%] {funcionario.CPF}...");
-            //}
+                await _folhaFuncionarioRepository.Gravar(folhaFuncionario);
 
-            for (ushort i = 0; i < 100; i+=5){
-                emitirStatusProcessamento!(i, "Executando...");
+                emitirStatusProcessamento!(progresso, $"Processando: [{funcionario.CPF}] {funcionario.Nome}");
+
+                progresso += unidadeProgresso;
                 await Task.Delay(6000);
+            }
+
+            for (var i = progresso; i < 100; i++)
+            {
+                emitirStatusProcessamento!(i, "Finalizando processamento");
+                await Task.Delay(2000);
             }
 
             emitirStatusProcessamento!(100, "Processamento da folha finalizado.");
