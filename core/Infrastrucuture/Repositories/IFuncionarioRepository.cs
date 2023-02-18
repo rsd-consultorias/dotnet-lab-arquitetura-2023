@@ -4,9 +4,9 @@ using LabArquitetura.Core.Types;
 
 namespace LabArquitetura.Core.Interfaces.Repositories
 {
-	public interface IFuncionarioRepository
-	{
+    public interface IFuncionarioRepository
+    {
         Task<IEnumerable<Funcionario>> ListarFuncionariosAtivosNoPeriodo(Periodo periodo);
-	}
+    }
 }
 

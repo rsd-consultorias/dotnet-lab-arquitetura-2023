@@ -5,7 +5,7 @@ using LabArquitetura.Infrastructure.DBContexts.Contexts;
 
 namespace LabArquitetura.Core.Infrastrucuture.Commands
 {
-	public class EventoFolhaCommand: IEventoFolhaCommand
+    public class EventoFolhaCommand : IEventoFolhaCommand
     {
         private readonly LabArquiteturaDbContext _context;
 

@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace LabArquitetura.Core.Infrastrucuture.Queries
 {
-	public class EventoFolhaQuery : IEventoFolhaQuery
+    public class EventoFolhaQuery : IEventoFolhaQuery
     {
         private readonly LabArquiteturaDbContext _context;
 

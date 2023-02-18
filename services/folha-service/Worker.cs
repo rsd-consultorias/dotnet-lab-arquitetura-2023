@@ -34,7 +34,7 @@ public class Worker : BackgroundService
     {
         while (!stoppingToken.IsCancellationRequested)
         {
-            await _processamentoFolhaApplication.RodarFolhaNoPeriodo(new Periodo { Inicio = DateTime.Now }, "", LogProgresso);
+            await _processamentoFolhaApplication.RodarFolhaNoPeriodo(new Periodo { Inicio = DateTime.UtcNow.AddDays(-1) }, $"FOLHA-{DateTime.UtcNow.Year}/{DateTime.UtcNow.Month}", LogProgresso);
 
             await Task.Delay(60000, stoppingToken);
         }

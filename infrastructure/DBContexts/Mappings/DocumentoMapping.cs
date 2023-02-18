@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace LabArquitetura.Infrastructure.DBContexts.Mappings
 {
-	public class DocumentoMapping: IEntityTypeConfiguration<Documento>
+    public class DocumentoMapping : IEntityTypeConfiguration<Documento>
     {
-		public DocumentoMapping()
-		{
-		}
+        public DocumentoMapping()
+        {
+        }
 
         public void Configure(EntityTypeBuilder<Documento> builder)
         {

@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace LabArquitetura.Infrastructure.DBContexts.Mappings
 {
-	public class EnderecoMapping: IEntityTypeConfiguration<Endereco>
+    public class EnderecoMapping : IEntityTypeConfiguration<Endereco>
     {
-		public EnderecoMapping()
-		{
-		}
+        public EnderecoMapping()
+        {
+        }
 
         public void Configure(EntityTypeBuilder<Endereco> builder)
         {

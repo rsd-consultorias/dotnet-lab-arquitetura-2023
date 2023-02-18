@@ -18,7 +18,8 @@ namespace LabArquitetura.Infrastructure.DBContexts.Contexts
         public DbSet<QueueDbModel> Queues { get; set; } = null!;
         public DbSet<EventoFolha> EventosFolha { get; set; } = null!;
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder) {
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
 
             modelBuilder.ApplyConfiguration(new FuncionarioMapping());
             modelBuilder.ApplyConfiguration(new FolhaFuncionarioMapping());

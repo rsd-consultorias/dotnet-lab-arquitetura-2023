@@ -6,7 +6,7 @@ using static FolhaServiceGRPC.FolhaServiceStatus;
 
 namespace FolhaService.Services
 {
-	public class FolhaService : FolhaServiceStatusBase
+    public class FolhaService : FolhaServiceStatusBase
     {
         private readonly ServiceStatus _serviceStatus;
 
@@ -17,7 +17,8 @@ namespace FolhaService.Services
 
         public override Task<FolhaServiceStatusResponse> GetStatus(FolhaServiceStatusRequest request, ServerCallContext context)
         {
-            var response = new FolhaServiceStatusResponse {
+            var response = new FolhaServiceStatusResponse
+            {
                 Status = _serviceStatus.Status,
                 Progress = _serviceStatus.Progress
             };

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "p4hQVUToPBHpezu0agXfimpU34j37bey+Vk9YMzjjky+Si+DNuCIRef17tAwnIEZvKNjv33S5oLh14uDJoGHwg==",
+  "dgSpecHash": "6XBah1pVb1y1QSlAhLtev60Qio0dAPgMipzXzcm+4C1RqSHWgVZM0H4klzyT0pxVGtekd+YT9JcjZSie2OlMTw==",
   "success": true,
-  "projectFilePath": "/Users/rafaeldias/Repositories/dotnet/Lab-Arquitetura-2023/dotnet-lab-arquitetura-2023/services/FolhaService/folha-service.csproj",
+  "projectFilePath": "/Users/rafaeldias/Repositories/dotnet/Lab-Arquitetura-2023/dotnet-lab-arquitetura-2023/services/folha-service/folha-service.csproj",
   "expectedPackageFiles": [
     "/Users/rafaeldias/.nuget/packages/google.protobuf/3.21.12/google.protobuf.3.21.12.nupkg.sha512",
     "/Users/rafaeldias/.nuget/packages/grpc.aspnetcore/2.40.0/grpc.aspnetcore.2.40.0.nupkg.sha512",

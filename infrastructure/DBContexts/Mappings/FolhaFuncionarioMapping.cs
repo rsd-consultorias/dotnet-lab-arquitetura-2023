@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace LabArquitetura.Core.Infrastrucuture.DBContexts.Mappings
 {
-	public class FolhaFuncionarioMapping : IEntityTypeConfiguration<FolhaFuncionario>
+    public class FolhaFuncionarioMapping : IEntityTypeConfiguration<FolhaFuncionario>
     {
-		public FolhaFuncionarioMapping()
-		{
-		}
+        public FolhaFuncionarioMapping()
+        {
+        }
 
         public void Configure(EntityTypeBuilder<FolhaFuncionario> builder)
         {
@@ -17,6 +17,8 @@ namespace LabArquitetura.Core.Infrastrucuture.DBContexts.Mappings
             builder.Property(x => x.Id)
                 .HasConversion(e => e.ToString(), d => new Guid(d))
                 .HasColumnType("CHAR(36)");
+
+            builder.HasOne(x => x.Funcionario);
 
             builder.OwnsOne(x => x.PeriodoFolha, od =>
             {

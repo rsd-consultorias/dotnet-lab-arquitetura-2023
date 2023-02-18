@@ -28,10 +28,10 @@ namespace Core.ApplicationServices
         {
             var folhaProcessada = await _folhaFuncionarioRepository.BuscarPorPeriodoEIdentificacao(periodo, identificacao)!;
 
-            //if (folhaProcessada != null && folhaProcessada.Any())
-            //{
-            //    await _folhaFuncionarioRepository.ExcluirFolhaProcessadaNoPeriodoEIdentificacao(periodo, identificacao);
-            //}
+            if (folhaProcessada != null && folhaProcessada.Any())
+            {
+                await _folhaFuncionarioRepository.ExcluirFolhaProcessadaNoPeriodoEIdentificacao(periodo, identificacao);
+            }
 
             var funcionariosAtivos = await _funcionarioRepository.ListarFuncionariosAtivosNoPeriodo(periodo);
             var quantidadeEtapasProcessamento = funcionariosAtivos!.Count() + 1;
@@ -45,16 +45,9 @@ namespace Core.ApplicationServices
 
             foreach (var funcionario in funcionariosAtivos)
             {
-                var folhaFuncionario = new FolhaFuncionario
-                {
-                    Identificacao = identificacao,
-                    PeriodoFolha = new Periodo { Inicio = periodo.Inicio, Fim = periodo.Fim },
-                    DataProcessamento = DateTime.UtcNow
-                };
+                var folhaFuncionario = new FolhaFuncionario(identificacao, DateTime.UtcNow, new Periodo { Inicio = periodo.Inicio, Fim = periodo.Fim }, funcionario.Id);
 
-                var eventosFolha = await _eventoFolhaQuery.ListarEventosPorFuncionarioIdEPeriodo(funcionario.Id, periodo);
-
-                var eventosGrupo = from eventoFolha in eventosFolha
+                var eventosGrupo = from eventoFolha in await _eventoFolhaQuery.ListarEventosPorFuncionarioIdEPeriodo(funcionario.Id, periodo)
                                    group new { CodigoTransacao = eventoFolha.CodigoTransacao, CodigoEvento = eventoFolha.CodigoEvento, Valor = eventoFolha.Valor! }
                                    by new { eventoFolha.CodigoTransacao, eventoFolha.CodigoEvento }
                         into eventoFolhaGroup

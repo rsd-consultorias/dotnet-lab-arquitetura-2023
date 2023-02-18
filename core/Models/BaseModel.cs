@@ -1,7 +1,7 @@
 ﻿using System;
 namespace LabArquitetura.Core.Models
 {
-	public abstract class BaseModel
+    public abstract class BaseModel
     {
         // 
         public Guid Id { get; set; } = Guid.NewGuid();
@@ -11,8 +11,8 @@ namespace LabArquitetura.Core.Models
         public DateTime? DataAlteracao { get; set; }
 
         public BaseModel()
-		{
-		}
-	}
+        {
+        }
+    }
 }
 

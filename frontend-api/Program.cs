@@ -33,7 +33,8 @@ builder.Services.AddControllers().AddJsonOptions(options =>
 builder.Services.AddDbContext<LabArquiteturaDbContext>(options =>
 {
     //options.UseInMemoryDatabase("LabArquitetura", op => { op.EnableNullChecks(); });
-    options.UseSqlite("Data Source=labArquitetura.db;Cache=Shared", options => {
+    options.UseSqlite("Data Source=labArquitetura.db;Cache=Shared", options =>
+    {
         options.MigrationsAssembly("frontend-api");
     });
     options.EnableDetailedErrors();

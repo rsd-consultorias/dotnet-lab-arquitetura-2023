@@ -1,7 +1,7 @@
 {
   "format": 1,
   "restore": {
-    "/Users/rafaeldias/Repositories/dotnet/Lab-Arquitetura-2023/dotnet-lab-arquitetura-2023/services/FolhaService/folha-service.csproj": {}
+    "/Users/rafaeldias/Repositories/dotnet/Lab-Arquitetura-2023/dotnet-lab-arquitetura-2023/services/folha-service/folha-service.csproj": {}
   },
   "projects": {
     "/Users/rafaeldias/Repositories/dotnet/Lab-Arquitetura-2023/dotnet-lab-arquitetura-2023/core/core.csproj": {
@@ -182,14 +182,14 @@
         }
       }
     },
-    "/Users/rafaeldias/Repositories/dotnet/Lab-Arquitetura-2023/dotnet-lab-arquitetura-2023/services/FolhaService/folha-service.csproj": {
+    "/Users/rafaeldias/Repositories/dotnet/Lab-Arquitetura-2023/dotnet-lab-arquitetura-2023/services/folha-service/folha-service.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/rafaeldias/Repositories/dotnet/Lab-Arquitetura-2023/dotnet-lab-arquitetura-2023/services/FolhaService/folha-service.csproj",
-        "projectName": "folha-service",
-        "projectPath": "/Users/rafaeldias/Repositories/dotnet/Lab-Arquitetura-2023/dotnet-lab-arquitetura-2023/services/FolhaService/folha-service.csproj",
+        "projectUniqueName": "/Users/rafaeldias/Repositories/dotnet/Lab-Arquitetura-2023/dotnet-lab-arquitetura-2023/services/folha-service/folha-service.csproj",
+        "projectName": "FolhaService",
+        "projectPath": "/Users/rafaeldias/Repositories/dotnet/Lab-Arquitetura-2023/dotnet-lab-arquitetura-2023/services/folha-service/folha-service.csproj",
         "packagesPath": "/Users/rafaeldias/.nuget/packages/",
-        "outputPath": "/Users/rafaeldias/Repositories/dotnet/Lab-Arquitetura-2023/dotnet-lab-arquitetura-2023/services/FolhaService/obj/",
+        "outputPath": "/Users/rafaeldias/Repositories/dotnet/Lab-Arquitetura-2023/dotnet-lab-arquitetura-2023/services/folha-service/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/rafaeldias/.nuget/NuGet/NuGet.Config"

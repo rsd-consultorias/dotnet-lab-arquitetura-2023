@@ -4,9 +4,9 @@ using LabArquitetura.Infrastructure.DBContexts.Models;
 
 namespace frontend_api.Factoriess
 {
-	public class FuncionarioFactory
-	{
-		
-	}
+    public class FuncionarioFactory
+    {
+
+    }
 }
 

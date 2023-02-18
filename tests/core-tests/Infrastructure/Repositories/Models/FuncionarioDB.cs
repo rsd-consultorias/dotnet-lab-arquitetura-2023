@@ -2,7 +2,7 @@
 
 namespace LabArquitetura.Infrastructure.DBContexts.Models
 {
-	public class FuncionarioDB : Funcionario
+    public class FuncionarioDB : Funcionario
     {
         public FuncionarioDB()
         {

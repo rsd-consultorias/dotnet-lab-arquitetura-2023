@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace LabArquitetura.Infrastructure.DBContexts.Mappings
 {
-	public class EventoFolhaMapping : IEntityTypeConfiguration<EventoFolha>
+    public class EventoFolhaMapping : IEntityTypeConfiguration<EventoFolha>
     {
-		public EventoFolhaMapping()
-		{
-		}
+        public EventoFolhaMapping()
+        {
+        }
 
         public void Configure(EntityTypeBuilder<EventoFolha> builder)
         {

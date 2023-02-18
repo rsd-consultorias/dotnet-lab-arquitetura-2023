@@ -6,7 +6,7 @@ using LabArquitetura.Infrastructure.DBContexts.Models;
 
 namespace core_tests
 {
-    [TestFixture]
+    [TestFixture(Description = "Teste do processo de admissão", TestName = "Processo de Admissão")]
     public class Tests
     {
         private ParametroFolhaDomainService? _parametroFolhaDomainService;

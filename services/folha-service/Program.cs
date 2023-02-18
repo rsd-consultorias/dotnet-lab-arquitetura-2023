@@ -20,7 +20,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<LabArquiteturaDbContext>(options =>
 {
-    options.UseSqlite("Data Source=/Users/rafaeldias/Repositories/dotnet/Lab-Arquitetura-2023/dotnet-lab-arquitetura-2023/frontend-api/labArquitetura.db;Cache=Shared", options => {
+    options.UseSqlite("Data Source=/Users/rafaeldias/Repositories/dotnet/Lab-Arquitetura-2023/dotnet-lab-arquitetura-2023/frontend-api/labArquitetura.db;Cache=Shared", options =>
+    {
         options.MigrationsAssembly("frontend-api");
     });
     options.EnableDetailedErrors();
