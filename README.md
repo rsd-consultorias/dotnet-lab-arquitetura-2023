@@ -6,6 +6,11 @@
 ![Modelo](./doc/modelo-8.png)
 
 <h1>Modelo explicado</h1>
+<p>Esse modelo não pretende ser uma solução que implementa de forma exaustiva todos os conceitos de engenharia de software. A
+pretensão é ser um ponto de partida para o início do projeto e permitir que a arquitetura seja extendida conforme ela é descoberta ao
+longo do desenvolvimento.</p>
+<p>O que se tem em mente é permitir que o código seja organizado de forma que se possa automatizar testes unitários com o objetivo de
+preservar a consistência das regras de negócio.</p>
 
 <h2>Models & Value Objects</h2>
 <p>Devem representar o domínio do negócio que a aplicação está resolvendo. As models são entidades do modelo que tem valor para o usuário. Os Value Objects são objetos que, embora tenham importância, não tem razão para existir por si no domínio do negócio, portanto existem como um agregado à uma entidade.</p>
