@@ -92,13 +92,35 @@ public class AdmissaoApplicationService {
         ...
     }
 }
-````
+```
 
-* Repositories
+<h2>Repositories, Commands, Queries</h2>
+<p>Representam contratos para trabalhar com repositórios dentro do Application Model sem expor detalhes da implementação.</p>
 
-* Commands
+```C#
+// Definição de um repositório
+public interface IFuncionariosRepository {
+    IEnumerable<Funcionario> ListarTodos();
+    void Inserir(Funcionario funcionario);
+    ...
+}
 
-* Queries
+// Consumo do repositório dentro do Application Service
+public class AdmissaoApplicationService {
+    private readonly IFuncionariosRepository _funcionariosRepository;
+
+    public AdmissaoApplicationService(..., IFuncionariosRepository funcionariosRepository) {
+        _funcionariosRepository = funcionariosRepository;
+        ...
+    }
+
+    public void Admitir(Pessoa pessoa) {
+        ...
+        _funcionariosRepository.Inserir(funcionarioCriado);_
+        ...
+    }
+}
+```
 
 ## Executar os projetos
 ```bash
