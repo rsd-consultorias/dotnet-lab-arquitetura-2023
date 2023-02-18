@@ -141,7 +141,11 @@ public class AdmissaoApplicationService {
 <p>Nesse projeto foi adotado o NUnit como framework para automação de testes. A escolha foi arbitrária. Pode-se usar outros como o xUnit ou MSTest ou outras. Nesse projeto é priorizado o que o .Net Framework oferece.</p>
 <p>A pretensão não é convencer adotar metodologia TDD, BDD, etc. Apenas expor uma forma de garantir a integridade da parte mais importante do projeto a cada incremento. Deve-se ter em mente que a automação aqui não é extensiva a ponto de cobrir 100% do projeto. Considere ler sobre pirâmide de testes<sup>10<sup>.</p>
 
+<br/>
+<h1>Comandos úteis</h1>
+
 ## Executar os projetos
+
 ```bash
 # Keycloak - Na pasta bin do keycloac
 sh ./kc.sh start-dev --features=declarative-user-profile
@@ -149,13 +153,12 @@ sh ./kc.sh start-dev --features=declarative-user-profile
 # Frontend Angular - Na pasta do angular
 ng serve
 
-# Frontend API - Na pasta da api do frontend
-## Roda os testes, se não falhar, sobe a API
-dotnet test && dotnet run
+# API e Service Worker
+dotnet run
 ```
 
 ## Comandos do Kafka
-``` bash
+```bash
 # Iniciar serviço ZooKeeper
 sh bin/zookeeper-server-start.sh config/zookeeper.properties
 
@@ -179,7 +182,8 @@ sh bin/kafka-console-consumer.sh --topic quickstart-events --from-beginning --bo
 rm -rf /tmp/kafka-logs /tmp/zookeeper /tmp/kraft-combined-logs
 ```
 
-## Referências
+<h1>Referências</h1>
+
 - [[1] dotnet core WebAPI](https://learn.microsoft.com/en-us/aspnet/core/web-api/?WT.mc_id=dotnet-35129-website&view=aspnetcore-7.0)
 - [[2] Angular](https://angular.io/)
 - [[3] Bootstrap](https://getbootstrap.com/docs/5.3/getting-started/introduction/)
