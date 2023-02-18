@@ -10,8 +10,6 @@ using LabArquitetura.Infrastructure.Queries;
 using LabArquitetura.Infrastructure.Services;
 using LabArquitetura.Infrastructure.Commands;
 using Microsoft.EntityFrameworkCore;
-using Core.ApplicationServices;
-using Core.Infrastrucuture.Queries;
 using LabArquitetura.Core.Infrastrucuture.Repositories;
 using LabArquitetura.Core.Interfaces.Repositories;
 using LabArquitetura.Infrastructure.Repositories;

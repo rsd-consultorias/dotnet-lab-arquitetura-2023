@@ -2,7 +2,7 @@
 using LabArquitetura.Core.Types;
 using LabArquitetura.Core.Models;
 
-namespace Core.Infrastrucuture.Queries
+namespace LabArquitetura.Core.Infrastrucuture.Queries
 {
     public interface IEventoFolhaQuery
     {

@@ -1,4 +1,4 @@
-using Core.ApplicationServices;
+using LabArquitetura.Core.ApplicationServices;
 using FolhaService.Services;
 using LabArquitetura.Core.Infrastrucuture.Queries;
 using LabArquitetura.Core.Types;

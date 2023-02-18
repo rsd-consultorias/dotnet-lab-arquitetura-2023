@@ -1,7 +1,7 @@
 ﻿using System;
 using LabArquitetura.Core.Types;
 
-namespace Core.ApplicationServices
+namespace LabArquitetura.Core.ApplicationServices
 {
     public interface IProcessamentoFolhaApplication
     {

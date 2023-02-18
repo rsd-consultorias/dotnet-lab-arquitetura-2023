@@ -1,5 +1,5 @@
 ﻿using System;
-using Core.Infrastrucuture.Queries;
+using LabArquitetura.Core.Infrastrucuture.Queries;
 using LabArquitetura.Core.Models;
 using LabArquitetura.Core.Types;
 using LabArquitetura.Infrastructure.DBContexts.Contexts;

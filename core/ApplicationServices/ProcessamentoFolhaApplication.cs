@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Linq;
-using Core.Infrastrucuture.Queries;
+using LabArquitetura.Core.Infrastrucuture.Queries;
 using LabArquitetura.Core.Infrastrucuture.Repositories;
 using LabArquitetura.Core.Interfaces.Repositories;
 using LabArquitetura.Core.Models;
 using LabArquitetura.Core.Models.ValueObjects;
 using LabArquitetura.Core.Types;
 
-namespace Core.ApplicationServices
+namespace LabArquitetura.Core.ApplicationServices
 {
     public class ProcessamentoFolhaApplication : IProcessamentoFolhaApplication
     {
