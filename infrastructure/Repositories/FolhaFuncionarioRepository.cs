@@ -20,13 +20,13 @@ namespace LabArquitetura.Core.Infrastrucuture.Repositories
             return true;
         }
 
-        public async Task<IEnumerable<FolhaFuncionario>?> BuscarPorPeriodoEIdentificacao(Periodo periodo, string identificacao)
+        public async Task<IEnumerable<FolhaFuncionario>?> BuscarPorIdentificacao(string identificacao)
         {
             var result = _context.FolhaFuncionario.AsNoTracking().Where(x => x.Identificacao!.Equals(identificacao)).AsEnumerable<FolhaFuncionario>();
             return result;
         }
 
-        public async Task<bool> ExcluirFolhaProcessadaNoPeriodoEIdentificacao(Periodo periodo, string identificacao)
+        public async Task<bool> ExcluirPorIdentificacao(string identificacao)
         {
             var result = _context.FolhaFuncionario.Include(x => x.Rubricas).Where(x => x.Identificacao!.Equals(identificacao));
             _context.FolhaFuncionario.RemoveRange(result);

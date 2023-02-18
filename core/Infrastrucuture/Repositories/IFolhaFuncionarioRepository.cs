@@ -6,8 +6,8 @@ namespace LabArquitetura.Core.Infrastrucuture.Repositories
 {
     public interface IFolhaFuncionarioRepository : BaseRepository<FolhaFuncionario>
     {
-        Task<IEnumerable<FolhaFuncionario>?> BuscarPorPeriodoEIdentificacao(Periodo periodo, string identificacao);
-        Task<bool> ExcluirFolhaProcessadaNoPeriodoEIdentificacao(Periodo periodo, string identificacao);
+        Task<IEnumerable<FolhaFuncionario>?> BuscarPorIdentificacao(string identificacao);
+        Task<bool> ExcluirPorIdentificacao(string identificacao);
     }
 }
 

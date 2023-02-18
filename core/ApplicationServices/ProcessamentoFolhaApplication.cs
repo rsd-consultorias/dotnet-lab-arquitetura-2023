@@ -26,11 +26,11 @@ namespace Core.ApplicationServices
 
         public async Task<object> RodarFolhaNoPeriodo(Periodo periodo, string identificacao, Action<UInt16, string>? emitirStatusProcessamento = null)
         {
-            var folhaProcessada = await _folhaFuncionarioRepository.BuscarPorPeriodoEIdentificacao(periodo, identificacao)!;
+            var folhaProcessada = await _folhaFuncionarioRepository.BuscarPorIdentificacao(identificacao)!;
 
             if (folhaProcessada != null && folhaProcessada.Any())
             {
-                await _folhaFuncionarioRepository.ExcluirFolhaProcessadaNoPeriodoEIdentificacao(periodo, identificacao);
+                await _folhaFuncionarioRepository.ExcluirPorIdentificacao(identificacao);
             }
 
             var funcionariosAtivos = await _funcionarioRepository.ListarFuncionariosAtivosNoPeriodo(periodo);
@@ -55,7 +55,7 @@ namespace Core.ApplicationServices
 
                 foreach (var grupo in eventosGrupo)
                 {
-                    var rubrica = new RubricaFolha(grupo.Key.CodigoEvento, $"Rubrica transacao/evento {grupo.Key.CodigoTransacao}/{grupo.Key.CodigoEvento}", grupo.Sum(x => decimal.Parse(x.Valor) / 100));
+                    var rubrica = new RubricaFolha(grupo.Key.CodigoEvento, $"Rubrica Transacao/Evento {grupo.Key.CodigoTransacao}/{grupo.Key.CodigoEvento}", grupo.Sum(x => decimal.Parse(x.Valor) / 100));
 
                     ((List<RubricaFolha>)(folhaFuncionario.Rubricas!)).Add(rubrica);
                 }
