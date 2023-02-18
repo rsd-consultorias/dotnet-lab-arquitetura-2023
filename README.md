@@ -10,7 +10,13 @@ longo do desenvolvimento.</p>
 preservar a consistência das regras de negócio a cada incremento.</p>
 <p>Conforme o projeto evolui e a complexidade é descoberta, é possível extender o modelo e, quando necessário refatorar em direção à um
 design diferente. Para outras opções pode consultar os publicados pelo Martin Fowler<sup>9</sup>.</p>
-<p>Neste projeto está usando Kakfa e gRPC, só funciona com essas tecnologias? Não! A utilização delas nesse projeto é com o intuito de criar cenários que criem necessidades de solução. Assim como qualquer conceito de engenharia de software, deve ser adotado aquilo que faz sentido e é necessário ao projeto</p>
+
+<h3>FAQ</h3>
+<p><b>Neste projeto está usando Kakfa e gRPC, só funciona com essas tecnologias?</b> <br />R: Não! A utilização delas nesse projeto é com o intuito de criar cenários que criem necessidades de solução. Assim como qualquer conceito de engenharia de software, deve ser adotado aquilo que faz sentido e é necessário ao projeto</p>
+<p><b>Ah! Mas no meu time fazemos diferente... Esse conceito está errado porque Fulano diz que...</b><br/>R: 👍</p>
+<p><b>É DDD?</b><br />R: Não. São camadas.</p>
+<p><b>Mas usa termos como Domain, Model, etc?</b><br />R: Sim. Hoje faz mais sentido o entendimento desses termos ao invés de utilizar BusinessLayer, DataLayer, e qualquer outra generalização. Está errado usar outros nomes? Não. Se fizer sentido à todos envovidos no projeto.</p>
+
 <br/>
 
 ![Modelo](./doc/modelo-8.png)
