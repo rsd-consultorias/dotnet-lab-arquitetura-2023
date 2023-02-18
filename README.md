@@ -2,9 +2,6 @@
 # [dotnet] Lab Arquitetura 2023 (work in progress)
 <br />
 
-## Modelo
-![Modelo](./doc/modelo-8.png)
-
 <h1>Modelo explicado</h1>
 <p>Esse modelo não pretende ser uma solução que implementa de forma exaustiva todos os conceitos de engenharia de software. A
 pretensão é ser um ponto de partida para o início do projeto e permitir que a arquitetura seja extendida conforme ela é descoberta ao
@@ -13,6 +10,10 @@ longo do desenvolvimento.</p>
 preservar a consistência das regras de negócio a cada incremento.</p>
 <p>Conforme o projeto evolui e a complexidade é descoberta, é possível extender o modelo e, quando necessário refatorar em direção à um
 design diferente. Para outras opções pode consultar os publicados pelo Martin Fowler<sup>9</sup>.</p>
+<p>Neste projeto está usando Kakfa e gRPC, só funciona com essas tecnologias? Não! A utilização delas nesse projeto é com o intuito de criar cenários que criem necessidades de solução. Assim como qualquer conceito de engenharia de software, deve ser adotado aquilo que faz sentido e é necessário ao projeto</p>
+<br/>
+
+![Modelo](./doc/modelo-8.png)
 
 <h2>Models & Value Objects</h2>
 <p>Devem representar o domínio do negócio que a aplicação está resolvendo. As models são entidades do modelo que tem valor para o usuário. Os Value Objects são objetos que, embora tenham importância, não tem razão para existir por si no domínio do negócio, portanto existem como um agregado à uma entidade.</p>
