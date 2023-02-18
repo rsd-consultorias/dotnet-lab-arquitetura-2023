@@ -14,7 +14,7 @@ design diferente. Para outras opções pode consultar os publicados pelo Martin 
 <p><b>Neste projeto está usando Kakfa e gRPC, só funciona com essas tecnologias?</b> <br />R: Não! A utilização delas nesse projeto é com o intuito de criar cenários que criem necessidades de solução. Assim como qualquer conceito de engenharia de software, deve ser adotado aquilo que faz sentido e é necessário ao projeto</p>
 <p><b>Ah! Mas no meu time fazemos diferente... Esse conceito está errado porque Fulano diz que...</b><br/>R: 👍</p>
 <p><b>É DDD?</b><br />R: Não. São camadas.</p>
-<p><b>Mas usa termos como Domain, Model, etc?</b><br />R: Sim. Hoje faz mais sentido o entendimento desses termos ao invés de utilizar BusinessLayer, DataLayer, e qualquer outra generalização. Está errado usar outros nomes? Não. Se fizer sentido à todos envovidos no projeto.</p>
+<p><b>Mas usa termos como Domain, Model, etc?</b><br />R: Sim. Hoje faz mais sentido o entendimento desses termos ao invés de utilizar BusinessLayer, DataLayer, e qualquer outra generalização. Está errado usar outros nomes? Não se fizer sentido à todos envovidos no projeto.</p>
 <p><b>Outro erro, não está usando <i>...coloque aqui o nome do seu componente favorito...</i>?</b><br />R: 😞</p>
 
 <br/>
