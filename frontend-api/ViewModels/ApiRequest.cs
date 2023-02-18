@@ -1,6 +1,6 @@
 namespace LabArquitetura.ViewModels
 {
-    public class ApiRequest
+    public abstract class ApiRequest
     {
         public string? Referrer { get; set; }
     }

@@ -16,6 +16,7 @@ namespace LabArquitetura.Infrastructure.DBContexts.Contexts
         public DbSet<Funcionario> Funcionarios { get; set; } = null!;
         public DbSet<FolhaFuncionario> FolhaFuncionario { get; set; } = null!;
         public DbSet<QueueDbModel> Queues { get; set; } = null!;
+        public DbSet<EventoFolha> EventosFolha { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder) {
 

@@ -85,6 +85,7 @@ builder.Services.AddScoped<IFolhaService, FolhaService>();
 builder.Services.AddScoped<IMaquinaQuery, MaquinaQuery>();
 builder.Services.AddScoped<IUsuarioQuery, UsuarioQuery>();
 builder.Services.AddScoped<IFuncionarioCommand<Funcionario>, FuncionarioCommand>();
+builder.Services.AddScoped<IEventoFolhaCommand, EventoFolhaCommand>();
 builder.Services.AddScoped<IFuncionarioQuery, FuncionarioQuery>();
 builder.Services.AddScoped<IOnboardingApplication<Funcionario>, OnboardingApplication<Funcionario>>();
 

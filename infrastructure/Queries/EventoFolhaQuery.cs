@@ -1,34 +1,31 @@
 ﻿using System;
-using core.Infrastrucuture.Queries;
+using Core.Infrastrucuture.Queries;
 using LabArquitetura.Core.Models;
 using LabArquitetura.Core.Types;
+using LabArquitetura.Infrastructure.DBContexts.Contexts;
+using Microsoft.EntityFrameworkCore;
 
 namespace LabArquitetura.Core.Infrastrucuture.Queries
 {
 	public class EventoFolhaQuery : IEventoFolhaQuery
     {
-		public EventoFolhaQuery()
-		{
-		}
+        private readonly LabArquiteturaDbContext _context;
 
-        public Task<IEnumerable<EventoFolha>> ListarEventosNaoProcessados(Periodo periodo)
+        public EventoFolhaQuery(LabArquiteturaDbContext context)
         {
-            return null;
+            _context = context;
         }
 
-        public Task<IEnumerable<EventoFolha>> ListarEventosNaoProcessadosPorFuncionarioId(Guid funcionarioId, Periodo periodo)
+        public Task<IEnumerable<EventoFolha>> ListarEventosPorFuncionarioIdEPeriodo(Guid funcionarioId, Periodo periodo)
         {
-            return null;
+            var eventos = _context.EventosFolha.AsNoTracking().Where(x => funcionarioId.Equals(x.FuncionarioId)).AsEnumerable();
+
+            return Task.FromResult(eventos);
         }
 
-        public Task<IEnumerable<EventoFolha>> ListarEventosProcessados(Periodo periodo)
+        public Task<IEnumerable<EventoFolha>> ListarEventosPorPeriodo(Periodo periodo)
         {
-            return null;
-        }
-
-        public Task<IEnumerable<EventoFolha>> ListarEventosProcessadosPorFuncionarioId(Guid funcionarioId, Periodo periodo)
-        {
-            return null;
+            throw new NotImplementedException();
         }
     }
 }

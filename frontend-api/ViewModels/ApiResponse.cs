@@ -11,6 +11,16 @@ namespace LabArquitetura.ViewModels
         public IEnumerable<string>? Errors { get; set; }
         public string? ReturnUrl { get; set; }
 
+        public static ApiResponse<T> CreateQueuedResponse(T body, string? referrer)
+        {
+            return new ApiResponse<T>()
+            {
+                Body = body,
+                Status = Constants.STATUS_QUEUED,
+                ReturnUrl = referrer
+            };
+        }
+
         public static implicit operator ApiResponse<T>(ApiResponse<Funcionario> v)
         {
             throw new NotImplementedException();

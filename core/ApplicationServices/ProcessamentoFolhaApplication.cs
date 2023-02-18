@@ -1,12 +1,13 @@
 ﻿using System;
-using core.Infrastrucuture.Queries;
+using System.Linq;
+using Core.Infrastrucuture.Queries;
 using LabArquitetura.Core.Infrastrucuture.Repositories;
 using LabArquitetura.Core.Interfaces.Repositories;
 using LabArquitetura.Core.Models;
 using LabArquitetura.Core.Models.ValueObjects;
 using LabArquitetura.Core.Types;
 
-namespace core.ApplicationServices
+namespace Core.ApplicationServices
 {
     public class ProcessamentoFolhaApplication : IProcessamentoFolhaApplication
     {
@@ -40,7 +41,6 @@ namespace core.ApplicationServices
             for (ushort i = 0; i < progresso; i++)
             {
                 emitirStatusProcessamento!(i, "Configurando processamento");
-                await Task.Delay(2000);
             }
 
             foreach (var funcionario in funcionariosAtivos)
@@ -52,33 +52,36 @@ namespace core.ApplicationServices
                     DataProcessamento = DateTime.UtcNow
                 };
 
-                //    foreach (var evento in await _eventoFolhaQuery.ListarEventosNaoProcessadosPorFuncionarioId(funcionario.Id, periodo))
-                //    {
-                //        evento.UltimoProcessamento = evento.DataProcessamento;
-                //        evento.DataProcessamento = DateTime.UtcNow;
-                //        evento.Processado = true;
+                var eventosFolha = await _eventoFolhaQuery.ListarEventosPorFuncionarioIdEPeriodo(funcionario.Id, periodo);
 
-                //        ((List<RubricaFolha>)(folhaFuncionario.Rubricas!)).Add(new RubricaFolha
-                //        {
-                //            CodigoRubrica = evento.CodigoEvento,
-                //            DescricaoRubrica = evento.Descricao,
-                //            Valor = decimal.Parse(evento.Valor!) / 100
-                //        });
-                //        emitirStatusProcessamento!(progresso, $"Processando: [{progresso}%] {funcionario.CPF} => Evento: {evento.CodigoTransacao}.{evento.CodigoEvento} - {evento.Descricao}...");
-                //    }
+                var eventosGrupo = from eventoFolha in eventosFolha
+                        group new { CodigoTransacao = eventoFolha.CodigoTransacao, CodigoEvento = eventoFolha.CodigoEvento, Valor = eventoFolha.Valor! }
+                        by new { eventoFolha.CodigoTransacao, eventoFolha.CodigoEvento }
+                        into eventoFolhaGroup
+                        select eventoFolhaGroup;
+
+
+                foreach(var grupo in eventosGrupo)
+                {
+                    var rubrica = new RubricaFolha
+                    {
+                        CodigoRubrica = grupo.Key.CodigoEvento,
+                        DescricaoRubrica = $"Rubrica transacao/evento {grupo.Key.CodigoTransacao}/{grupo.Key.CodigoEvento}",
+                        Valor = grupo.Sum(x => decimal.Parse(x.Valor))
+                    };
+
+                    ((List<RubricaFolha>)(folhaFuncionario.Rubricas!)).Add(rubrica);
+                }
 
                 await _folhaFuncionarioRepository.Gravar(folhaFuncionario);
 
                 emitirStatusProcessamento!(progresso, $"Processando: [{funcionario.CPF}] {funcionario.Nome}");
-
                 progresso += unidadeProgresso;
-                await Task.Delay(6000);
             }
 
             for (var i = progresso; i < 100; i++)
             {
                 emitirStatusProcessamento!(i, "Finalizando processamento");
-                await Task.Delay(2000);
             }
 
             emitirStatusProcessamento!(100, "Processamento da folha finalizado.");
