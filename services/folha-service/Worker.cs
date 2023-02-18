@@ -34,10 +34,9 @@ public class Worker : BackgroundService
     {
         while (!stoppingToken.IsCancellationRequested)
         {
-
             await _processamentoFolhaApplication.RodarFolhaNoPeriodo(new Periodo { Inicio = DateTime.Now }, "", LogProgresso);
 
-            await Task.Delay(10000, stoppingToken);
+            await Task.Delay(60000, stoppingToken);
         }
     }
 }

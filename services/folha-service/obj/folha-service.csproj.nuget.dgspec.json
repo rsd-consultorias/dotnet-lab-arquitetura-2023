@@ -1,0 +1,263 @@
+{
+  "format": 1,
+  "restore": {
+    "/Users/rafaeldias/Repositories/dotnet/Lab-Arquitetura-2023/dotnet-lab-arquitetura-2023/services/FolhaService/folha-service.csproj": {}
+  },
+  "projects": {
+    "/Users/rafaeldias/Repositories/dotnet/Lab-Arquitetura-2023/dotnet-lab-arquitetura-2023/core/core.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/rafaeldias/Repositories/dotnet/Lab-Arquitetura-2023/dotnet-lab-arquitetura-2023/core/core.csproj",
+        "projectName": "core",
+        "projectPath": "/Users/rafaeldias/Repositories/dotnet/Lab-Arquitetura-2023/dotnet-lab-arquitetura-2023/core/core.csproj",
+        "packagesPath": "/Users/rafaeldias/.nuget/packages/",
+        "outputPath": "/Users/rafaeldias/Repositories/dotnet/Lab-Arquitetura-2023/dotnet-lab-arquitetura-2023/core/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/rafaeldias/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.102/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/rafaeldias/Repositories/dotnet/Lab-Arquitetura-2023/dotnet-lab-arquitetura-2023/infrastructure/infrastructure.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/rafaeldias/Repositories/dotnet/Lab-Arquitetura-2023/dotnet-lab-arquitetura-2023/infrastructure/infrastructure.csproj",
+        "projectName": "infrastructure",
+        "projectPath": "/Users/rafaeldias/Repositories/dotnet/Lab-Arquitetura-2023/dotnet-lab-arquitetura-2023/infrastructure/infrastructure.csproj",
+        "packagesPath": "/Users/rafaeldias/.nuget/packages/",
+        "outputPath": "/Users/rafaeldias/Repositories/dotnet/Lab-Arquitetura-2023/dotnet-lab-arquitetura-2023/infrastructure/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/rafaeldias/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "/Users/rafaeldias/Repositories/dotnet/Lab-Arquitetura-2023/dotnet-lab-arquitetura-2023/core/core.csproj": {
+                "projectPath": "/Users/rafaeldias/Repositories/dotnet/Lab-Arquitetura-2023/dotnet-lab-arquitetura-2023/core/core.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Google.Protobuf": {
+              "target": "Package",
+              "version": "[3.21.12, )"
+            },
+            "Grpc.AspNetCore": {
+              "target": "Package",
+              "version": "[2.23.2, )"
+            },
+            "Grpc.Net.Client": {
+              "target": "Package",
+              "version": "[2.51.0, )"
+            },
+            "Grpc.Net.ClientFactory": {
+              "target": "Package",
+              "version": "[2.23.2, )"
+            },
+            "Grpc.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.23.0, )"
+            },
+            "Keycloak.AuthServices.Authentication": {
+              "target": "Package",
+              "version": "[1.5.1, )"
+            },
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[6.0.13, )"
+            },
+            "Microsoft.AspNetCore.Authentication.OpenIdConnect": {
+              "target": "Package",
+              "version": "[6.0.13, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[6.0.13, )"
+            },
+            "Microsoft.EntityFrameworkCore.Sqlite": {
+              "target": "Package",
+              "version": "[6.0.13, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[6.0.13, )"
+            },
+            "Serilog.AspNetCore": {
+              "target": "Package",
+              "version": "[6.1.0, )"
+            },
+            "Serilog.Sinks.Console": {
+              "target": "Package",
+              "version": "[4.1.0, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.2.3, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[6.26.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.102/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/rafaeldias/Repositories/dotnet/Lab-Arquitetura-2023/dotnet-lab-arquitetura-2023/services/FolhaService/folha-service.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/rafaeldias/Repositories/dotnet/Lab-Arquitetura-2023/dotnet-lab-arquitetura-2023/services/FolhaService/folha-service.csproj",
+        "projectName": "folha-service",
+        "projectPath": "/Users/rafaeldias/Repositories/dotnet/Lab-Arquitetura-2023/dotnet-lab-arquitetura-2023/services/FolhaService/folha-service.csproj",
+        "packagesPath": "/Users/rafaeldias/.nuget/packages/",
+        "outputPath": "/Users/rafaeldias/Repositories/dotnet/Lab-Arquitetura-2023/dotnet-lab-arquitetura-2023/services/FolhaService/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/rafaeldias/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "/Users/rafaeldias/Repositories/dotnet/Lab-Arquitetura-2023/dotnet-lab-arquitetura-2023/core/core.csproj": {
+                "projectPath": "/Users/rafaeldias/Repositories/dotnet/Lab-Arquitetura-2023/dotnet-lab-arquitetura-2023/core/core.csproj"
+              },
+              "/Users/rafaeldias/Repositories/dotnet/Lab-Arquitetura-2023/dotnet-lab-arquitetura-2023/infrastructure/infrastructure.csproj": {
+                "projectPath": "/Users/rafaeldias/Repositories/dotnet/Lab-Arquitetura-2023/dotnet-lab-arquitetura-2023/infrastructure/infrastructure.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Grpc.AspNetCore": {
+              "target": "Package",
+              "version": "[2.40.0, )"
+            },
+            "Grpc.Core": {
+              "target": "Package",
+              "version": "[2.46.6, )"
+            },
+            "Grpc.Net.Common": {
+              "target": "Package",
+              "version": "[2.51.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.102/RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

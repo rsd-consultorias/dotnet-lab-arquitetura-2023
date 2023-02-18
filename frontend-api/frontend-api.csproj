@@ -59,7 +59,7 @@
     <Folder Include="Infrastructure\Services\" />
   </ItemGroup>
   <ItemGroup>
-    <Protobuf Include="..\services\FolhaService\Protos\folhaservice.proto" GrpcServices="Client">
+    <Protobuf Include="..\services\folha-service\Protos\folhaservice.proto" GrpcServices="Client">
       <Link>Protos\folhaservice.proto</Link>
     </Protobuf>
   </ItemGroup>

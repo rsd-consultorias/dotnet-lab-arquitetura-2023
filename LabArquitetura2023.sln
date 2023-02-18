@@ -5,15 +5,15 @@ VisualStudioVersion = 25.0.1704.4
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "frontend-api", "frontend-api\frontend-api.csproj", "{267F0AFF-75C2-4B19-A119-C749FCA34C77}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{0011A90A-5643-45DB-A3A9-354AF92C60A1}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "services", "services", "{0011A90A-5643-45DB-A3A9-354AF92C60A1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "core-tests", "tests\core-tests\core-tests.csproj", "{ACB273AD-CC19-4757-B97C-3189A8D7DDC1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "core", "core\core.csproj", "{0B4601CE-4BA3-4763-91C9-C9AC570C03BF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FolhaService", "services\FolhaService\FolhaService.csproj", "{553C51B5-5EF6-40FC-AD98-C5C0E74D9155}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "infrastructure", "infrastructure\infrastructure.csproj", "{0AF6A7E5-C43F-438E-A2F4-4B29FBEC3319}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "folha-service", "services\folha-service\folha-service.csproj", "{3F4C29C9-A7EA-4DC6-A9A4-9FEB852B7F97}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,14 +37,14 @@ Global
 		{0B4601CE-4BA3-4763-91C9-C9AC570C03BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0B4601CE-4BA3-4763-91C9-C9AC570C03BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0B4601CE-4BA3-4763-91C9-C9AC570C03BF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{553C51B5-5EF6-40FC-AD98-C5C0E74D9155}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{553C51B5-5EF6-40FC-AD98-C5C0E74D9155}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{553C51B5-5EF6-40FC-AD98-C5C0E74D9155}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{553C51B5-5EF6-40FC-AD98-C5C0E74D9155}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0AF6A7E5-C43F-438E-A2F4-4B29FBEC3319}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0AF6A7E5-C43F-438E-A2F4-4B29FBEC3319}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0AF6A7E5-C43F-438E-A2F4-4B29FBEC3319}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0AF6A7E5-C43F-438E-A2F4-4B29FBEC3319}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F4C29C9-A7EA-4DC6-A9A4-9FEB852B7F97}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F4C29C9-A7EA-4DC6-A9A4-9FEB852B7F97}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F4C29C9-A7EA-4DC6-A9A4-9FEB852B7F97}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F4C29C9-A7EA-4DC6-A9A4-9FEB852B7F97}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -53,6 +53,6 @@ Global
 		SolutionGuid = {794680AB-A6F4-4385-9F73-39B1F7F31A60}
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{553C51B5-5EF6-40FC-AD98-C5C0E74D9155} = {0011A90A-5643-45DB-A3A9-354AF92C60A1}
+		{3F4C29C9-A7EA-4DC6-A9A4-9FEB852B7F97} = {0011A90A-5643-45DB-A3A9-354AF92C60A1}
 	EndGlobalSection
 EndGlobal
