@@ -141,6 +141,52 @@ public class AdmissaoApplicationService {
 <p>Nesse projeto foi adotado o NUnit como framework para automação de testes. A escolha foi arbitrária. Pode-se usar outros como o xUnit ou MSTest ou outras. Nesse projeto é priorizado o que o .Net Framework oferece.</p>
 <p>A pretensão não é convencer adotar metodologia TDD, BDD, etc. Apenas expor uma forma de garantir a integridade da parte mais importante do projeto a cada incremento. Deve-se ter em mente que a automação aqui não é extensiva a ponto de cobrir 100% do projeto. Considere ler sobre pirâmide de testes<sup>10</sup>.</p>
 
+```C#
+    [TestFixture]
+    public class Tests
+    {
+        // Sim, são mocks! Precisa implementar uma vez e usar sempre!
+        private ParametroFolhaDomainService? _parametroFolhaDomainService;
+        private IMaquinaQuery? _maquinaQuery;
+        private IUsuarioQuery? _usuarioQuery;
+        private IFuncionarioCommand<FuncionarioDB>? _funcionarioCommand;
+        private IFolhaService? _folhaService;
+        private IEMailService? _emailService;
+        private OnboardingApplication<FuncionarioDB>? _onboardingApplication;
+
+        [SetUp]
+        public void Setup()
+        {
+            _parametroFolhaDomainService = new ParametroFolhaDomainService();
+            _maquinaQuery = new MaquinaQuery();
+            _usuarioQuery = new UsuarioQuery();
+            _funcionarioCommand = new FuncionarioCommand();
+            _folhaService = new FolhaService();
+            _emailService = new EMailService();
+
+            _onboardingApplication = new OnboardingApplication<FuncionarioDB>(
+                _maquinaQuery!,
+                _usuarioQuery!,
+                _funcionarioCommand!,
+                _folhaService!,
+                _emailService!);
+        }
+        ...
+        [Test]
+        [TestCaseSource(typeof(FuncionariosSource), nameof(FuncionariosSource.Validos))]
+        public void Test_REQ_01_Cenario_01(FuncionarioDB funcionario)
+        {
+            var result = _onboardingApplication!.OnboardFuncionario(funcionario);
+
+            Assert.That(result, Is.Not.Null, "Deve retornar um objeto com o resultado do onboarding");
+            Assert.That(result.MaquinaPronta, Is.True, "Deve retornar maquina pronta");
+            Assert.That(result.ParametroFolhaHabilitado, Is.True, "Deve retornar parametro folha habilitado");
+            Assert.That(result.UsuarioRedeCriado, Is.True, "Deve retornar usuario rede criado");
+            Assert.That(result.FuncionarioSalvo, Is.True, "Deve retornar que o funcionário foi salvo");
+        }
+    }
+```
+
 <br/>
 <h1>Frontend Javascript</h1>
 <p>Aqui é adotado Angular, mas pode ser React, Vue, MetroUI...</p>
