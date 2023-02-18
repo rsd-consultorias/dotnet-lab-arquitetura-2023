@@ -10,7 +10,9 @@
 pretensão é ser um ponto de partida para o início do projeto e permitir que a arquitetura seja extendida conforme ela é descoberta ao
 longo do desenvolvimento.</p>
 <p>O que se tem em mente é permitir que o código seja organizado de forma que se possa automatizar testes unitários com o objetivo de
-preservar a consistência das regras de negócio.</p>
+preservar a consistência das regras de negócio a cada incremento.</p>
+<p>Conforme o projeto evolui e a complexidade é descoberta, é possível extender o modelo e, quando necessário refatorar em direção à um
+design diferente. Para outras opções pode consultar os publicados pelo Martin Fowler<sup>9</sup>.</p>
 
 <h2>Models & Value Objects</h2>
 <p>Devem representar o domínio do negócio que a aplicação está resolvendo. As models são entidades do modelo que tem valor para o usuário. Os Value Objects são objetos que, embora tenham importância, não tem razão para existir por si no domínio do negócio, portanto existem como um agregado à uma entidade.</p>
@@ -26,7 +28,7 @@ public class Endereco {
     ...
 }
 
-// Value Object pode agrefgar uma entidade
+// Value Object pode agregar uma entidade
 public class Cliente {
     public Endereco EnderecoResidencial {get; set;}
     ...
@@ -99,7 +101,7 @@ public class AdmissaoApplicationService {
 }
 ```
 
-<h2>Repositories, Commands, Queries</h2>
+<h2>Repositories, Commands e Queries</h2>
 <p>Representam contratos para trabalhar com repositórios dentro do Application Model sem expor detalhes da implementação.</p>
 
 ```C#
@@ -166,11 +168,12 @@ rm -rf /tmp/kafka-logs /tmp/zookeeper /tmp/kraft-combined-logs
 ```
 
 ## Referências
-- [dotnet core WebAPI](https://learn.microsoft.com/en-us/aspnet/core/web-api/?WT.mc_id=dotnet-35129-website&view=aspnetcore-7.0)
-- [Angular](https://angular.io/)
-- [Bootstrap](https://getbootstrap.com/docs/5.3/getting-started/introduction/)
-- [gRPC](https://grpc.io/)
-- [Documentação do Keycloak](https://www.keycloak.org/docs)
-- [Testes unitários NUnit](https://www.devmedia.com.br/teste-unitario-com-nunit/41236)
-- [Microsserviços](https://learn.microsoft.com/fr-fr/azure/architecture/guide/architecture-styles/microservices)
-- [JSON:API - A specification for building APIs in JSON](https://jsonapi.org/)
+- [[1] dotnet core WebAPI](https://learn.microsoft.com/en-us/aspnet/core/web-api/?WT.mc_id=dotnet-35129-website&view=aspnetcore-7.0)
+- [[2] Angular](https://angular.io/)
+- [[3] Bootstrap](https://getbootstrap.com/docs/5.3/getting-started/introduction/)
+- [[4] gRPC](https://grpc.io/)
+- [[5] Documentação do Keycloak](https://www.keycloak.org/docs)
+- [[6] Testes unitários NUnit](https://www.devmedia.com.br/teste-unitario-com-nunit/41236)
+- [[7] Microsserviços](https://learn.microsoft.com/fr-fr/azure/architecture/guide/architecture-styles/microservices)
+- [[8] JSON:API - A specification for building APIs in JSON](https://jsonapi.org/)
+- [[9] Martin Fowler - Application Architecture](https://martinfowler.com/tags/application%20architecture.html)
