@@ -1,6 +1,5 @@
 ![alt text](./doc/label.png)
 # [dotnet] Lab Arquitetura 2023 (work in progress)
-<br />
 
 <h1>Modelo explicado</h1>
 <p>Esse modelo não pretende ser uma solução que implementa de forma exaustiva todos os conceitos de engenharia de software. A
@@ -16,6 +15,7 @@ design diferente. Para outras opções pode consultar os publicados pelo Martin 
 <p><b>Ah! Mas no meu time fazemos diferente... Esse conceito está errado porque Fulano diz que...</b><br/>R: 👍</p>
 <p><b>É DDD?</b><br />R: Não. São camadas.</p>
 <p><b>Mas usa termos como Domain, Model, etc?</b><br />R: Sim. Hoje faz mais sentido o entendimento desses termos ao invés de utilizar BusinessLayer, DataLayer, e qualquer outra generalização. Está errado usar outros nomes? Não. Se fizer sentido à todos envovidos no projeto.</p>
+<p><b>Outro erro, não está usando <i>...coloque aqui o nome do seu componente favorito...</i>?</b><br />R: 😞</p>
 
 <br/>
 
@@ -136,6 +136,11 @@ public class AdmissaoApplicationService {
 }
 ```
 
+<h1>Automação de Testes Unitários</h1>
+
+<p>Nesse projeto foi adotado o NUnit como framework para automação de testes. A escolha foi arbitrária. Pode-se usar outros como o xUnit ou MSTest ou outras. Nesse projeto é priorizado o que o .Net Framework oferece.</p>
+<p>A pretensão não é convencer adotar metodologia TDD, BDD, etc. Apenas expor uma forma de garantir a integridade da parte mais importante do projeto a cada incremento. Deve-se ter em mente que a automação aqui não é extensiva a ponto de cobrir 100% do projeto. Considere ler sobre pirâmide de testes<sup>10<sup>.</p>
+
 ## Executar os projetos
 ```bash
 # Keycloak - Na pasta bin do keycloac
@@ -184,3 +189,4 @@ rm -rf /tmp/kafka-logs /tmp/zookeeper /tmp/kraft-combined-logs
 - [[7] Microsserviços](https://learn.microsoft.com/fr-fr/azure/architecture/guide/architecture-styles/microservices)
 - [[8] JSON:API - A specification for building APIs in JSON](https://jsonapi.org/)
 - [[9] Martin Fowler - Application Architecture](https://martinfowler.com/tags/application%20architecture.html)
+- [[10] Practical Test Pyramid](https://martinfowler.com/articles/practical-test-pyramid.html)
