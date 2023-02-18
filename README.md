@@ -54,7 +54,7 @@ public class Cliente : BaseObject {
 ```
 
 <h2>Domain Services</h2>
-<p>Os Domain Services isolam regras de negócio que fazem sentido no contexto do negócio</p>
+<p>Os Domain Services isolam regras de negócio.</p>
 
 ```C#
 public class NotaFiscalDomainService {
