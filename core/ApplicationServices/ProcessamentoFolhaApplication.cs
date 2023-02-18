@@ -24,7 +24,7 @@ namespace Core.ApplicationServices
             _funcionarioRepository = funcionarioRepository;
         }
 
-        public async Task<object> RodarFolhaNoPeriodo(Periodo periodo, string identificacao, Action<UInt16, string>? emitirStatusProcessamento = null)
+        public async Task RodarFolhaNoPeriodo(Periodo periodo, string identificacao, Action<UInt16, string>? emitirStatusProcessamento = null)
         {
             var folhaProcessada = await _folhaFuncionarioRepository.BuscarPorIdentificacao(identificacao)!;
 
@@ -72,11 +72,9 @@ namespace Core.ApplicationServices
             }
 
             emitirStatusProcessamento!(100, "Processamento da folha finalizado.");
-
-            return Task.CompletedTask;
         }
 
-        public Task<object> RodarFolhaNoPeriodoParaFuncionarioId(Guid funcionarioId, Periodo periodo, string identificacao)
+        public Task RodarFolhaNoPeriodoParaFuncionarioId(Guid funcionarioId, Periodo periodo, string identificacao)
         {
             throw new NotImplementedException();
         }

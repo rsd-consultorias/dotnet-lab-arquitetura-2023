@@ -5,6 +5,101 @@
 ## Modelo
 ![Modelo](./doc/modelo-8.png)
 
+<h1>Modelo explicado</h1>
+
+<h2>Models & Value Objects</h2>
+<p>Devem representar o domínio do negócio que a aplicação está resolvendo. As models são entidades do modelo que tem valor para o usuário. Os Value Objects são objetos que, embora tenham importância, não tem razão para existir por si no domínio do negócio, portanto existem como um agregado à uma entidade.</p>
+
+```C#
+// Exemplo de Entidade
+public class Cliente {
+    ...
+}
+
+// Exemplo de Value Object
+public class Endereco {
+    ...
+}
+
+// Value Object pode agrefgar uma entidade
+public class Cliente {
+    public Endereco EnderecoResidencial {get; set;}
+    ...
+}
+
+// Afim de resolver propriedades e comportamentos comuns às models e value object pode-se criar uma interface
+public abstract class BaseObject {
+    public Guid Id {get; set;} = Guid.NewGuid();
+    ...
+}
+
+// Interface realizada nas models e value objects
+public class Cliente : BaseObject {
+    ...
+}
+```
+
+<h2>Domain Services</h2>
+<p>Os Domain Services isolam regras de negócio que fazem sentido no contexto do negócio</p>
+
+```C#
+public class NotaFiscalDomainService {
+    public decimal CalcularImpostos(NotaFiscal notaFiscal) {
+        ...
+    }
+
+    ...
+}
+```
+
+<h2>Application Services</h2>
+<p>Responsável por orquestrar os Domain Services para atender casos de uso dentro do contexto do negócio.</p>
+
+```C#
+public class FechamentoFolhaApplicationService {
+    public void Executar() {
+        ...
+        folhaDomainService.ApurarHorasExtras(...);
+        folhaDomainService.ApurarDescontos(...);
+        tributosDomainService.CalcularIRRF(...);
+        ...
+    }
+    ...
+}
+```
+
+<h2>Services</h2>
+<p>Definem contratos para expor serviços que serão consumidos pelo domínio do negócio sem expor detalhes da implementação do serviço.</p>
+
+```C#
+// Definição do serviço
+public interface IEmailService {
+    void EnviarEmailBoasVindas(Funcionario funcionario);
+}
+
+// Consumo do serviço dentro do Application Service
+public class AdmissaoApplicationService {
+    private readonly IEmailService _emailService;
+
+    public AdmissaoApplicationService(..., IEmailService emailService) {
+        _emailService = emailService;
+        ...
+    }
+
+    public void Admitir(Pessoa pessoa) {
+        ...
+        _emailService.EnviarEmailBoasVindas(funcionarioCriado);
+        ...
+    }
+}
+````
+
+* Repositories
+
+* Commands
+
+* Queries
+
 ## Executar os projetos
 ```bash
 # Keycloak - Na pasta bin do keycloac
