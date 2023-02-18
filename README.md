@@ -142,6 +142,10 @@ public class AdmissaoApplicationService {
 <p>A pretensão não é convencer adotar metodologia TDD, BDD, etc. Apenas expor uma forma de garantir a integridade da parte mais importante do projeto a cada incremento. Deve-se ter em mente que a automação aqui não é extensiva a ponto de cobrir 100% do projeto. Considere ler sobre pirâmide de testes<sup>10<sup>.</p>
 
 <br/>
+<h1>Frontend Javascript</h1>
+<p>Aqui é adotado Angular, mas pode ser React, Vue, MetroUI...</p>
+
+<br/>
 <h1>Comandos úteis</h1>
 
 ## Executar os projetos
