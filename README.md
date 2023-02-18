@@ -187,11 +187,9 @@ public class AdmissaoApplicationService {
     }
 ```
 
-<br/>
 <h1>Frontend Javascript</h1>
 <p>Aqui é adotado Angular, mas pode ser React, Vue, MetroUI...</p>
 
-<br/>
 <h1>Comandos úteis</h1>
 
 ## Executar os projetos
