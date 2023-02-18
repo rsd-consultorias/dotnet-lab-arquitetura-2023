@@ -55,20 +55,14 @@ namespace Core.ApplicationServices
                 var eventosFolha = await _eventoFolhaQuery.ListarEventosPorFuncionarioIdEPeriodo(funcionario.Id, periodo);
 
                 var eventosGrupo = from eventoFolha in eventosFolha
-                        group new { CodigoTransacao = eventoFolha.CodigoTransacao, CodigoEvento = eventoFolha.CodigoEvento, Valor = eventoFolha.Valor! }
-                        by new { eventoFolha.CodigoTransacao, eventoFolha.CodigoEvento }
+                                   group new { CodigoTransacao = eventoFolha.CodigoTransacao, CodigoEvento = eventoFolha.CodigoEvento, Valor = eventoFolha.Valor! }
+                                   by new { eventoFolha.CodigoTransacao, eventoFolha.CodigoEvento }
                         into eventoFolhaGroup
-                        select eventoFolhaGroup;
+                                   select eventoFolhaGroup;
 
-
-                foreach(var grupo in eventosGrupo)
+                foreach (var grupo in eventosGrupo)
                 {
-                    var rubrica = new RubricaFolha
-                    {
-                        CodigoRubrica = grupo.Key.CodigoEvento,
-                        DescricaoRubrica = $"Rubrica transacao/evento {grupo.Key.CodigoTransacao}/{grupo.Key.CodigoEvento}",
-                        Valor = grupo.Sum(x => decimal.Parse(x.Valor))
-                    };
+                    var rubrica = new RubricaFolha(grupo.Key.CodigoEvento, $"Rubrica transacao/evento {grupo.Key.CodigoTransacao}/{grupo.Key.CodigoEvento}", grupo.Sum(x => decimal.Parse(x.Valor) / 100));
 
                     ((List<RubricaFolha>)(folhaFuncionario.Rubricas!)).Add(rubrica);
                 }
